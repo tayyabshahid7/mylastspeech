@@ -1,0 +1,114 @@
+@import "../../assets/fonts/fonts";
+@import "../../assets/variables/variable";
+
+#login-container{
+  
+  .form-group{
+    position: relative;
+    margin-bottom: 2.25em;
+    label{
+      position: absolute;
+      top: -13px;
+      z-index: 12;
+      margin-bottom: 0 !important;
+    }
+  }
+
+  .login-dailog{
+    position: absolute;
+    width: 100%;
+    top: 15%;
+    padding: 0 10%;
+  }
+  .error{
+    color: $Froly !important;
+    font-size: 12px;
+  }
+  .validate{
+    label{
+      color: $Froly !important;
+    }  
+    ::-webkit-input-placeholder { 
+      color: $Froly !important;
+    }
+    .checkmark{
+      border-color: $Froly !important;
+      border: 1px solid;
+    }
+  }
+  .background-images{
+    height: 100vh;
+    .left-section-login{
+        .first-div{
+          height: 33%;
+          min-width: 35%;
+          float: left;
+          mix-blend-mode: lighten;
+          border-radius: 10px;   
+          background:transparent linear-gradient(180deg, $white 0%, #FFFFFF45 100%) 0% 0% no-repeat padding-box;
+          transform: scale3d(1.5, 1.5, 1.5);
+          max-width: 35%;
+          position: absolute;
+          bottom: 10%;
+          opacity: 0.02;
+        }
+        .second-div{
+          height: 33%;
+          float: left;
+          min-width: 30%;
+          background: transparent linear-gradient(180deg,  $white 0%, #FFFFFF45 100%) 0% 0% no-repeat padding-box;
+          mix-blend-mode: lighten;
+          border-radius: 10px;
+          opacity: 0.02;
+          transform: scale(1.5);
+          bottom: -15%;
+          position: absolute;
+          top: unset;
+          left: 30%;
+        }
+      
+    }
+    .right-section-login{
+        .right-img {
+            height: 350px;
+            width: 250px;
+            background: transparent linear-gradient(180deg,  $white 0%, #FFFFFF45 100%) 0% 0% no-repeat padding-box;
+            mix-blend-mode: lighten;
+            opacity: 0.05;
+            float: right;
+            margin-top: 13%;
+            border-radius: 10px;
+        }
+       
+        .third-div{
+          height: 30%;
+          min-width: 35%;
+          background: transparent linear-gradient(180deg, $white 0%, #FFFFFF45 100%) 0% 0% no-repeat padding-box;
+          mix-blend-mode: lighten;
+          border-radius: 10px;
+          transform: scale3d(1.5, 1.5, 1.5);
+          max-width: 40%;
+          opacity: 0.04;
+          position: absolute;
+          left: auto;
+          right: 0;
+          top: -10%;
+        }
+        .fourth-div{
+          height: 25%;
+          float: left;
+          min-width: 27%;
+          background: transparent linear-gradient(180deg, $white 0%, #FFFFFF45 100%) 0% 0% no-repeat padding-box;
+          mix-blend-mode: lighten;
+          border-radius: 10px;
+          transform: scale(1.5);
+          position: absolute;
+          opacity: 0.04;
+          right: 0;
+          top: 18%;
+        }
+    }
+   
+}
+}
+

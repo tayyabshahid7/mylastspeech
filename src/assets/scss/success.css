@@ -1,0 +1,44 @@
+/* Font-Family*/
+/* Color Scheme*/
+@font-face {
+  font-family: "Sofia Pro";
+  src: local("Sofia Pro Regular"), local("Sofia-Pro-Regular"), url("/assets/fonts/SofiaProRegular.woff2") format("woff2"), url("/assets/fonts/SofiaProRegular.woff") format("woff"), url("/assets/fonts/SofiaProRegular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Sofia Pro";
+  src: local("Sofia Pro Ultra Light"), local("Sofia-Pro-Ultra-Light"), url("/assets/fonts/SofiaProUltraLight.woff2") format("woff2"), url("/assets/fonts/SofiaProUltraLight.woff") format("woff"), url("/assets/fonts/SofiaProUltraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+.success .custom-login {
+  height: 100vh;
+}
+.success h3 {
+  font-size: 2.5em;
+  color: #fff;
+  font-weight: bold;
+}
+.success p {
+  color: #696969;
+}
+.success .success-btn {
+  background: transparent linear-gradient(180deg, #A457FF 0%, #733EB4 100%) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 12px #00000029;
+  border-radius: 8px;
+  padding: 10px 18px;
+  margin-top: 3%;
+  color: #fff;
+}
+.success .success-btn:active {
+  background: transparent linear-gradient(180deg, #A457FF 0%, #733EB4 100%) 0% 0% no-repeat padding-box !important;
+}
+.success .success-btn:hover {
+  background: transparent linear-gradient(180deg, #A457FF 0%, #733EB4 100%) 0% 0% no-repeat padding-box;
+}
+.success .success-btn a {
+  opacity: 0.36;
+}
+
+/*# sourceMappingURL=success.css.map */

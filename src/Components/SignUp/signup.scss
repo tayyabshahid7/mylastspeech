@@ -1,0 +1,151 @@
+@import "../../assets/fonts/fonts";
+@import "../../assets/variables/variable";
+
+.sign-up {
+  height: auto;
+  overflow: hidden;
+
+  .signup-dialog{
+    position: absolute;
+    width: 100%;
+    top: 18%;
+    padding: 0 10%;
+  }
+
+  .error{
+    color: $Froly !important;
+    font-size: 12px;
+  }
+  .background-images{
+    height: 100vh;
+    .left-section{
+        .first-div{
+          height: 33%;
+          min-width: 35%;
+          float: left;
+          mix-blend-mode: lighten;
+          border-radius: 10px;
+          background: transparent linear-gradient(180deg, $white 0%, #FFFFFF45 100%) 0% 0% no-repeat padding-box;
+          transform: scale3d(1.5, 1.5, 1.5);
+          max-width: 35%;
+          opacity: 0.02;
+          position: absolute;
+          bottom: 0;
+        }
+        .second-div{
+          height: 33%;
+          float: left;
+          min-width: 30%;
+          background: transparent linear-gradient(180deg, $white 0%, #FFFFFF45 100%) 0% 0% no-repeat padding-box;
+          mix-blend-mode: lighten;
+          border-radius: 10px;
+          opacity: 0.02;
+          transform: scale(1.5);
+          bottom: -25%;
+          position: absolute;
+          top: unset;
+          left: 30%;
+        }
+      
+    }
+    .right-section{
+        .right-img {
+            height: 350px;
+            width: 250px;
+            background: transparent linear-gradient(180deg, #FFFFFF 0%, #FFFFFF45 100%) 0% 0% no-repeat padding-box;
+            mix-blend-mode: lighten;
+            opacity: 0.05;
+            float: right;
+            margin-top: 13%;
+            border-radius: 10px;
+        }
+       
+        .third-div{
+          height: 30%;
+          min-width: 35%;
+          mix-blend-mode: lighten;
+          border-radius: 10px;
+          background: transparent linear-gradient(180deg, $white 0%, #FFFFFF45 100%) 0% 0% no-repeat padding-box;
+          transform: scale3d(1.5, 1.5, 1.5);
+          max-width: 40%;
+          position: absolute;
+          left: auto;
+          right: 0;
+          opacity: 0.04;
+          bottom: 50%;
+        }
+        .fourth-div{
+          height: 40%;
+          float: left;
+          min-width: 27%;
+          background: transparent linear-gradient(180deg, $white 0%, #FFFFFF45 100%) 0% 0% no-repeat padding-box;
+          mix-blend-mode: lighten;
+          border-radius: 10px;
+          opacity: 0.04;
+          transform: scale(1.5);
+          position: absolute;
+          /* padding-bottom: 37% !important; */
+          right: 0;
+          top: 60% !important;
+        }
+    }
+   
+}
+  .form-group{
+    position: relative;
+    margin-bottom: 2.25em;
+    label{
+      position: absolute;
+      top: -13px;
+      z-index: 12;
+      margin-bottom: 0 !important;
+    }
+  }
+  .validate{
+    label{
+      color: $Froly !important;
+    }  
+    ::-webkit-input-placeholder { 
+      color: $Froly !important;
+    }
+    .checkmark{
+      border-color: $Froly !important;
+      border: 1px solid;
+    }
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+  input[type="checkbox"] + span {
+    display: inline-block;
+    position: relative;
+    top: -1px;
+    width: 20px;
+    color: $Purple;
+    height: 20px;
+    font-size: 18px;
+    margin: -1px 0px 0 0;
+    vertical-align: middle;
+    background: white left top no-repeat;
+    cursor: pointer;
+  }
+  input[type="checkbox"]:checked + span::after {
+    content: '\2713\0020';
+    width: 18px;
+    height: 18px;
+    top: -2px;
+    position: absolute;
+    left: 3px;
+  }
+  
+  input[type="checkbox"] + span {
+    margin-right: 4px;
+  }
+    
+  }
+ 
+  
+
+
+ 

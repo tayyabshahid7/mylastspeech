@@ -1,0 +1,143 @@
+@import "variable";
+@import "fonts";
+.navbar {
+  .form-search-login {
+    background: $Mine-Shaft 0% 0% no-repeat padding-box;
+    opacity: 1;
+    width: 7em;
+    height: 100px;
+    border-bottom-right-radius: 30px;
+
+    & img {
+      width: 30px;
+      height: 28px;
+    }
+  }
+}
+.login-container{
+  overflow: hidden;
+  .custom-login{
+    height:80vh;
+    .login-form{
+
+      background: transparent linear-gradient(141deg, $Wild-Sand 0%, $Mercury 100%) 0% 0% no-repeat padding-box;
+      box-shadow: 0px 8px 24px #00000029;
+      opacity: 1;
+      border-radius: 10px;
+
+      form{
+        padding: 8% 5% 3% 5%;
+
+        .form-group{
+
+          .form-control{
+            opacity: 0.40;
+            border: none;
+            padding: 1em;
+            color: $black;
+            margin-top: -8px;
+
+            ::-webkit-input-placeholder { /* Edge */
+              color: $black;
+              opacity: 100%;
+              //opacity: 0.9;
+            }
+
+            :-ms-input-placeholder { /* Internet Explorer 10-11 */
+              color: $black;
+              opacity: 100%;
+              //opacity: 0.9;
+            }
+
+            ::placeholder {
+              color: $black;
+              opacity: 100%;
+              //opacity: 0.9;
+            }
+          }
+
+            & label{
+              margin-bottom: 0;
+              color:$Gray;
+              padding-left: 17px;
+            }
+
+          .ForgetPwd{
+            font-weight: 600;
+            color: $Dove-Gray;
+            line-height: 15px;
+            font-size: 13px;
+            text-decoration: none;
+            padding-left: 20px;
+          }
+          &.custom-submit{
+            position: relative;
+            .btnSubmit{
+              position: absolute;
+              right: 0;
+              bottom: -43px;
+              min-width: 100px;
+              min-height: 55px;
+              background:$Studio;
+
+              & .fa{
+                font-size: 26px;
+                color: $white;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 768px) {
+
+  .login-container{
+    overflow: initial;
+    margin-top: 13%;
+    max-width: 90%;
+
+    .custom-login {
+      height: auto;
+
+      .login-form {
+        .form-group {
+          padding-bottom: 6%;
+          .form-control {
+            font-size: 2.5em;
+          }
+
+          & label {
+            font-size: 1.7em;
+          }
+            .btnSubmit{
+              bottom: -74px !important;
+              min-width: 140px !important;
+
+              border-radius: 10px;
+              min-height: 80px !important;
+
+              .fa{
+                font-size: 2.2em !important;
+              }
+            }
+          .ForgetPwd{
+            font-size: 1.7em !important;
+          }
+        }
+        .form-field{
+          font-size: 2em !important;
+          input[type=checkbox], input[type=radio]{
+            width: 30px;
+            height: 29px;
+          }
+        }
+      }
+    }
+  }
+
+}
+

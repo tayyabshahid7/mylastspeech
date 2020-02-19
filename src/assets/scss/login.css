@@ -1,0 +1,131 @@
+/* Font-Family*/
+/* Color Scheme*/
+@font-face {
+  font-family: "Sofia Pro";
+  src: local("Sofia Pro Regular"), local("Sofia-Pro-Regular"), url("/assets/fonts/SofiaProRegular.woff2") format("woff2"), url("/assets/fonts/SofiaProRegular.woff") format("woff"), url("/assets/fonts/SofiaProRegular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Sofia Pro";
+  src: local("Sofia Pro Ultra Light"), local("Sofia-Pro-Ultra-Light"), url("/assets/fonts/SofiaProUltraLight.woff2") format("woff2"), url("/assets/fonts/SofiaProUltraLight.woff") format("woff"), url("/assets/fonts/SofiaProUltraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+.navbar .form-search-login {
+  background: #212121 0% 0% no-repeat padding-box;
+  opacity: 1;
+  width: 7em;
+  height: 100px;
+  border-bottom-right-radius: 30px;
+}
+.navbar .form-search-login img {
+  width: 30px;
+  height: 28px;
+}
+
+.login-container {
+  overflow: hidden;
+}
+.login-container .custom-login {
+  height: 80vh;
+}
+.login-container .custom-login .login-form {
+  background: transparent linear-gradient(141deg, #F4F4F4 0%, #E3E3E3 100%) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 8px 24px #00000029;
+  opacity: 1;
+  border-radius: 10px;
+}
+.login-container .custom-login .login-form form {
+  padding: 8% 5% 3% 5%;
+}
+.login-container .custom-login .login-form form .form-group .form-control {
+  opacity: 0.4;
+  border: none;
+  padding: 1em;
+  color: #000;
+  margin-top: -8px;
+}
+.login-container .custom-login .login-form form .form-group .form-control ::-webkit-input-placeholder {
+  /* Edge */
+  color: #000;
+  opacity: 100%;
+}
+.login-container .custom-login .login-form form .form-group .form-control :-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #000;
+  opacity: 100%;
+}
+.login-container .custom-login .login-form form .form-group .form-control ::placeholder {
+  color: #000;
+  opacity: 100%;
+}
+.login-container .custom-login .login-form form .form-group label {
+  margin-bottom: 0;
+  color: #808080;
+  padding-left: 17px;
+}
+.login-container .custom-login .login-form form .form-group .ForgetPwd {
+  font-weight: 600;
+  color: #696969;
+  line-height: 15px;
+  font-size: 13px;
+  text-decoration: none;
+  padding-left: 20px;
+}
+.login-container .custom-login .login-form form .form-group.custom-submit {
+  position: relative;
+}
+.login-container .custom-login .login-form form .form-group.custom-submit .btnSubmit {
+  position: absolute;
+  right: 0;
+  bottom: -43px;
+  min-width: 100px;
+  min-height: 55px;
+  background: #733EB4;
+}
+.login-container .custom-login .login-form form .form-group.custom-submit .btnSubmit .fa {
+  font-size: 26px;
+  color: #fff;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 768px) {
+  .login-container {
+    overflow: initial;
+    margin-top: 13%;
+    max-width: 90%;
+  }
+  .login-container .custom-login {
+    height: auto;
+  }
+  .login-container .custom-login .login-form .form-group {
+    padding-bottom: 6%;
+  }
+  .login-container .custom-login .login-form .form-group .form-control {
+    font-size: 2.5em;
+  }
+  .login-container .custom-login .login-form .form-group label {
+    font-size: 1.7em;
+  }
+  .login-container .custom-login .login-form .form-group .btnSubmit {
+    bottom: -74px !important;
+    min-width: 140px !important;
+    border-radius: 10px;
+    min-height: 80px !important;
+  }
+  .login-container .custom-login .login-form .form-group .btnSubmit .fa {
+    font-size: 2.2em !important;
+  }
+  .login-container .custom-login .login-form .form-group .ForgetPwd {
+    font-size: 1.7em !important;
+  }
+  .login-container .custom-login .login-form .form-field {
+    font-size: 2em !important;
+  }
+  .login-container .custom-login .login-form .form-field input[type=checkbox], .login-container .custom-login .login-form .form-field input[type=radio] {
+    width: 30px;
+    height: 29px;
+  }
+}
+
+/*# sourceMappingURL=login.css.map */

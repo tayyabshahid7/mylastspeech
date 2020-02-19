@@ -1,0 +1,96 @@
+@import "./fonts";
+@import "./variable";
+
+.login-container{
+    // overflow: hidden;
+    
+    .custom-login{
+      height:80vh;
+      .login-form{
+  
+        background: transparent linear-gradient(141deg, $Wild-Sand 0%, $Mercury 100%) 0% 0% no-repeat padding-box;
+        box-shadow: 0px 8px 24px #00000029;
+        opacity: 1;
+        border-radius: 10px;
+  
+        form{
+          padding: 8% 5% 3% 5%;
+  
+          .form-group{
+  
+            .form-control{
+              opacity: 0.40;
+              border: none;
+              padding: 1em;
+              color: $black;
+              margin-top: -8px;
+  
+              ::-webkit-input-placeholder { /* Edge */
+                color: $black;
+                opacity: 100%;
+                //opacity: 0.9;
+              }
+  
+              :-ms-input-placeholder { /* Internet Explorer 10-11 */
+                color: $black;
+                opacity: 100%;
+                //opacity: 0.9;
+              }
+  
+              ::placeholder {
+                color: $black;
+                opacity: 100%;
+                //opacity: 0.9;
+              }
+            }
+  
+              & label{
+                margin-bottom: 0;
+                color:$Gray;
+                padding-left: 17px;
+              }
+  
+            .ForgetPwd{
+              font-weight: 600;
+              color: $Dove-Gray;
+              line-height: 15px;
+              font-size: 13px;
+              text-decoration: none;
+              padding-left: 20px;
+            }
+            &.custom-submit{
+              position: relative;
+              .btnSubmit{
+                position: absolute;
+                right: 0;
+                bottom: -43px;
+                min-width: 100px;
+                min-height: 55px;
+                background:$Studio;
+  
+                & .fa{
+                  font-size: 26px;
+                  color: $white;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+}
+  
+.screen-overlay{
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+
+body {
+  overflow-x: hidden;
+  overflow-y: visible;
+  background-color: $light-black !important;
+  font-family: $FontFamily-Sofia-pro !important;
+
+
+}

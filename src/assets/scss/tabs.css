@@ -1,0 +1,120 @@
+/* Font-Family*/
+/* Color Scheme*/
+@font-face {
+  font-family: "Sofia Pro";
+  src: local("Sofia Pro Regular"), local("Sofia-Pro-Regular"), url("/assets/fonts/SofiaProRegular.woff2") format("woff2"), url("/assets/fonts/SofiaProRegular.woff") format("woff"), url("/assets/fonts/SofiaProRegular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Sofia Pro";
+  src: local("Sofia Pro Ultra Light"), local("Sofia-Pro-Ultra-Light"), url("/assets/fonts/SofiaProUltraLight.woff2") format("woff2"), url("/assets/fonts/SofiaProUltraLight.woff") format("woff"), url("/assets/fonts/SofiaProUltraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+.tab-page {
+  overflow: hidden;
+}
+.tab-page .tabs-section {
+  height: auto !important;
+  margin-top: 1%;
+}
+.tab-page .tabs-section .tabs-card {
+  height: 650px;
+}
+.tab-page .tabs-section .tabs-card .left-sec {
+  border-right: 1px solid #E0E0E0;
+  margin-top: 5%;
+  height: 500px;
+}
+.tab-page .tabs-section .tabs-card .left-sec .tab button {
+  display: block;
+  background-color: inherit;
+  color: #B1B1B1;
+  padding: 0px 7px 40px 5px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  line-height: 1.3em;
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.tab-page .tabs-section .tabs-card .left-sec .tab button.active {
+  color: #000;
+}
+.tab-page .tabs-section .tabs-card .content-sec {
+  margin-top: 5%;
+  height: 500px;
+}
+.tab-page .tabs-section .tabs-card .content-sec .tabcontent {
+  display: none;
+  width: 80%;
+  margin: 0 auto;
+}
+.tab-page .tabs-section .tabs-card .content-sec .tabcontent p {
+  color: #696969;
+  font-size: 1em;
+  letter-spacing: 0;
+  line-height: 20px;
+  padding-bottom: 30px;
+}
+.tab-page .tabs-section .tabs-card .content-sec .tabcontent .form-group {
+  margin-bottom: 2em;
+  width: 80%;
+}
+.tab-page .tabs-section .tabs-card .content-sec .tabcontent .add-btn a {
+  color: #733EB4;
+  font-weight: 600;
+  padding-left: 4%;
+}
+.tab-page .tabs-section .tabs-card .content-sec .tabcontent .form-control {
+  opacity: 0.4;
+  border: none;
+  padding: 0.6em;
+  color: #000;
+  margin-top: -8px;
+}
+.tab-page .tabs-section .tabs-card .content-sec .tabcontent .form-control:focus {
+  outline: none;
+  box-shadow: none;
+}
+.tab-page .tabs-section .tabs-card .content-sec .profile-section {
+  width: 90% !important;
+  margin-left: 5%;
+}
+.tab-page .tabs-section .tabs-card .content-sec .profile-section img {
+  width: 100px;
+  border-radius: 50%;
+}
+.tab-page .tabs-section .tabs-card .bottom-card span {
+  padding-left: 5%;
+  color: #000;
+  opacity: 0.21;
+}
+.tab-page .tabs-section .tabs-card::after {
+  content: "";
+  height: 60px;
+  width: 55px;
+  clip-path: polygon(45% 41%, 0 0, 86% 0);
+  background: transparent linear-gradient(159deg, #E3E3E3 0%, #F4F4F4 100%) 0% 0% no-repeat padding-box;
+  position: absolute;
+  left: 26%;
+  bottom: -9%;
+}
+
+.upper-list a {
+  color: #B1B1B1;
+  padding: 0 3%;
+}
+.upper-list .active {
+  color: #fff;
+}
+
+#London {
+  display: block;
+}
+
+/*# sourceMappingURL=tabs.css.map */

@@ -1,0 +1,280 @@
+@import "../../assets/fonts/fonts";
+@import "../../assets/variables/variable";
+
+#dashboard{
+  ::-webkit-scrollbar {
+    width: 2px !important;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: transparent !important;
+  }
+
+  .tab-page{
+    overflow:hidden ;
+  
+    .custom-text-field{
+      textarea{
+        background: transparent;
+        border: none;
+        width: 100%;
+        resize: none;
+        outline: none;
+      }
+    }
+  
+    .custom-submit{
+      .btnSubmit{
+        display: flex;
+        justify-content: center;
+        right: 45px !important;
+        align-items: center;
+        margin-bottom: -20%;
+
+        & .fa{
+          background: $Mountain-Meadow;
+          border-radius: 50%;
+          width: 40px;
+          height: 42px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+  
+        &:focus{
+          outline: none;
+        }
+        & span{
+          color: $white;
+          font-size: 1em;
+        }
+      }
+    }
+  
+    .response-msg{
+      color: $Mountain-Meadow;
+      &.error{
+        color: $Froly !important;
+      }
+    }
+  
+    .validate{ 
+      &::-webkit-input-placeholder { 
+        color: $Froly !important;
+      }
+    }
+  
+   .tabs-section{
+    height: auto !important;
+    margin-top: 1%;
+    .tabs-card{
+      height: 650px;
+      .left-sec{
+        border-right: 1px solid $Alto;
+        margin-top: 5%;
+        height: 500px;
+        .tab{
+  
+          & button{
+            display: block;
+            background-color: inherit;
+            color: $light-gray;
+            padding: 0px 7px 40px 5px;
+            width: 100%;
+            border: none;
+            outline: none;
+            text-align: left;
+            line-height: 1.3em;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.3s;
+            &.active{
+             color: $black;
+            }
+          }
+        }
+      }
+  
+      .content-sec{
+        margin-top: 5%;
+        overflow-y: scroll !important;
+        height: 500px;
+        overflow: hidden;
+        .tabcontent{
+          width: 80%;
+          margin: 0 auto;
+          & p{
+            color: $Dove-Gray;
+            font-size: 1em;
+            letter-spacing: 0;
+            line-height: 20px;
+            padding-bottom: 30px;
+          }
+          .form-group{
+            width: 80%;
+            .input-title{
+              margin-bottom: 0;
+              color:$Gray;
+              padding-left: 17px;
+            }
+           .input-inner-btn{
+              color: $Studio;
+              position: absolute;
+              right: 8px;
+              text-decoration: none;
+              top: 11px;
+              font-size: 0.8em;
+              font-weight: 700;
+            }
+            .profile-inputs{
+              &.input-inner-btn{
+                top: 17px !important;
+              }
+            }
+            
+          }
+          .add-btn{
+  
+            & a{
+              color: $Studio;
+              position: relative;
+              font-weight: 600;
+              padding-left: 4%;
+              cursor: pointer;
+            }
+          }
+            .form-control{
+              opacity: 0.4;
+              border: none;
+              height: 50px;
+              padding: 0.6em;
+              color: $black;
+              margin-top: -8px;
+  
+              &:focus{
+                outline: none;
+                box-shadow: none;
+              }
+            }
+          }
+        .second-content{
+            form{
+              padding: 0 !important;
+            }
+            .security-questions {
+              background: $white 0% 0% no-repeat padding-box;
+              border-radius: 4px;
+              opacity: 0.3;
+              width: 80%;
+              padding: 10px 10px;
+            }    
+            .toggle-icon{
+              color: $Purple;
+              font-size: 25px;
+            }
+            .card-collapse{
+             width: 80.5%;
+            }
+          }
+         
+          .form-group{
+            margin: 0;
+            position: relative;
+            margin-bottom: 2.25em;
+            label{
+              position: absolute;
+              top: -13px;
+              z-index: 12;
+              margin-bottom: 0 !important;
+            }
+            .img-section{
+              img{
+                background: $Studio;
+                margin-top: 8%;
+                border-radius: 50%;
+                width: 15px;
+                height: 15px;
+              }
+            & a{
+              position: absolute;
+              color: $Studio;
+              top: 12px;
+              font-weight: 600;
+            }
+          }
+          .add-btn{
+            & a{
+              position: relative;
+            }
+          }
+        }
+        .profile-section{
+          width: 90% !important;
+          margin-left: 5%;
+          .custom-input{
+            margin-top: 2.25em;
+          }
+          .profile-img{
+            margin-left: 1.7rem;
+            & img{
+              width: 100px;
+              border-radius: 50%;
+            } 
+            a{
+              color:$light-gray;
+              font: 400 14px/30px $FontFamily-Sofia-pro;
+            }
+          }
+        }
+      }
+  
+      .bottom-card{
+        & span{
+          padding-left: 5%;
+          color: $black;
+          opacity: 0.21;
+        }
+      }
+      }
+    }
+    .upper-list{
+      & a{
+          color: $light-gray;
+          padding: 0 3%;
+      }
+      .active{
+        color: $white; 
+        &:hover{
+          color: $white;
+        }
+      }
+      
+    }
+    .after-section{
+      content: "";
+      height: 60px;
+      width: 55px;
+      clip-path: polygon(45% 41%, 0 0, 86% 0);
+      background: transparent linear-gradient(141deg, $Wild-Sand 0%, $Mercury 100%) 0% 0% no-repeat padding-box;
+      position: absolute;
+      transition:0.5s;
+      -webkit-transition:0.5s;
+      -moz-transition:0.5s;
+      position:absolute;
+      left:15%;
+      top:99.5%;
+    }
+    .after-section-animate{
+        left: 275px;
+    }
+  }
+  
+}
+

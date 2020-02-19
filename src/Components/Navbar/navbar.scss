@@ -1,0 +1,116 @@
+@import "../../assets/fonts/fonts";
+@import "../../assets/variables/variable";
+
+.navbar{
+    z-index:999;
+    .form-search-login {
+        background: $Mine-Shaft 0% 0% no-repeat padding-box;
+        opacity: 1;
+        width: 7em;
+        height: 100px;
+        border-bottom-right-radius: 30px;
+    
+        & img {
+          width: 30px;
+          height: 28px;
+        }
+      }
+    .form-search{
+        background: $Mine-Shaft 0% 0% no-repeat padding-box;
+        opacity: 1;
+        width: 30em;
+        height: 100px;
+        border-bottom-right-radius: 30px;
+    & img{
+        width: 30px;
+        height: 28px;
+    }
+    form{
+        .form-inner{
+            background: #2E2E2E 0% 0% no-repeat padding-box;
+            border-radius: 22px;
+            width: 350px;
+
+            .custom-input{
+
+            }
+            & input{
+                background: transparent;
+                color:$Wild-Sand !important;
+                font-size:13px;
+
+                ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+                    color: $black;
+                }
+                ::-moz-placeholder { /* Firefox 19+ */
+                    color: $black;
+                }
+                :-ms-input-placeholder { /* IE 10+ */
+                    color: $black;
+                }
+                :-moz-placeholder { /* Firefox 18- */
+                    color: $black;
+                }
+
+                .form-control{
+
+                }
+                &:focus{
+                    border: none;
+                    box-shadow: none;
+                }
+            }
+            & #button-addon4{
+                .fa{
+                    color: $white;
+                }
+            }
+        }
+    }
+}
+}
+
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 768px) {
+
+    .container-fluid{
+        padding-right: 0;
+    }
+
+    .navbar {
+        position: relative;
+        .fixed-top{
+            position: relative;
+        }
+        .navbar-collapse{
+            .navbar-nav{
+                .nav-item{
+                    .nav-link{
+                        font-size: 1.7em !important;
+                    }
+                }
+            }
+        }
+
+        .form-search {
+            width: 20em !important;
+            height: 70px;
+
+            & form{
+                margin-left: 1em !important;
+                .form-inner{
+                    width: 90%;
+                }
+            }
+        }
+    }
+
+
+    div#navbarsExampleDefault {
+        float: right;
+        height: auto;
+        position: absolute;
+        right: 0%;
+        top: 0px;
+    }
+}

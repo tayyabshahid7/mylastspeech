@@ -1,0 +1,128 @@
+@import "variable";
+@import "fonts";
+@import "mixins";
+
+.tab-page{
+  overflow:hidden ;
+
+  .tabs-section{
+  height: auto !important;
+  margin-top: 1%;
+  .tabs-card{
+    height: 650px;
+    .left-sec{
+      border-right: 1px solid $Alto;
+      margin-top: 5%;
+      height: 500px;
+      .tab{
+
+        & button{
+          display: block;
+          background-color: inherit;
+          color: $Dove-Gray;
+          padding: 0px 7px 40px 5px;
+          width: 100%;
+          border: none;
+          outline: none;
+          text-align: left;
+          line-height: 1.3em;
+          font-size: 1em;
+          font-weight: 500;
+          cursor: pointer;
+          transition: 0.3s;
+
+          &:hover{
+            //background-color: #ddd;
+          }
+          &.active{
+           color: $black;
+          }
+        }
+      }
+    }
+
+    .content-sec{
+      margin-top: 5%;
+      height: 500px;
+      .tabcontent{
+
+        display: none;
+        width: 80%;
+        margin: 0 auto;
+
+        & p{
+          color: $Dove-Gray;
+          font-size: 1em;
+          letter-spacing: 0;
+          line-height: 20px;
+          padding-bottom: 30px;
+        }
+        .form-group{
+          margin-bottom: 2em;
+          width: 80%;
+        }
+        .add-btn{
+
+          & a{
+            color: $Studio;
+            font-weight: 600;
+            padding-left: 4%;
+
+          }
+        }
+          .form-control{
+            opacity: 0.4;
+            border: none;
+            padding: 0.6em;
+            color: $black;
+            margin-top: -8px;
+
+            &:focus{
+              outline: none;
+              box-shadow: none;
+            }
+          }
+        }
+      .profile-section{
+        width: 90% !important;
+        margin-left: 5%;
+        & img{
+          width: 100px;
+          border-radius: 50%;
+        }
+        & span{
+
+        }
+        & form{
+
+        }
+      }
+
+      }
+
+    .bottom-card{
+      & span{
+        padding-left: 5%;
+        color: $black;
+        opacity: 0.21;
+      }
+    }
+
+    &::after{
+      content: "";
+      height: 60px;
+      width: 55px;
+      clip-path: polygon(45% 41%, 0 0, 86% 0);
+      background: transparent linear-gradient(159deg, #E3E3E3 0%, #F4F4F4 100%) 0% 0% no-repeat padding-box;
+      position: absolute;
+      left: 26%;
+      bottom: -9%;
+    }
+    }
+  }
+
+}
+
+#London {
+  display: block;
+}

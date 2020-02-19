@@ -1,0 +1,72 @@
+@font-face {
+  font-family: "Sofia Pro";
+  src: local("Sofia Pro Regular"), local("Sofia-Pro-Regular"), url("/assets/fonts/SofiaProRegular.woff2") format("woff2"), url("/assets/fonts/SofiaProRegular.woff") format("woff"), url("/assets/fonts/SofiaProRegular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Sofia Pro";
+  src: local("Sofia Pro Ultra Light"), local("Sofia-Pro-Ultra-Light"), url("/assets/fonts/SofiaProUltraLight.woff2") format("woff2"), url("/assets/fonts/SofiaProUltraLight.woff") format("woff"), url("/assets/fonts/SofiaProUltraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+/* Font-Family*/
+/* Color Scheme*/
+.user-dash {
+  overflow: inherit;
+}
+.user-dash .custom-login .login-form {
+  padding: 0;
+}
+.user-dash .custom-login .login-form form {
+  padding: 0;
+}
+.user-dash .custom-login .login-form form .custom-submit .btnSubmit {
+  display: flex;
+  justify-content: center;
+  right: 45px !important;
+  align-items: center;
+  bottom: -25px !important;
+}
+.user-dash .custom-login .login-form form .custom-submit .btnSubmit .fa {
+  background: #1DB954;
+  border-radius: 50%;
+  width: 40px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-dash .custom-login .login-form form .custom-submit .btnSubmit:focus {
+  outline: none;
+}
+.user-dash .custom-login .login-form form .custom-submit .btnSubmit span {
+  color: #fff;
+  font-size: 1em;
+}
+.user-dash .custom-login .login-form form .custom-text-field {
+  padding: 5% 3%;
+}
+.user-dash .custom-login .login-form form .custom-text-field textarea {
+  background: transparent;
+  border: none;
+  width: 100%;
+  resize: none;
+}
+.user-dash .custom-login .login-form form .custom-text-field textarea:focus {
+  outline: none;
+}
+.user-dash .custom-login .login-form form .custom-text-field textarea ::placeholder {
+  color: #000;
+}
+.user-dash .custom-login .login-form form .after-section {
+  content: "";
+  height: 60px;
+  width: 55px;
+  clip-path: polygon(45% 41%, 0 0, 86% 0);
+  background: transparent linear-gradient(159deg, #E3E3E3 0%, #F4F4F4 100%) 0% 0% no-repeat padding-box;
+  position: absolute;
+  left: 11%;
+}
+
+/*# sourceMappingURL=user-dash.css.map */

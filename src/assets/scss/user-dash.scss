@@ -1,0 +1,71 @@
+@import "fonts";
+@import "variable";
+
+.user-dash{
+
+overflow: inherit;
+  .custom-login{
+
+    .login-form{
+        padding: 0;
+      & form{
+        padding: 0;
+
+        .custom-submit{
+          .btnSubmit{
+            display: flex;
+            justify-content: center;
+            right: 45px !important;
+            align-items: center;
+            bottom: -25px !important;
+
+            & .fa{
+              background: #1DB954;
+              border-radius: 50%;
+              width: 40px;
+              height: 42px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+
+            &:focus{
+              outline: none;
+            }
+            & span{
+              color: $white;
+              font-size: 1em;
+            }
+          }
+        }
+
+        .custom-text-field{
+            padding: 5% 3%;
+
+          & textarea{
+            background: transparent;
+            border: none;
+            width: 100%;
+            resize: none;
+            &:focus{
+              outline: none;
+            }
+
+            & ::placeholder {
+              color: $black;
+            }
+          }
+        }
+        .after-section{
+          content: "";
+          height: 60px;
+          width: 55px;
+          clip-path: polygon(45% 41%, 0 0, 86% 0);
+          background: transparent linear-gradient(159deg, #E3E3E3 0%, #F4F4F4 100%) 0% 0% no-repeat padding-box;
+          position: absolute;
+          left: 11%;
+        }
+      }
+    }
+  }
+}

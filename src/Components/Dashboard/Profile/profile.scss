@@ -1,0 +1,38 @@
+@import "../../../assets/fonts/fonts";
+@import "../../../assets/variables/variable";
+
+.datepicker-modal {
+    position: absolute;
+    right: auto;
+    /* bottom: 0; */
+    left: 36%;
+    top: -18%;
+    width: 35%;
+    height: 100%;
+     background-color: transparent;
+    z-index: 999;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  .datepicker {
+    .datepicker-col-1{
+      margin: 0 !important;
+    }
+    &.default{
+      background: transparent linear-gradient(141deg, $Wild-Sand 0%, $Mercury 100%) 0% 0% no-repeat padding-box;
+      box-shadow: 0px 8px 24px #00000029;
+      border-radius: 5%;
+      .datepicker-wheel {
+        border-top: 1px solid $Dusty-Gray;
+        border-bottom: 1px solid $Dusty-Gray;
+      }
+    }
+  }
+  
