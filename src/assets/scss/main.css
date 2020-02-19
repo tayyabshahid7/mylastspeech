@@ -3,13 +3,13 @@
 */
 @font-face {
   font-family: "Sofia Pro";
-  src: local("Sofia Pro Regular"), local("Sofia-Pro-Regular"), url("/assets/fonts/SofiaProRegular.woff2") format("woff2"), url("/assets/fonts/SofiaProRegular.woff") format("woff"), url("/assets/fonts/SofiaProRegular.ttf") format("truetype");
+  src: local("Sofia Pro Regular"), local("Sofia-Pro-Regular"), url("assets/fonts/SofiaProRegular.woff2") format("woff2"), url("assets/fonts/SofiaProRegular.woff") format("woff"), url("assets/fonts/SofiaProRegular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: "Sofia Pro";
-  src: local("Sofia Pro Ultra Light"), local("Sofia-Pro-Ultra-Light"), url("/assets/fonts/SofiaProUltraLight.woff2") format("woff2"), url("/assets/fonts/SofiaProUltraLight.woff") format("woff"), url("/assets/fonts/SofiaProUltraLight.ttf") format("truetype");
+  src: local("Sofia Pro Ultra Light"), local("Sofia-Pro-Ultra-Light"), url("assets/fonts/SofiaProUltraLight.woff2") format("woff2"), url("assets/fonts/SofiaProUltraLight.woff") format("woff"), url("assets/fonts/SofiaProUltraLight.ttf") format("truetype");
   font-weight: 200;
   font-style: normal;
 }
