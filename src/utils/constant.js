@@ -1,5 +1,5 @@
 // BASE URL
-export const baseUrl = "http://13.58.231.218/admin/";
+export const baseUrl = "http://13.58.231.218/";
 export const registerURL = baseUrl + "api/v1/auth/registration/";
 export const loginURL = baseUrl + "api/v1/auth/login/";
 export const passwordResetUrl = baseUrl + "api/v1/auth/password/reset/";
