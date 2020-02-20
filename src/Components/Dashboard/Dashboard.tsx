@@ -3,6 +3,7 @@ import { Collapse, CardBody, Card } from 'reactstrap';
 import UserAccess from './UserAccess/UserAccess';
 import * as url from '../../utils/constant';
 import axios from 'axios';
+import history from '../../utils/history';
 import { css } from "@emotion/core";
 import { ClipLoader } from "react-spinners";
 
@@ -164,7 +165,49 @@ addSecurityQuestion = (e:any) => {
              
 }
 
+logout = ()=> {
+    const config = {
+        headers: { Authorization: `Token ${localStorage.getItem('userToken')}`}
+    };
+    
+    axios.post(url.logoutUrl,
+        config
+    )
+    .then((response) => {
+        localStorage.removeItem('userToken');
+        history.push("/");
+    })
+    .catch((error) => {
+            
+    })
+    .finally(() => {
+            // always executed
+    });
+    
+}
 
+deleteAccount = ()=> {
+    const config = {
+        headers: { Authorization: `Token ${localStorage.getItem('userToken')}`}
+    };
+    const bodyParameters = {
+     };
+    
+    axios.delete(url.deleteAccountUrl, 
+        config
+    )
+    .then((response) => {
+        localStorage.removeItem('userToken');
+        history.push("/");
+    })
+    .catch((error) => {
+            
+    })
+    .finally(() => {
+            // always executed
+    });
+    
+}
 
 
 render() {
@@ -180,7 +223,7 @@ render() {
             loading={this.state.isSuccess}
             />
         </div>
-        <div className="container login-container tab-page mt-5 pt-5 px-4 px-md-0">
+        <div className="container login-container tab-page mt-5 px-4 px-md-0">
             <div className="align-items-center d-flex justify-content-center row tabs-section custom-login">
                 
                 <div className=" col-12 col-lg-10 login-form mb-5 pb-5 tabs-card">
@@ -190,6 +233,8 @@ render() {
                                 <button className={"tablinks ".concat(this.state.activeTab === "accesspage" ? 'active': '')} onClick={this.toggleActiveTab.bind(this,'accesspage')} id="defaultOpen">Who can access<br/> my page</button>
                                 <button className={"tablinks ".concat(this.state.activeTab === "security" ? 'active': '')} onClick={this.toggleActiveTab.bind(this,'security')} >Security questions</button>
                                 <button className={"tablinks ".concat(this.state.activeTab === "profile" ? 'active': '')} onClick={this.toggleActiveTab.bind(this,'profile')} >Profile</button>
+                                <button className={"more-btn tablinks ".concat(this.state.activeTab === "more" ? 'active': '')} onClick={this.toggleActiveTab.bind(this,'more')} >More</button>
+                           
                             </div>
                         </div>
 
@@ -248,15 +293,23 @@ render() {
                                         )}
                                         </form>
                                 </div>
-                            :
-                            <Profile/>
+                            : this.state.activeTab === "profile"?
+                                <Profile/>
+                            :<div className = "more-section">
+                                <div className="row">
+                                    <div className = "col-12 col-md-10 more-card d-flex flex-column align-content-center justify-content-center ml-5">
+                                        <a onClick={this.logout.bind(this)} className="ml-2">Logout<span> - You can sign back in at any time</span></a>
+                                    </div>
+                                    <div className = "col-12 col-md-10 mt-4 more-card d-flex flex-column align-content-center justify-content-center ml-5">
+                                        <a onClick={this.deleteAccount.bind(this)} className="ml-2">Delete<span> - This will remove your account forever</span></a>
+                                    </div>
+                                    <div className = "col-12 col-md-10 mt-4 more-card d-flex flex-column align-content-center justify-content-center ml-5">
+                                        <a className="ml-2">Contact us <span> - Get in touch if you need to speak to us about anything</span></a>
+                                    </div>
+                                </div>
+                            </div>
                         }   
-                    </div>
-                        
-                        <div className="row bottom-card">
-                            <span>More</span>
-                        </div>
-                    
+                    </div>               
                    </div>
 
                    <div className = {this.state.activeBottomTab == "Speech" ? "d-block" :"d-none"}>
@@ -282,7 +335,7 @@ render() {
                 </div>
  
                 <div className="col-8 d-flex upper-list">
-                    <a style={{minWidth:"120px"}} className={this.state.activeBottomTab === "Speech" ? "active": ""} onClick={this.toggleBottomTabsHandler.bind(this,"Speech")}>My Speech</a>
+                    <a style={{minWidth:"130px"}} className={this.state.activeBottomTab === "Speech" ? "active": ""} onClick={this.toggleBottomTabsHandler.bind(this,"Speech")}>My Speech</a>
                     <a className={"ml-4 ".concat(this.state.activeBottomTab === "Settings" ? "active": "" )} onClick={this.toggleBottomTabsHandler.bind(this,"Settings")} >Settings</a>
                 </div>
         

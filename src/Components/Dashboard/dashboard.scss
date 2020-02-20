@@ -2,19 +2,19 @@
 @import "../../assets/variables/variable";
 
 #dashboard{
-  ::-webkit-scrollbar {
-    width: 2px !important;
-  }
+  // ::-webkit-scrollbar {
+  //   width: 2px !important;
+  // }
 
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: transparent !important;
-  }
+  // /* Track */
+  // ::-webkit-scrollbar-track {
+  //   background: transparent !important;
+  // }
   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: transparent !important;
-  }
+  // /* Handle */
+  // ::-webkit-scrollbar-thumb {
+  //   background: transparent !important;
+  // }
 
   .tab-page{
     overflow:hidden ;
@@ -35,7 +35,7 @@
         justify-content: center;
         right: 45px !important;
         align-items: center;
-        margin-bottom: -20%;
+        margin-bottom: -15%;
 
         & .fa{
           background: $Mountain-Meadow;
@@ -74,13 +74,12 @@
     height: auto !important;
     margin-top: 1%;
     .tabs-card{
-      height: 650px;
+      height: 600px;
       .left-sec{
         border-right: 1px solid $Alto;
         margin-top: 5%;
         height: 500px;
         .tab{
-  
           & button{
             display: block;
             background-color: inherit;
@@ -94,10 +93,15 @@
             font-size: 1em;
             font-weight: 500;
             cursor: pointer;
+            z-index: 0;
             transition: 0.3s;
             &.active{
              color: $black;
             }
+          }
+          .more-btn{
+            position: absolute;
+            bottom: -7%;
           }
         }
       }
@@ -129,7 +133,7 @@
               position: absolute;
               right: 8px;
               text-decoration: none;
-              top: 11px;
+              top: 17px;
               font-size: 0.8em;
               font-weight: 700;
             }
@@ -233,6 +237,24 @@
             }
           }
         }
+        .more-section{
+         .more-card{
+          background: $Wild-Sand 0% 0% no-repeat padding-box;
+          word-wrap: break-word;
+          border-radius: 4px;
+          opacity: 1;
+          width: 638px;
+          height: 50px;
+          a{
+            font: 700 16px/20px Sofia Pro;
+            opacity: 0.5;
+            cursor: pointer;
+            span{
+              font: 500 16px/20px Sofia Pro;
+            }
+          }
+         }
+        }
       }
   
       .bottom-card{
@@ -272,7 +294,7 @@
       top:99.5%;
     }
     .after-section-animate{
-        left: 275px;
+        left: 290px;
     }
   }
   

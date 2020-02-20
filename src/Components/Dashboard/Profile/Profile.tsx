@@ -12,15 +12,14 @@ interface ProfileState {
     email: string,
     name: string,
     dob: string,
-    isValidated: boolean,
-    isSuccess: boolean,
-    successMsg: string,
-    errorMsg:string,
     time: Date,
     isCalenderOpen: boolean,
-    password:string,
+    old_password:string,
+    new_password1:string,
+    new_password2:string,
     profile_picture:any,
     file:any,
+    isPasswodChange:boolean,
 }
 
 const monthMap = {
@@ -66,15 +65,14 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
         email: '',
         name: '',
         dob: '',
-        isValidated: true,
-        isSuccess: false,
-        successMsg: '',
-        errorMsg:'',
         isCalenderOpen:false,
         time:new Date(),
-        password:'',
+        old_password:'',
+        new_password1:'',
+        new_password2:'',
         profile_picture:null,
         file:null,
+        isPasswodChange:false,
     }
 
     constructor(props){
@@ -85,15 +83,8 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
          this.retrieveProfileInfo();
     }
 
-    validateForm(): boolean {
-        // if (this.state.email1 && this.state.email2 && this.state.email3) {
-        //     return true;
-        // }
-        return false;
-    }
 
     retrieveProfileInfo =()=>{
-        debugger;
         const config = {
             headers: { Authorization: `Token ${localStorage.getItem('userToken')}` }
         };
@@ -102,14 +93,13 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
             config
             )
             .then((response) => {
-              debugger;
-            //   let img = response.data[0]['profile_picture'] === null ? "https://www.pinclipart.com/picdir/big/355-3553881_stockvader-predicted-adig-user-profile-icon-png-clipart.png":
-            //             response.data[0]['profile_picture'] ;
-                let img ="https://www.pinclipart.com/picdir/big/355-3553881_stockvader-predicted-adig-user-profile-icon-png-clipart.png"
+              let img = response.data[0]['profile_picture'] === null ? "https://www.pinclipart.com/picdir/big/355-3553881_stockvader-predicted-adig-user-profile-icon-png-clipart.png":
+                        response.data[0]['profile_picture'] ;
+              let dob = (response.data[0]['dob']) ? moment(response.data[0]['dob']).format('Do-MMMM-YYYY'):'';
                 this.setState({
                     email:response.data[0]['email'],
                     name:response.data[0]['name'],
-                    dob:moment(response.data[0]['dob']).format('Do-MMMM-YYYY'),
+                    dob:dob,
                     time:new Date(response.data[0]['dob']),
                     profile_picture:img
                 });
@@ -123,42 +113,70 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
         });        
     }
 
+    checkValue = (e) =>{
+        debugger;
+        if(e.target.value !=""){
+            this.updateProfile();
+        }
+    }
+
     updateProfile = () => {
-        let flag = true;//this.validateForm();
-        this.setState({
-            isValidated: flag,
-        });
+
         var formData = new FormData();
+
+        this.state.file &&formData.append("profile_picture", this.state.file);
         formData.append("email",this.state.email);
         formData.append("dob",moment(this.state.time).format('YYYY-MM-DD'));
         formData.append("name",this.state.name);
-        formData.append("password",this.state.password);
-
-
-        if (flag) {          
-            const config = {
-                headers: { Authorization: `Token ${localStorage.getItem('userToken')}`}
-            };
-            
-
-            let that = this;
-            axios.post(url.updateProfileUrl,
-                formData,
-                config
-            )
-            .then((response) => {
-                  
-                })
-                .catch((error) => {
-                   
-                })
-                .finally(() => {
-                    // always executed
-            });
-        }
-
+       
+        const config = {
+            headers: { Authorization: `Token ${localStorage.getItem('userToken')}`}
+        };
+        
+        let that = this;
+        axios.post(url.updateProfileUrl,
+            formData,
+            config
+        )
+        .then((response) => {
+                
+            })
+            .catch((error) => {
+                
+            })
+            .finally(() => {
+                // always executed
+        });
+        
     }
 
+
+    updatePassword = ()=>{
+        const config = {
+            headers: { Authorization: `Token ${localStorage.getItem('userToken')}`}
+        };
+
+        const bodyParameters = {
+            old_password:this.state.old_password,
+            new_password1:this.state.new_password1,
+            new_password2:this.state.new_password2
+         };
+        
+        axios.post(url.passwordChangeUrl,
+            bodyParameters,
+            config
+        )
+        .then((response) => {
+                
+        })
+        .catch((error) => {
+                
+        })
+        .finally(() => {
+                // always executed
+        });
+        
+    }
 
     handleClick = () => {
         this.setState({ isCalenderOpen: true });
@@ -169,9 +187,10 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
     }
 
     handleSelect = (time) => {
-        debugger;
         let date = moment(time).format('Do-MMMM-YYYY');
-        this.setState({time: time, isCalenderOpen: false,dob:date });
+        this.setState({time: time, isCalenderOpen: false,dob:date },()=>{
+            this.updateProfile();
+        });
     }
 
     handleImageChange = (e) =>{
@@ -182,6 +201,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
             this.updateProfile();
         });
     }
+
 
 
 
@@ -198,23 +218,22 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                     <label className="input-title">Full Name</label>
                     <input type="text"
                     onChange={(event) => {this.setState({name: event.target.value})}} 
+                  
                     className="form-control" 
                     placeholder="Enter Your Name *" 
                     value={this.state.name}
-                    onBlur= {this.updateProfile.bind(this)}
                     />
-                    <a href="#" className="profile-inputs input-inner-btn">change</a>
+                    <a style= {{cursor:"pointer",zIndex:999}} onClick = {this.checkValue.bind(this)} className="profile-inputs input-inner-btn">change</a>
                 </div>
                 <div className="position-relative custom-input">
                     <label className="input-title">Date of Birth</label>
                     <input type="text"
-                     onBlur= {this.updateProfile.bind(this)}
                      onChange = {()=>{}}
-                     className="form-control" 
+                     className="form-control"                    
                      placeholder=" mm/dd/yy" 
-                     value= {this.state.dob} 
+                     value= {this.state.dob && this.state.dob} 
                      />
-                    <a  onClick={this.handleClick} className="profile-inputs input-inner-btn">change</a>
+                    <a style= {{cursor:"pointer",zIndex:999}} onClick={this.handleClick} className="profile-inputs input-inner-btn">change</a>
                     <DatePicker
                     headerFormat = "DD/MM/YYYY"
                      dateConfig={dateConfig}
@@ -229,23 +248,45 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                 <div className="position-relative custom-input">
                     <label className="input-title">Email</label>
                     <input type="email"
-                    onChange={(event) => {this.setState({email: event.target.value})}}  
-                    onBlur= {this.updateProfile.bind(this)}
+                    onChange={(event) => {this.setState({email: event.target.value})}} 
                     className="form-control" 
                     placeholder="Email *" 
                     value={this.state.email} />
-                    <a href="#" className="profile-inputs input-inner-btn">change</a>
+                    <a style= {{cursor:"pointer",zIndex:999}} onClick = {this.checkValue.bind(this)} className="profile-inputs input-inner-btn">change</a>
                 </div>
                 <div className="position-relative custom-input">
-                    <label className="input-title">Password</label>
+                    <label className="input-title">Old Password</label>
                     <input type="password" 
-                    onChange={(event) => {this.setState({password: event.target.value})}} 
-                    onBlur= {this.updateProfile.bind(this)}
+                    onChange={(event) => {this.setState({old_password: event.target.value})}} 
+                    onFocus= {()=>{this.setState({isPasswodChange:true})}}
                     className="form-control" 
-                    placeholder="Password *" 
-                    value={this.state.password} />
-                    <a href="#" className="profile-inputs input-inner-btn">change</a>
+                    placeholder="Old Password" 
+                    value={this.state.old_password} />
+                    <a style= {{cursor:"pointer",zIndex:999}} onClick= {this.updatePassword.bind(this)}className="profile-inputs input-inner-btn">change</a>
                 </div>
+                {this.state.isPasswodChange && 
+                <div>
+                    <div className="position-relative custom-input">
+                        <label className="input-title">New Password</label>
+                        <input type="password" 
+                        onChange={(event) => {this.setState({new_password1: event.target.value})}} 
+                        className="form-control" 
+                        placeholder="New Password" 
+                        value={this.state.new_password1} />
+                        {/* <a href="#" className="profile-inputs input-inner-btn">change</a> */}
+                    </div>
+                    <div className="position-relative custom-input">
+                        <label className="input-title">Confrim New Password</label>
+                        <input type="password" 
+                        onChange={(event) => {this.setState({new_password2: event.target.value})}} 
+                        className="form-control" 
+                        placeholder="Re-enter Password" 
+                        value={this.state.new_password2} />
+                        {/* <a style= {{cursor:"pointer",zIndex:999}} onClick = {this.checkValue.bind(this)}  className="profile-inputs input-inner-btn">change</a> */}
+                    </div>
+                </div>
+                }
+               
             </form>
 
         </div>
