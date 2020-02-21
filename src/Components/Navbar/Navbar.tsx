@@ -49,7 +49,7 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
                     <nav className="navbar navbar-dark navbar-expand-md pl-0 pt-0 fixed-top">
                         <div className="container-fluid p-0">
                             <div className="form-search d-flex align-items-center justify-content-center " >
-                                <Link to="/" className="pl-4 pl-md-0">
+                                <Link to="/" >
                                     <img src={HeaderLogo}/>
                                 </Link>  
                                 {/* <form action="#" className="ml-5">

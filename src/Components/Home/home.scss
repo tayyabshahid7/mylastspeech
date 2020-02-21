@@ -12,6 +12,8 @@ h1, h2, h3, h4, h5 ,h6{
 //Header-section
 
 .banner-section{
+    height: 55vh;
+    margin-top: 10%;
     h1{
         font-size: 4rem;
         letter-spacing: 2px;
@@ -165,11 +167,11 @@ h1, h2, h3, h4, h5 ,h6{
             }
 
             & p {
-                color: #fff;
+                color: $white;
                 font-size: 1.2rem;
                 letter-spacing: 0;
-                opacity: 0.47;
-                font-weight: 200;
+                opacity: 1;
+                font-weight: 400;
             }
         }
 
@@ -256,8 +258,8 @@ h1, h2, h3, h4, h5 ,h6{
                  letter-spacing: 0;
                  color: #fff;
                  margin-bottom: 4em;
-                 font-weight: 300;
-                 opacity: 0.68;
+                 font-weight: 500;
+                 opacity: 1;
                  line-height: 26px;
              }
         .email-box {

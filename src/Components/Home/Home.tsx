@@ -9,27 +9,38 @@ import OfflineLogo from '../../assets/images/offline_pin.svg';
 import ArrowBackLogo from '../../assets/images/arrow_back.svg';
 import HeartLogo from '../../assets/images/Ei-heart.svg';
 import { Link } from 'react-router-dom';
+import history from '../../utils/history';
 
 
 interface HomeProps {
 
 }
 interface HomeState {
-
+    email:string,
 }
 
 class Home extends React.Component<HomeProps, HomeState> {
-
+    state = {
+        email:'',
+    }
     componentDidMount() {
         AOS.init({
             // initialise with other settings
             duration: 500
         });
     }
+
+    goToSignUp = () =>{
+        history.push({
+            pathname : '/signup',
+            state: { email: this.state.email }
+        })
+    }
+
     render() {
         return (
             <div>
-                <div className="banner-section container d-flex justify-content-center mb-0 pt-0 mt-md-5 pt-md-5">
+                <div className="banner-section container d-flex justify-content-center mb-0">
                     <div className="text-left custom-banner">
                         <h1 className="mt-5" data-aos="fade-up" >It’s your<br /> Funeral</h1>
                         <p className="d-flex m-auto pb-4 pt-4 text-left text-light">Funerals are sad times, especially when it’s your own.<br /> Take a few moments to Write your last speech now.</p>
@@ -117,8 +128,14 @@ class Home extends React.Component<HomeProps, HomeState> {
                                         do or say could be lost forever, don’t let that happen, write a few words<br />
                                         now, and spread some love on your final day</p>
                                     <div className="email-box position-relative">
-                                        <input type="text" className="email-box__input" placeholder="Enter Email Address" />
-                                        <button type="button" className="d-flex email-box__button">
+                                        <input type="text" 
+                                        className="email-box__input" 
+                                        onChange = {(e)=>{this.setState({email:e.target.value})}}
+                                        placeholder="Enter Email Address" 
+                                        value = {this.state.email}/>
+                                        <button type="button" 
+                                        onClick = {this.goToSignUp.bind(this)}
+                                        className="d-flex email-box__button">
                                             <img src={ArrowBackLogo} />
                                         </button>
                                     </div>

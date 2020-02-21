@@ -10,7 +10,9 @@ import { ClipLoader } from "react-spinners";
 import * as url from '../../utils/constant';
 
 interface SignUpProps {
+    location?:any,
 }
+
 interface SignUpState {
     isResend:boolean,
     name:string,
@@ -50,6 +52,12 @@ class SignUp extends React.Component<SignUpProps, SignUpState> {
             email: '',
             password: '',
           }
+    }
+
+    componentDidMount(){
+        this.setState({
+            email:this.props?.location?.state?.email,
+        });
     }
     
     validateForm():boolean{ 
