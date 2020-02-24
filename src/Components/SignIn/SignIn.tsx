@@ -4,6 +4,7 @@ import axios from 'axios';
 import * as url from '../../utils/constant';
 import { css } from "@emotion/core";
 import { ClipLoader } from "react-spinners";
+import TextField from '@material-ui/core/TextField';
 
 import './signin.scss';
 import { Link } from 'react-router-dom';
@@ -50,6 +51,7 @@ class SignIn extends React.Component<SignInProps, SignInState> {
     }
     
     submitForm = (e:any) => {
+        debugger;
         e.preventDefault();
         let flag = this.validateForm();
         this.setState({
@@ -63,6 +65,7 @@ class SignIn extends React.Component<SignInProps, SignInState> {
                 password:this.state.password,
               })
               .then((response) => {
+                  debugger;
                 that.setState({
                     isSuccess:true,
                     formSubmitted:false,
@@ -75,15 +78,24 @@ class SignIn extends React.Component<SignInProps, SignInState> {
                 history.push("/success");   
               })
               .catch((error) => {
-                  let form_errors = {
-                        loginError:error.response?.data['login-error'],
-                  }
-                  if(error.response?.data['email'] == "E-mail is not verified."){
+                debugger;
+                  let form_errors = {};   
+                  if(error.response?.data['email'] === "E-mail is not verified."){
                     history.push({
                         pathname: '/resend',
                         state: { email: that.state.email }
                      });
                   }
+                  if(error.response?.data['email'] && error.response?.data['email'][0] === "Enter a valid email address."){
+                      form_errors = {
+                        loginError:error.response?.data['email'],
+                      }
+                  }else{
+                    form_errors = {
+                        loginError:error.response?.data['login-error'],
+                    }      
+                  }
+
                   that.setState({
                       errors:form_errors,
                       formSubmitted:false,
@@ -92,6 +104,16 @@ class SignIn extends React.Component<SignInProps, SignInState> {
               .finally( () => {
                 // always executed
               });           
+        }else{
+            let loginError:any = [];
+            loginError[0] = "Please Enter all required field";
+            let form_errors = {
+                loginError:loginError
+            }
+            this.setState({
+                errors:form_errors,
+                formSubmitted:false,
+            })
         }
   
     }
@@ -124,25 +146,27 @@ class SignIn extends React.Component<SignInProps, SignInState> {
                         <div className="  col-lg-6 login-form">
                             <form onSubmit={this.submitForm.bind(this)}>
                                 <div className={"form-group mt-3 ".concat(!this.state.isValidated && this.state.email ==="" ? 'validate':'' )}>
-                                    <label>Email</label>
-                                    <input type="text" 
-                                    onChange={(event) => {this.setState({email: event.target.value});}}
-                                    value={this.state.email} 
-                                    className="form-control"
-                                    placeholder="Enter Your Email *" 
+                                    <TextField  
+                                    onChange={(event) => {this.setState({email: event.target.value})}} 
+                                    value = {this.state.email} 
+                                    className = 'outlined-input-custom' 
+                                    label="Email" 
+                                    type="email"
+                                    variant="outlined" 
                                     />
                                 </div>
                                 <div className={"form-group mb-0 ".concat(!this.state.isValidated && this.state.password ==="" ? 'validate':'' )}>
-                                    <label>Password</label>
-                                    <input type="password"
-                                    onChange={(event) => {this.setState({password: event.target.value});}}
-                                    value={this.state.password} 
-                                    className="form-control" 
-                                    placeholder="Enter Your Password *"
+                                    <TextField 
+                                    onChange={(event) => {this.setState({password: event.target.value})}} 
+                                    value = {this.state.password} 
+                                    className = 'outlined-input-custom' 
+                                    label="Password" 
+                                    type="password"   
+                                    variant="outlined" 
                                     />
                                     <span className="error ml-1">{this.state.errors?.loginError && this.state.errors?.loginError[0]}</span>
                                 </div>
-                                <div className="form-group pb-4">
+                                <div className="form-group pt-4">
                                     <Link to = "/passwordreset" className="ForgetPwd">Forget Password?</Link>
                                 </div>
                                 <div className="form-group custom-submit ">

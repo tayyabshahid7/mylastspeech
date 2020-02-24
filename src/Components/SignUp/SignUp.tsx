@@ -3,6 +3,7 @@ import './signup.scss';
 import history from '../../utils/history';
 import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
+import TextField from '@material-ui/core/TextField';
 import { css } from "@emotion/core";
 import { ClipLoader } from "react-spinners";
 
@@ -148,39 +149,43 @@ class SignUp extends React.Component<SignUpProps, SignUpState> {
                         <div className=" col-lg-6 col-12  login-form">
                             <form   onSubmit={this.submitForm.bind(this)}>
                                 <div className={"form-group mt-4 ".concat(!this.state.isValidated && this.state.name ==="" ? 'validate':'' )}>
-                                    <label >Full Name</label>
-                                    <input type="text"                            
-                                    onChange={(event) => {this.setState({name: event.target.value});}}
-                                    value={this.state.name} 
-                                    className="form-control" 
-                                    placeholder="Enter Your Name *" />
+                                    <TextField 
+                                        onChange={(event) => {this.setState({name: event.target.value});}}
+                                        value = {this.state.name} 
+                                        className = 'outlined-input-custom' 
+                                        label="Enter Your Name" 
+                                        variant="outlined" 
+                                    />
                                 </div>
                                 <div className={"form-group ".concat(!this.state.isValidated && this.state.email ==="" ? 'validate':'' )}>
-                                    <label>Email</label>
-                                    <input type="email"
-                                    onChange={(event) => {this.setState({email: event.target.value});}}
-                                    value={this.state.email} 
-                                    className="form-control"
-                                    placeholder="Email *"
+                                     <TextField 
+                                        onChange={(event) => {this.setState({email: event.target.value});}}
+                                        value = {this.state.email} 
+                                        className = 'outlined-input-custom' 
+                                        label="Email" 
+                                        type="email"
+                                        variant="outlined" 
                                     />
                                     <span className="error ml-1">{this.state.errors?.email && this.state.errors?.email[0]}</span>
                                 </div>
                                 <div className={"form-group ".concat(!this.state.isValidated && this.state.password1 ==="" ? 'validate':'' )}>
-                                    <label>Password</label>
-                                    <input type="password"                            
-                                    onChange={(event) => {this.setState({password1: event.target.value});}}
-                                    value={this.state.password1}  
-                                    className="form-control"
-                                    placeholder="Password *"
+                                    <TextField 
+                                        onChange={(event) => {this.setState({password1: event.target.value});}}
+                                        value = {this.state.password1} 
+                                        className = 'outlined-input-custom' 
+                                        label="Password" 
+                                        type="password"
+                                        variant="outlined" 
                                     />
                                 </div>
                                 <div className={"form-group ".concat(!this.state.isValidated && this.state.password2 ==="" ? 'validate':'' )}>
-                                    <label>Repeat Password</label>
-                                    <input type="password"
-                                    onChange={(event) => {this.setState({password2: event.target.value});}}
-                                    value={this.state.password2}  
-                                    className="form-control"
-                                    placeholder="Repeat Password *" 
+                                    <TextField 
+                                        onChange={(event) => {this.setState({password2: event.target.value});}}
+                                        value = {this.state.password2} 
+                                        className = 'outlined-input-custom' 
+                                        label="Repeat Password" 
+                                        type="password"
+                                        variant="outlined" 
                                     />
                                     <span className="error ml-1">{this.state.errors?.password && this.state.errors?.password[0]}</span>
                                 </div>

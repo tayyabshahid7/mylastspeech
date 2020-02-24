@@ -1,5 +1,8 @@
 import React from "react";
 import "./sidenavbar.scss";
+import Hambuger from '../../assets/images/hamburger.svg';
+import { Link } from 'react-router-dom';
+
 
 class SideNavBar extends React.Component {
   state = {
@@ -40,73 +43,41 @@ class SideNavBar extends React.Component {
   }
 
   render() {
-    const { showNav }:any = this.state
-    let sideNavStyle = { width: showNav ? "460px" : "0" }
+    const { showNav } :any= this.state
+    let navCoverStyle = { width: showNav ? "100%" : "0" }
+    let sideNavStyle = { opacity: showNav ? "1" : "0" }
 
     return (
-      <div id="sideNavBar">
       <React.Fragment>
-        <span onClick={this.openNavClick} className="open-nav">
-          <i className="fa fa-question-circle question-mark" aria-hidden="true"></i>
-        </span>
-        {/* <div
-          onClick={this.navCoverClick}
-          class="nav-cover"
-          style={navCoverStyle}
-        /> */}
-        <div className={"side-nav ".concat(showNav?"spacing":"")} style={sideNavStyle}>
-          <a href="#" onClick={this.closeNavClick} className="close-nav">
-            &times;
-          </a>
-          <span className={"heading ".concat(showNav?"d-block":"d-none")}>Writing Tips</span>
-         <div className={"text pt-4 ".concat(showNav?"d-block":"d-none")}>
-            <p>
-            Talk about your friends, and maybe a fun story about when you were growing up. Keep it clean though. 
-            </p>
+        {!showNav && 
+          <span onClick={this.openNavClick} className="open-nav">
+          <img src = {Hambuger}></img>
+          </span>
+        } 
+          <div className={"side-nav hamburger-icon d-flex ".concat( showNav && "visible")} style={sideNavStyle}> 
+              
+              <div  className="first-section"></div>
+              <div className="second-section">
+                <a href="#" onClick={this.closeNavClick} className="close-nav">
+                    &times;
+                  </a>
+                  <div>
+                      <Link className="link-design" to="/signup">Sign up </Link>
+                      <Link className="link-design" style={{borderTop:0}} to="/signin">Login</Link>
+
+                  </div>
+                  <div className="position-absolute" style={{bottom:0}}>
+                      <Link to="/signup">Contact Us </Link>
+                      <Link to="/signin">Legal</Link>
+                  </div>                 
+              </div>
+             <div>
+
+             </div>
             
-            <p>
-            Talk about the most fun you ever had. 
-            </p>
-          
-            <p>
-            Tell people what your best achievement was and give them some advice you learned from life. 
-            </p>
-
-            <p>
-            Tell everyone you love them 
-            </p>
-
-            <p>
-             Say thanks for coming, they are all here for you after all.
-            </p>
-
-            <p>
-            Crack a joke, it’s a sad time, but not for you. 
-            </p>
-
-            <p>
-            Say something to someone you always wanted to say and maybe didn’t get the chance to.
-            </p>
-
-            <p>
-            Keep it light, Its a pretty sombre time for everybody remind them of who you were and your personality. 
-            </p>
-
-            <p>
-            Tell everyone, or someone, to go and do something in your honour, any last wishes, nows the time. 
-            </p>
-
-            <p>
-            This is the last time they will ever get to hear. Your words in most cases, so finish with a bang.
-            </p>
-
-            <p>
-            Remember not to add add personal or account information here.
-            </p>
-           </div>
-        </div>
+          </div>
+    
       </React.Fragment>
-      </div>
     )
   }
 }

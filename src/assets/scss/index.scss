@@ -47,7 +47,7 @@
               & label{
                 margin-bottom: 0;
                 color:$Gray;
-                padding-left: 17px;
+                // padding-left: 17px;
               }
   
             .ForgetPwd{
@@ -93,4 +93,27 @@ body {
   font-family: $FontFamily-Sofia-pro !important;
 
 
+}
+.MuiOutlinedInput-notchedOutline{
+  border-color: transparent !important ;
+}
+.MuiOutlinedInput-root
+{
+  &.Mui-focused{
+    .MuiOutlinedInput-notchedOutline{
+      border-color: #3f51b5 !important;
+      border-width: 2px;
+    }
+  }
+}
+ 
+.outlined-input-custom{
+  background-color: #fff;
+  background-clip: padding-box;
+  opacity: 0.4;
+  width: 100%;
+}
+.MuiInputLabel-outlined.MuiInputLabel-shrink{
+  color:$Studio !important;
+  font-weight: 600;
 }

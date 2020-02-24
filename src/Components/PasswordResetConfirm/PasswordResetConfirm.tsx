@@ -4,6 +4,7 @@ import * as url from '../../utils/constant';
 import history from '../../utils/history';
 import { css } from "@emotion/core";
 import { ClipLoader } from "react-spinners";
+import TextField from '@material-ui/core/TextField';
 import SweetAlert from 'react-bootstrap-sweetalert';
 
 import './passwordresetconfirm.scss';
@@ -134,22 +135,24 @@ class PasswordResetConfirm extends React.Component<PasswordResetConfirmProps, Pa
                             <form onSubmit={this.submitForm.bind(this)}>
                                 
                                 <div className={"form-group ".concat(!this.state.isValidated && this.state.password1 ==="" ? 'validate':'' )}>
-                                    <label>New Password</label>
-                                    <input type="password"
-                                    onChange={(event) => {this.setState({password1: event.target.value});}}
-                                    value={this.state.password1} 
-                                    className="form-control" 
-                                    placeholder="Enter Your Password *"
+                                    <TextField 
+                                        onChange={(event) => {this.setState({password1: event.target.value})}} 
+                                        value = {this.state.password1} 
+                                        className = 'outlined-input-custom' 
+                                        label="New Password" 
+                                        type="password"   
+                                        variant="outlined" 
                                     />
                                     {/* <span className="error ml-1">{this.state.errors?.loginError && this.state.errors?.loginError[0]}</span> */}
                                 </div>
                                 <div className={"form-group ".concat(!this.state.isValidated && this.state.password2 ==="" ? 'validate':'' )}>
-                                    <label>Confirm New Password</label>
-                                    <input type="password"
-                                    onChange={(event) => {this.setState({password2: event.target.value});}}
-                                    value={this.state.password2} 
-                                    className="form-control" 
-                                    placeholder="Enter Your Password *"
+                                     <TextField 
+                                        onChange={(event) => {this.setState({password2: event.target.value})}} 
+                                        value = {this.state.password2} 
+                                        className = 'outlined-input-custom' 
+                                        label="Confirm New Password" 
+                                        type="password"   
+                                        variant="outlined" 
                                     />
                                     <span className="error ml-1">{this.state.errors?.new_password2 && this.state.errors?.new_password2[0]}</span>
                                 </div>

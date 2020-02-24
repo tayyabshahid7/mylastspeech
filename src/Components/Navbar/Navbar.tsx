@@ -1,6 +1,7 @@
 import React from 'react';
 import './navbar.scss';
 import HeaderLogo from '../../assets/images/message.svg';
+import SideNavBar2 from '../SideNavBar/SideNavbar2/SideNavbar2';
 import SideNavBar from '../SideNavBar/SideNavBar';
 import { Link } from 'react-router-dom';
 import Search from '../Search/Search';
@@ -64,11 +65,10 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
                                 <Search/>
                            
                             </div>
-                            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-                                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-                                <span className="navbar-toggler-icon"></span>
-                            </button>
-                            <div className="collapse navbar-collapse" id="navbarsExampleDefault">
+                            <li className="nav-item hamburger-icon d-none">
+                                <SideNavBar/>
+                            </li>
+                            <div className="collapse navbar-collapse item-navbar" id="navbarsExampleDefault">
                                 <ul className="navbar-nav ml-auto mr-5">
                                     <li className="mr-5 nav-item ">
                                         <Link to = "/signup"  className="nav-link">Sign up </Link>
@@ -111,7 +111,7 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
                                 <div className="collapse navbar-collapse user-dash" id="navbarsExampleDefault">
                                     <ul className="navbar-nav ml-auto mr-5 mt-3">
                                         <li className="nav-item ">
-                                             <SideNavBar/>
+                                             <SideNavBar2/>
                                         </li>
                                     </ul>
                                 </div>

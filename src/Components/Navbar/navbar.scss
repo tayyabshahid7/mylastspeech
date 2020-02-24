@@ -3,6 +3,11 @@
 
 .navbar{
     z-index:999;
+
+    .hamburger-icon{
+        border: none;
+        outline: none;
+    }
     .form-search-login {
         background: $Mine-Shaft 0% 0% no-repeat padding-box;
         opacity: 1;
@@ -51,10 +56,6 @@
                 :-moz-placeholder { /* Firefox 18- */
                     color: $black;
                 }
-
-                .form-control{
-
-                }
                 &:focus{
                     border: none;
                     box-shadow: none;
@@ -93,7 +94,7 @@
         }
 
         .form-search {
-            width: 17em !important;
+            width: 16em !important;
             height: 70px;
 
             & form{
@@ -112,5 +113,14 @@
         position: absolute;
         right: 0%;
         top: 0px;
+    }
+}
+
+@media only screen and (max-device-width : 768px) {
+    .navbar-expand-md .navbar-collapse{
+        display: none !important;
+    }
+    .hamburger-icon{
+        display: flex !important;
     }
 }

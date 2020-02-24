@@ -3,6 +3,8 @@ import * as url from '../../../utils/constant';
 import axios from 'axios';
 import DatePicker from 'react-mobile-datepicker';
 import moment from 'moment';
+import TextField from '@material-ui/core/TextField';
+
 import './profile.scss';
 
 interface ProfileProps {
@@ -214,26 +216,28 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                 &nbsp; &nbsp; &nbsp; &nbsp; <a onClick = {()=>{this.inputOpenFileRef.current.click()}} >Change</a>
             </div>
             <form className="form-group">
+          
                 <div className="position-relative">
-                    <label className="input-title">Full Name</label>
-                    <input type="text"
-                    onChange={(event) => {this.setState({name: event.target.value})}} 
-                  
-                    className="form-control" 
-                    placeholder="Enter Your Name *" 
-                    value={this.state.name}
-                    />
-                    <a style= {{cursor:"pointer",zIndex:999}} onClick = {this.checkValue.bind(this)} className="profile-inputs input-inner-btn">change</a>
-                </div>
-                <div className="position-relative custom-input">
-                    <label className="input-title">Date of Birth</label>
-                    <input type="text"
-                     onChange = {()=>{}}
-                     className="form-control"                    
-                     placeholder=" mm/dd/yy" 
-                     value= {this.state.dob && this.state.dob} 
+                     <TextField id="fullname" 
+                     onChange={(event) => {this.setState({name: event.target.value})}} 
+                     value = {this.state.name} 
+                     className = 'outlined-input-custom' 
+                     label="Full Name" 
+                     variant="outlined" 
                      />
-                    <a style= {{cursor:"pointer",zIndex:999}} onClick={this.handleClick} className="profile-inputs input-inner-btn">change</a>
+
+                </div>
+                
+          
+                 <div className="position-relative custom-input">                   
+                    <TextField id="fullname" 
+                     onFocus={this.handleClick} 
+                     value= {this.state.dob && this.state.dob} 
+                     className = 'outlined-input-custom' 
+                     label="Date of Birth" 
+                     variant="outlined" 
+                     />
+                   
                     <DatePicker
                     headerFormat = "DD/MM/YYYY"
                      dateConfig={dateConfig}
@@ -246,42 +250,51 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                      onCancel={this.handleCancel} />
                 </div>
                 <div className="position-relative custom-input">
-                    <label className="input-title">Email</label>
-                    <input type="email"
-                    onChange={(event) => {this.setState({email: event.target.value})}} 
-                    className="form-control" 
-                    placeholder="Email *" 
-                    value={this.state.email} />
-                    <a style= {{cursor:"pointer",zIndex:999}} onClick = {this.checkValue.bind(this)} className="profile-inputs input-inner-btn">change</a>
+                    <TextField  
+                      onChange={(event) => {this.setState({email: event.target.value})}} 
+                     value={this.state.email}
+                     className = 'outlined-input-custom' 
+                     label="Email" 
+                     type="email"
+                     variant="outlined" 
+                     />
+                   
+                    {/* <a style= {{cursor:"pointer",zIndex:999}} onClick = {this.checkValue.bind(this)} className="profile-inputs input-inner-btn">change</a> */}
                 </div>
                 <div className="position-relative custom-input">
-                    <label className="input-title">Old Password</label>
-                    <input type="password" 
-                    onChange={(event) => {this.setState({old_password: event.target.value})}} 
-                    onFocus= {()=>{this.setState({isPasswodChange:true})}}
-                    className="form-control" 
-                    placeholder="Old Password" 
-                    value={this.state.old_password} />
-                    <a style= {{cursor:"pointer",zIndex:999}} onClick= {this.updatePassword.bind(this)}className="profile-inputs input-inner-btn">change</a>
+                    <TextField 
+                     onChange={(event) => {this.setState({old_password: event.target.value})}} 
+                     onFocus = {()=>{this.setState({isPasswodChange:true})}}
+                     value={this.state.old_password}
+                     className = 'outlined-input-custom' 
+                     label="Old Password" 
+                     type="password"   
+                     variant="outlined" 
+                     />
+                    {/* <a style= {{cursor:"pointer",zIndex:999}} onClick= {this.updatePassword.bind(this)}className="profile-inputs input-inner-btn">change</a> */}
                 </div>
                 {this.state.isPasswodChange && 
                 <div>
                     <div className="position-relative custom-input">
-                        <label className="input-title">New Password</label>
-                        <input type="password" 
+                        <TextField 
                         onChange={(event) => {this.setState({new_password1: event.target.value})}} 
-                        className="form-control" 
-                        placeholder="New Password" 
-                        value={this.state.new_password1} />
+                        value={this.state.new_password1} 
+                        className = 'outlined-input-custom' 
+                        label="New Password" 
+                        type="password"   
+                        variant="outlined" 
+                        />
                         {/* <a href="#" className="profile-inputs input-inner-btn">change</a> */}
                     </div>
                     <div className="position-relative custom-input">
-                        <label className="input-title">Confrim New Password</label>
-                        <input type="password" 
+                        <TextField 
                         onChange={(event) => {this.setState({new_password2: event.target.value})}} 
-                        className="form-control" 
-                        placeholder="Re-enter Password" 
-                        value={this.state.new_password2} />
+                        value={this.state.new_password2}
+                        className = 'outlined-input-custom' 
+                        label="Re-enter Password" 
+                        type="password"   
+                        variant="outlined" 
+                        />
                         {/* <a style= {{cursor:"pointer",zIndex:999}} onClick = {this.checkValue.bind(this)}  className="profile-inputs input-inner-btn">change</a> */}
                     </div>
                 </div>

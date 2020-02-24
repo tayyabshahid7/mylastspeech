@@ -5,6 +5,8 @@ import * as url from '../../utils/constant';
 import { css } from "@emotion/core";
 import { ClipLoader } from "react-spinners";
 import SweetAlert from 'react-bootstrap-sweetalert';
+import TextField from '@material-ui/core/TextField';
+
 import './passwordreset.scss';
 
 interface PasswordResetProps {
@@ -124,13 +126,14 @@ class PasswordReset extends React.Component<PasswordResetProps, PasswordResetSta
                                     <p>
                                         Enter your user account's verified email address and we will send you a password reset link.
                                     </p>
-                                    <div className = "pt-4">
-                                        <label>Email</label>
-                                        <input type="text" 
-                                        onChange={(event) => {this.setState({email: event.target.value});}}
-                                        value={this.state.email} 
-                                        className="form-control"
-                                        placeholder="Enter Your Email *" 
+                                    <div className = "pt-2">  
+                                        <TextField 
+                                        onChange={(event) => {this.setState({email: event.target.value})}} 
+                                        value = {this.state.email} 
+                                        className = 'outlined-input-custom' 
+                                        label="Email" 
+                                        type="email"
+                                        variant="outlined" 
                                         />
                                         <span className="error ml-1">{this.state.errors?.email && this.state.errors?.email[0]}</span>   
                                     </div>
