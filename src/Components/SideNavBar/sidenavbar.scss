@@ -24,7 +24,6 @@
      top: 0;
      right: 0;
      visibility: hidden;
-     background: $Cod-Gray 0% 0% no-repeat padding-box;
      transition: 0.25s;
      box-shadow: -8px 0px 24px #0000004A;
      opacity: 0;
@@ -44,15 +43,17 @@
       font-size: 2.2rem;
     }
     .first-section{
-      background-color: $light-gray;
+      background-color:$black;
       height: 100%;
       width: 700px;
+      opacity: 0.6;
     }
     .second-section{
       padding: 15% 5%;
       height: 100%;
       width: 300px;
       padding-top: 10%;
+      background: $light-black 0% 0% no-repeat padding-box;
     }
     .link-design{
       border-bottom: 2px solid $Mine-Shaft;
