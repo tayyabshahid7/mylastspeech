@@ -160,7 +160,7 @@
               height: 50px;
               padding: 0.6em;
               color: $black;
-              margin-top: -8px;
+              margin-top: 1em;
   
               &:focus{
                 outline: none;
@@ -191,7 +191,7 @@
           .form-group{
             margin: 0;
             position: relative;
-            margin-bottom: 2.25em;
+            // margin-bottom: 2.25em;
            
             .img-section{
               img{
@@ -218,7 +218,7 @@
           width: 90% !important;
           margin-left: 5%;
           .custom-input{
-            margin-top: 2.25em;
+            margin-top: 1em;
           }
           .profile-img{
             margin-left: 1.7rem;

@@ -158,17 +158,15 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
 
                         <input type="email"
                             onChange={(event) => { this.setState({ email2: event.target.value }) }}
-                            className={"form-control mt-4 ".concat(this.state.isValidated ? "" : "validate")}
+                            className={"form-control ".concat(this.state.isValidated ? "" : "validate")}
                             placeholder="Email 2"
                             value={this.state.email2} />
 
                         <input type="email"
                             onChange={(event) => { this.setState({ email3: event.target.value }) }}
-                            className={"form-control mt-4 ".concat(this.state.isValidated ? "" : "validate")}
+                            className={"form-control ".concat(this.state.isValidated ? "" : "validate")}
                             placeholder="Email 3"
-                            value={this.state.email3} />
-
-                       
+                            value={this.state.email3} />                 
                     </div>
 
                     <div className="add-btn d-flex flex-column mt-4">
