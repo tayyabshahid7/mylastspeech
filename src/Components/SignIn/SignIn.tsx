@@ -8,6 +8,12 @@ import TextField from '@material-ui/core/TextField';
 
 import './signin.scss';
 import { Link } from 'react-router-dom';
+import ReactGA from 'react-ga';
+
+
+// const trackingId = "UA-158954661-1"; // Replace with your Google Analytics tracking ID
+const trackingId = "UA-152994824-1";
+ReactGA.initialize(trackingId);
 
 interface SignInProps {
 
@@ -75,6 +81,9 @@ class SignIn extends React.Component<SignInProps, SignInState> {
                     isSuccess:false,
                 });
                 localStorage.setItem('userToken',response.data.key);
+                ReactGA.set({
+                    userId: response.data.key
+                });
                 history.push("/success");   
               })
               .catch((error) => {
