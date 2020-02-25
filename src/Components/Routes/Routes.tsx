@@ -13,6 +13,11 @@ import Success from './../Success/Success';
 import Dashboard from '../Dashboard/Dashboard';
 import PasswordReset from '../PasswordReset/PasswordReset';
 import PasswordResetConfirm from '../PasswordResetConfirm/PasswordResetConfirm';
+import ReactGA from 'react-ga';
+
+const trackingId = "UA-158954661-1";
+ReactGA.initialize(trackingId);
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 const Routes: React.FC = () => {
   const [isSignUp,setIsSignUp] = useState(false);
