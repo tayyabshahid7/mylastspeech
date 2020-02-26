@@ -17,11 +17,13 @@ interface HomeProps {
 }
 interface HomeState {
     email:string,
+    cookiesAgreed:boolean,
 }
 
 class Home extends React.Component<HomeProps, HomeState> {
     state = {
         email:'',
+        cookiesAgreed:false,
     }
     componentDidMount() {
         AOS.init({
@@ -38,16 +40,21 @@ class Home extends React.Component<HomeProps, HomeState> {
     }
 
     render() {
+        let user = localStorage.getItem('user');
+        user = user && JSON.parse(user);
+        let token = localStorage.getItem('userToken');
         return (
-            <div>
+            <div id="home">
                 <div className="banner-section container d-flex justify-content-center mb-0">
                     <div className="text-left custom-banner">
                         <h1 className="mt-5" data-aos="fade-up" >It’s your<br /> Funeral</h1>
                         <p className="d-flex m-auto pb-4 pt-4 text-left text-light">Funerals are sad times, especially when it’s your own.<br /> Take a few moments to Write your last speech now.</p>
+                        {token!="" && user ? '':  
                         <button className="btn btn-custom d-flex justify-content-center align-items-center">
-                            <Link to="/signup">Create a Free Account</Link>
+                              <Link to="/signup">Create a Free Account</Link>
                             <i className="pl-2 fa fa-long-arrow-right" aria-hidden="true"></i>
                         </button>
+                        }
                     </div>
                 </div>
 
@@ -56,6 +63,14 @@ class Home extends React.Component<HomeProps, HomeState> {
                         <div className="col-12 col-md-6 left-section position-relative">
                             <div className="col-3 first-div"></div>
                             <div className="col-3 second-div"></div>
+                        </div>
+                        <div className={"align-items-baseline cookies-popup  justify-content-center py-2 ".concat(this.state.cookiesAgreed ? "d-none": "d-flex" )}>
+                            <p className="mb-0 ml-3 mr-4">
+                                 Our site uses Cookies. <a>Learn more </a>
+                            </p>
+                             <button onClick = {()=>{this.setState({cookiesAgreed:true})}} className="btn btn-custom d-flex justify-content-center align-items-center">
+                                Got it                          
+                            </button>
                         </div>
                         <div className="col-12 col-md-6 right-section p-0">
                             <div className="right-img position-relative"></div>

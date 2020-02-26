@@ -48,7 +48,7 @@ class SideNavBar extends React.Component {
     let sideNavStyle = { opacity: showNav ? "1" : "0" }
 
     return (
-      <React.Fragment>
+      <div id="side-navbar1">
         {!showNav && 
           <span onClick={this.openNavClick} className="open-nav">
           <img src = {Hambuger}></img>
@@ -77,7 +77,7 @@ class SideNavBar extends React.Component {
             
           </div>
     
-      </React.Fragment>
+      </div>
     )
   }
 }

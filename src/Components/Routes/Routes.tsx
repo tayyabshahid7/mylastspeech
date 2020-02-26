@@ -33,22 +33,13 @@ const Routes: React.FC = () => {
 
         <Route exact path='/' render={(props) =>
             {
-              const loggedIn = localStorage.getItem("userToken");
-              if(loggedIn && loggedIn.length>0){
-                setIsSignUp(true);
-                setIsSignIn(true);
-                setIsRightBar(true);
-                return(
-                 <Dashboard  {...props}/>
-                )
-              }else{
+              const loggedIn = localStorage.getItem("userToken");            
                 setIsSignUp(false);
                 setIsSignIn(false);
                 return(
                   <Home  {...props}/>
                 )
-              }         
-            }
+              }                     
           }
         />  
 

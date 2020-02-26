@@ -170,12 +170,15 @@ logout = ()=> {
     const config = {
         headers: { Authorization: `Token ${localStorage.getItem('userToken')}`}
     };
-    
+    const params = {};
+
     axios.post(url.logoutUrl,
+        params,
         config
     )
     .then((response) => {
         localStorage.removeItem('userToken');
+        localStorage.removeItem('user');
         history.push("/");
     })
     .catch((error) => {

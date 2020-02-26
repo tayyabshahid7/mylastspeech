@@ -45,6 +45,9 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
     }
 
     render() {
+        let user = localStorage.getItem('user');
+        user = user && JSON.parse(user);
+        let token = localStorage.getItem('userToken');
         return (
                 !this.state.isSignUp && !this.state.isSignIn?
                     <nav className="navbar navbar-dark navbar-expand-md pl-0 pt-0 fixed-top">
@@ -68,8 +71,13 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
                             <li className="nav-item hamburger-icon d-none">
                                 <SideNavBar/>
                             </li>
-                            <div className="collapse navbar-collapse item-navbar" id="navbarsExampleDefault">
-                                <ul className="navbar-nav ml-auto mr-5">
+                            <div className="collapse navbar-collapse item-navbar justify-content-end" id="navbarsExampleDefault">
+                               {token!="" && user ? 
+                               <Link to="/dashboard">
+                                    <img style={{width:"50px"}} src = {user['profile_picture']}/>
+                               </Link>
+                               :
+                                 <ul className="navbar-nav ml-auto mr-5">
                                     <li className="mr-5 nav-item ">
                                         <Link to = "/signup"  className="nav-link">Sign up </Link>
                                     </li>
@@ -77,6 +85,8 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
                                         <Link to = "/signin" className="nav-link" >login</Link>
                                     </li>
                                 </ul>
+                               }
+                              
                             </div>
                         </div>
                         

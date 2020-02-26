@@ -79,6 +79,7 @@ class SignIn extends React.Component<SignInProps, SignInState> {
                     isSuccess:false,
                 });
                 localStorage.setItem('userToken',response.data.key);
+                localStorage.setItem('user',JSON.stringify(response.data.user))
                 // ReactGA.set({
                 //     userId: response.data.key
                 // });
