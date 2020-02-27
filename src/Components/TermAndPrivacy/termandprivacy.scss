@@ -1,0 +1,64 @@
+@import "../../assets/fonts/fonts";
+@import "../../assets/variables/variable";
+
+
+#termandprivacy{
+    .container{
+        margin-top: 7%;
+        .form-content{
+            border-top: 2px solid #9b9b9b8f;
+            margin-top: 10px;
+            height: 350px;
+            overflow: auto;
+        }
+        &.login-container{
+            .custom-login {
+                height: unset;
+                .login-form{
+                    height: 500px;
+                }
+            }
+        } 
+        .tabs{
+            color: $light-gray;
+            &.active{
+                color: $black; 
+                font-weight: 600;
+                opacity: 1;
+            }
+        }
+        .privacy-accept-btn{
+            position: absolute;
+            right: 7%;
+            bottom: -7%;
+            .btn{
+                min-width: 100px;
+                min-height: 55px;
+                background: #733EB4;
+                span{
+                    color:$white;
+                }
+            }
+           
+        }
+        .close-img{
+            width: 15px;
+        }
+    }
+}
+
+@media screen and (min-width:1024px){
+    #termandprivacy{
+        .container{
+            max-width: 900px !important;
+            margin-top:3% ;
+        }
+    }
+}
+@media screen and (max-width:768px){
+    #termandprivacy{
+        .container{
+            margin-top:0 ;
+        }
+    }
+}

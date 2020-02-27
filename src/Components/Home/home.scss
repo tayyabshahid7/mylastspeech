@@ -140,7 +140,7 @@ h1, h2, h3, h4, h5 ,h6{
     }
     .work-section{
         margin-top: -13%;
-        margin-bottom: 8%;
+        margin-bottom: 10%;
     
         .card-custom{
             background: transparent linear-gradient(159deg, #F4F4F4 0%, #E3E3E3 100%) 0% 0% no-repeat padding-box;
@@ -482,7 +482,7 @@ h1, h2, h3, h4, h5 ,h6{
         }
     }
     .work-section{
-        margin-top: 30%;
+        margin-top: 30% !important;
         .card-custom{
             position: relative;
             .card-section{
@@ -609,4 +609,31 @@ h1, h2, h3, h4, h5 ,h6{
         right: 0%;
         top: 0px;
     }
+}
+@media only screen and (max-device-width : 320px) {
+    #home{
+        .work-section{
+            margin-top: 40% !important;          
+        }
+    }
+
+}
+@media only screen and (max-device-width : 768px) {
+    #home{
+        .cookies-popup{
+            display: none !important;
+        }
+    }
+
+}
+
+@media only screen and (max-device-width:1024px) {
+    #home{
+        .cookies-popup{
+            width: auto !important;
+            bottom: -55% !important;
+            padding-right: 1%;
+        }
+    }
+
 }

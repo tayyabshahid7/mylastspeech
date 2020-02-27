@@ -106,7 +106,7 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
                 config
             )
             .then((response) => {
-                    debugger;
+                     ;
                     this.setState({
                         isSuccess: false,
                         successMsg: "Emails Added Successfully",

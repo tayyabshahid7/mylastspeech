@@ -5,15 +5,18 @@ import SideNavBar2 from '../SideNavBar/SideNavbar2/SideNavbar2';
 import SideNavBar from '../SideNavBar/SideNavBar';
 import { Link } from 'react-router-dom';
 import Search from '../Search/Search';
+import avatarImg from '../../assets/images/img_avatar.png';
 
 interface NavbarProps {
     signUpNavBar:boolean,
     signInNavBar:boolean,
     isRightBar:boolean,
+    profilePic:string,
 }
 interface NavbarState {
     isSignUp:boolean,
     isSignIn:boolean,
+    img:string,
 }
 
 
@@ -23,6 +26,7 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
     state = {
         isSignUp:false,
         isSignIn:false,
+        img:'',
     }
 
     componentDidMount(){
@@ -30,11 +34,23 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
             isSignUp:this.props.signUpNavBar,
             isSignIn:this.props.signInNavBar
         });
+        let user = localStorage.getItem('user');
+        user = user && JSON.parse(user);
+        user && user['profile_picture'] ?this.setState({img:user['profile_picture']}):this.setState({img:avatarImg});
     }
+    
     componentWillReceiveProps(nextProps:any){
+        if(nextProps?.profilePic != ""){
+            let user = JSON.parse(localStorage.getItem('user'));
+            user['profile_picture'] = nextProps?.profilePic;
+            localStorage.setItem('user',JSON.stringify(user));
+            this.setState({
+                img:nextProps?.profilePic,
+            });      
+        }
         this.setState({
             isSignUp:nextProps.signUpNavBar,
-            isSignIn:nextProps.signInNavBar
+            isSignIn:nextProps.signInNavBar,
         });
     }
 
@@ -45,9 +61,10 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
     }
 
     render() {
+        let token = localStorage.getItem('userToken');
         let user = localStorage.getItem('user');
         user = user && JSON.parse(user);
-        let token = localStorage.getItem('userToken');
+        // let img = user && user['profile_picture'] ?this.setState({img:user['profile_picture']}):this.setState({img:avatarImg});
         return (
                 !this.state.isSignUp && !this.state.isSignIn?
                     <nav className="navbar navbar-dark navbar-expand-md pl-0 pt-0 fixed-top">
@@ -74,7 +91,7 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
                             <div className="collapse navbar-collapse item-navbar justify-content-end" id="navbarsExampleDefault">
                                {token!="" && user ? 
                                <Link to="/dashboard">
-                                    <img style={{width:"50px"}} src = {user['profile_picture']}/>
+                                    <img style={{width:"50px",borderRadius:"50%"}} src = {this.state.img}/>
                                </Link>
                                :
                                  <ul className="navbar-nav ml-auto mr-5">

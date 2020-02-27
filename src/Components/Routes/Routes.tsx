@@ -13,6 +13,7 @@ import Success from './../Success/Success';
 import Dashboard from '../Dashboard/Dashboard';
 import PasswordReset from '../PasswordReset/PasswordReset';
 import PasswordResetConfirm from '../PasswordResetConfirm/PasswordResetConfirm';
+import TermAndPrivacy from '../TermAndPrivacy/TermAndPrivacy';
 import ReactGA from 'react-ga';
 
 const trackingId = "UA-158954661-1";
@@ -23,13 +24,14 @@ const Routes: React.FC = () => {
   const [isSignUp,setIsSignUp] = useState(false);
   const [isSignIn,setIsSignIn] = useState(false);
   const [isRightBar,setIsRightBar] = useState(true);
+  const [profilePic,setProfilePic] = useState('');
  
 
   return (
     
     <Router history={history}>
       <div id="main-div">
-        <Navbar isRightBar = {isRightBar} signUpNavBar = {isSignUp} signInNavBar = {isSignIn}/>   
+        <Navbar profilePic = {profilePic}  isRightBar = {isRightBar} signUpNavBar = {isSignUp} signInNavBar = {isSignIn}/>   
 
         <Route exact path='/' render={(props) =>
             {
@@ -51,7 +53,7 @@ const Routes: React.FC = () => {
                 setIsSignIn(true);
                 setIsRightBar(true);
                 return(
-                 <Dashboard  {...props}/>
+                 <Dashboard  changeProfilePic = {()=>{}} {...props}/>
                 )
               }else{
                 setIsSignUp(true);
@@ -85,6 +87,18 @@ const Routes: React.FC = () => {
           }
         /> 
 
+        {/* <Route exact path='/termandprivacy' render={(props) =>
+            {         
+              setIsSignUp(true);
+              setIsSignIn(true);
+              setIsRightBar(false);
+              return(
+                <TermAndPrivacy {...props} />
+              )          
+          }
+          }
+        />  */}
+
         <Route exact path='/dashboard' render={(props) =>
             {
               const loggedIn = localStorage.getItem("userToken");
@@ -93,7 +107,11 @@ const Routes: React.FC = () => {
                 setIsSignIn(true);
                 setIsRightBar(true);
                 return(
-                 <Dashboard  {...props}/>
+                 <Dashboard {...props}
+                  changeProfilePic = {(profile_url:string)=>{
+                      profile_url && setProfilePic(profile_url)
+
+                  }} />
                 )
               }else{
                 return(
@@ -113,7 +131,7 @@ const Routes: React.FC = () => {
                 setIsSignIn(true);
                 setIsRightBar(true);
                 return(
-                 <Dashboard  {...props}/>
+                 <Dashboard changeProfilePic = {()=>{}}  {...props}/>
                 )
               }else{
                 setIsSignUp(true);
@@ -135,7 +153,7 @@ const Routes: React.FC = () => {
                 setIsSignIn(true);
                 setIsRightBar(true);
                 return(
-                 <Dashboard  {...props}/>
+                 <Dashboard changeProfilePic = {()=>{}}  {...props}/>
                 )
               }else{
                 setIsSignIn(true);
@@ -156,7 +174,7 @@ const Routes: React.FC = () => {
                 setIsSignIn(true);
                 setIsRightBar(true);
                 return(
-                 <Dashboard  {...props}/>
+                 <Dashboard changeProfilePic = {()=>{}} {...props}/>
                 )
               }else{
                 setIsSignIn(true);
@@ -177,7 +195,7 @@ const Routes: React.FC = () => {
                 setIsSignIn(true);
                 setIsRightBar(true);
                 return(
-                 <Dashboard  {...props}/>
+                 <Dashboard changeProfilePic = {()=>{}} {...props}/>
                 )
               }else{
                 setIsSignIn(true);

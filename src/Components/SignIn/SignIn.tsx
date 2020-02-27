@@ -55,7 +55,7 @@ class SignIn extends React.Component<SignInProps, SignInState> {
     }
     
     submitForm = (e:any) => {
-        debugger;
+         ;
         e.preventDefault();
         let flag = this.validateForm();
         this.setState({
@@ -69,7 +69,7 @@ class SignIn extends React.Component<SignInProps, SignInState> {
                 password:this.state.password,
               })
               .then((response) => {
-                  debugger;
+                   ;
                 that.setState({
                     isSuccess:true,
                     formSubmitted:false,
@@ -86,7 +86,7 @@ class SignIn extends React.Component<SignInProps, SignInState> {
                 history.push("/success");   
               })
               .catch((error) => {
-                debugger;
+                 ;
                   let form_errors = {};   
                   if(error.response?.data['email'] === "E-mail is not verified."){
                     history.push({

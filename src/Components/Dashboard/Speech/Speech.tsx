@@ -34,7 +34,7 @@ class Speech extends React.Component<SpeechProps, SpeechState> {
             config
         )
         .then((response) => {
-            debugger;
+             ;
             this.setState({
                 speech:response?.data?.text
             });     

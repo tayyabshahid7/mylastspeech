@@ -9,6 +9,7 @@ import { ClipLoader } from "react-spinners";
 
 
 import * as url from '../../utils/constant';
+import TermAndPrivacy from '../TermAndPrivacy/TermAndPrivacy';
 
 interface SignUpProps {
     location?:any,
@@ -25,6 +26,8 @@ interface SignUpState {
     isSuccess:boolean,
     formSubmitted:boolean,
     errors:object,
+    showPrivacyModal:boolean,
+    activeTab:string,
 }
 
 const override = css`
@@ -49,6 +52,8 @@ class SignUp extends React.Component<SignUpProps, SignUpState> {
         isValidated:true,
         isSuccess:false,
         formSubmitted:false,
+        showPrivacyModal:false,
+        activeTab:'',
         errors: {
             email: '',
             password: '',
@@ -123,6 +128,13 @@ class SignUp extends React.Component<SignUpProps, SignUpState> {
     render() {
      
         return (
+            this.state.showPrivacyModal ?
+                <TermAndPrivacy 
+                    activeTab = {this.state.activeTab}
+                    closeModal = {()=>{
+                        this.setState({showPrivacyModal:false});
+                }}/>
+            :
             <div>
                 <div className="align-items-center d-flex justify-content-center sweet-loading">
                     <ClipLoader
@@ -196,7 +208,7 @@ class SignUp extends React.Component<SignUpProps, SignUpState> {
                                     </span>
                                     
                                     <span className="pl-2"> I agree to
-                                        <a href="#"> privacy policy</a> and <a href="#">terms of service</a><br/>
+                                        <a href="#" onClick = {()=>{this.setState({showPrivacyModal:true,activeTab:"Privacy"})}}> privacy policy</a> and <a href="#" onClick = {()=>{this.setState({showPrivacyModal:true,activeTab:"Terms"})}}>terms of service</a><br/>
                                     </span>
                                     <SweetAlert
                                         success
@@ -208,6 +220,7 @@ class SignUp extends React.Component<SignUpProps, SignUpState> {
                                         >
                                         
                                     </SweetAlert>
+                                   
                                 </div>
                                 <div className="form-group custom-submit">
                                     <button className="btn btnSubmit" type="submit"> <i className=" fa fa-long-arrow-right" aria-hidden="true"></i>

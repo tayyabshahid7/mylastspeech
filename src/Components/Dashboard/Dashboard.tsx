@@ -13,7 +13,7 @@ import Profile from './Profile/Profile';
 import Speech from './Speech/Speech';
 
 interface DashboardProps {
-
+    changeProfilePic(profile_url:string):any,
 }
 interface DashboardState {
     activeTab:string,
@@ -98,7 +98,7 @@ retrieveSequrityQuestion =()=>{
         config
         )
         .then((response) => {
-            debugger;
+             ;
             response.data.results.map((item:any)=>{
                 item.showAnswer = false;
             })
@@ -140,7 +140,7 @@ addSecurityQuestion = (e:any) => {
             config
             )
             .then((response) => {
-                debugger;
+                 ;
                 this.setState({
                     isSuccess:false,
                     showAnswerInput:false,
@@ -298,7 +298,9 @@ render() {
                                             </form>
                                     </div>
                                 : this.state.activeTab === "profile"?
-                                    <Profile/>
+                                    <Profile changeProfilePic = {(profile_url:string)=>{
+                                        profile_url && this.props.changeProfilePic(profile_url)
+                                    }} />
                                 :<div className = "more-section">
                                     <div className="row">
                                         <div className = "col-12 col-md-10 more-card d-flex flex-column align-content-center justify-content-center ml-5">

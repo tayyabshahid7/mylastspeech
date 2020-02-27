@@ -8,7 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import './profile.scss';
 
 interface ProfileProps {
-
+    changeProfilePic(profile_url:string):any,
 }
 interface ProfileState {
     email: string,
@@ -116,7 +116,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
     }
 
     checkValue = (e) =>{
-        debugger;
+         ;
         if(e.target.value !=""){
             this.updateProfile();
         }
@@ -126,7 +126,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
 
         var formData = new FormData();
 
-        this.state.file &&formData.append("profile_picture", this.state.file);
+        this.state.file && formData.append("profile_picture", this.state.file);
         formData.append("email",this.state.email);
         formData.append("dob",moment(this.state.time).format('YYYY-MM-DD'));
         formData.append("name",this.state.name);
@@ -141,13 +141,14 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
             config
         )
         .then((response) => {
-                
-            })
-            .catch((error) => {
-                
-            })
-            .finally(() => {
-                // always executed
+             ;
+            response.data.profile_picture && this.props.changeProfilePic(response.data.profile_picture)
+        })
+        .catch((error) => {
+            
+        })
+        .finally(() => {
+            // always executed
         });
         
     }
@@ -196,16 +197,15 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
     }
 
     handleImageChange = (e) =>{
-        this.setState({
-            profile_picture: URL.createObjectURL(e.target.files[0]),
-            file:e.target.files[0],
-        },()=>{
-            this.updateProfile();
-        });
+        if(e.target.files){
+            this.setState({
+                profile_picture: URL.createObjectURL(e.target.files[0]),
+                file:e.target.files[0],
+            },()=>{
+                this.updateProfile();
+            });
+        }     
     }
-
-
-
 
     render() {
         return (
