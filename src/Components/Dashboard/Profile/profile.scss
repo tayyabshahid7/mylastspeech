@@ -5,23 +5,17 @@
     position: absolute;
     right: auto;
     /* bottom: 0; */
-    left: 36%;
-    top: -18%;
-    width: 35%;
+    left: 41%;
+    top: -12%;
+    width: 20%;
     height: 100%;
-     background-color: transparent;
+    background-color: transparent;
     z-index: 999;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
     justify-content: center;
   }
-  .datepicker {
+.datepicker {
     .datepicker-col-1{
       margin: 0 !important;
     }
