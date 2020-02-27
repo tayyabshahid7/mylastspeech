@@ -130,7 +130,7 @@ h1, h2, h3, h4, h5 ,h6{
                 width: 207px;
                 background: transparent linear-gradient(180deg, $white 0%, #FFFFFF45 100%) 0% 0% no-repeat padding-box;
                 position: absolute;
-                bottom: -22.75%;
+                bottom: -21.5%;
                 clip-path: polygon(75% 53%, 44% 0, 100% 0);
                 right: 0;
                 opacity: 0.02;
@@ -175,25 +175,35 @@ h1, h2, h3, h4, h5 ,h6{
             }
         }
     }
-    .sidebar-image {
+   
+    .sidebar-image-background{
         background: transparent linear-gradient(360deg, $Mine-Shaft 0%, $Mine-Shaft 100%) 0% 0% no-repeat padding-box;
-        mix-blend-mode: lighten;
-        background-size: 65%;
-        background-position: right;
-        margin-bottom: 7%;
-    
+        height: 100%;
+        position: absolute;
+        background-blend-mode: inherit;
+        border-radius: 10px;
+        background-size: 100%;
+        right: -75px;
         &::after{
             content: "";
             height: 100px;
             width: 207px;
             background: #212121 0% 0% no-repeat padding-box;
             position: absolute;
-            bottom: -10%;
+            bottom: -8%;
             clip-path: polygon(51% 53%, 16% 0, 89% 1%);
-            right: 0%;
+            right: 5%;
             z-index: 99999;
         }
     
+    }
+    .sidebar-image {
+        // background: transparent linear-gradient(360deg, $Mine-Shaft 0%, $Mine-Shaft 100%) 0% 0% no-repeat padding-box;
+        // mix-blend-mode: lighten;
+        // background-size: 65%;
+        // background-position: right;
+        // margin-bottom: 7%;
+
         .side-by-side {
             .list-section {
                 margin-bottom: 20%;
@@ -235,7 +245,7 @@ h1, h2, h3, h4, h5 ,h6{
         position: relative;
         border-radius: 12px;
         height: 550px;
-    
+        margin-top: 20%;
     
         .upper-footer{
             position: relative;
@@ -581,7 +591,7 @@ h1, h2, h3, h4, h5 ,h6{
             }
 
             &:before{
-                top: -30% !important;
+                top: -29% !important;
             }
         }
     }

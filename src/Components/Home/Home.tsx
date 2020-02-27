@@ -94,10 +94,10 @@ class Home extends React.Component<HomeProps, HomeState> {
                 </div>
 
 
-
                 <div className="container-fluid sidebar-image position-relative" data-aos="fade-right"
                     data-aos-offset="300"
                     data-aos-easing="ease-in-sine">
+                    <div className="col-8 sidebar-image-background"></div>
                     <div className="container side-by-side pt-5">
                         <div className="row d-flex align-items-center">
                             <div className="col-12 col-md-6 col-lg-6">
