@@ -23,8 +23,8 @@ class Resend extends React.Component<ResendProps, ResendState> {
         successText:"",  
     }
     componentDidMount(){
-        let obj:any = history;
-        this.email = obj.location.state.email;
+        debugger;
+        this.email = this.props.location.email;
     }
     submitCode = (e:any) => {
         e.preventDefault();

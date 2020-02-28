@@ -1,6 +1,6 @@
 import React from 'react';
 import './navbar.scss';
-import HeaderLogo from '../../assets/images/message.svg';
+import HeaderLogo from '../../assets/images/message-email.png';
 import SideNavBar2 from '../SideNavBar/SideNavbar2/SideNavbar2';
 import SideNavBar from '../SideNavBar/SideNavBar';
 import { Link } from 'react-router-dom';

@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/static/css/main.fdf65f7c.chunk.css",
-    "main.js": "/static/js/main.a5844a80.chunk.js",
-    "main.js.map": "/static/js/main.a5844a80.chunk.js.map",
+    "main.js": "/static/js/main.a763c40a.chunk.js",
+    "main.js.map": "/static/js/main.a763c40a.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.1fb9b2ea.js",
     "runtime-main.js.map": "/static/js/runtime-main.1fb9b2ea.js.map",
     "static/css/2.f7aabdcd.chunk.css": "/static/css/2.f7aabdcd.chunk.css",
     "static/js/2.eec2eced.chunk.js": "/static/js/2.eec2eced.chunk.js",
     "static/js/2.eec2eced.chunk.js.map": "/static/js/2.eec2eced.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.e5500c822ab447807ab1a9ad6e3dcc19.js": "/precache-manifest.e5500c822ab447807ab1a9ad6e3dcc19.js",
+    "precache-manifest.b9920261fadb1068bbfb95b6dabc4210.js": "/precache-manifest.b9920261fadb1068bbfb95b6dabc4210.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.f7aabdcd.chunk.css.map": "/static/css/2.f7aabdcd.chunk.css.map",
     "static/css/main.fdf65f7c.chunk.css.map": "/static/css/main.fdf65f7c.chunk.css.map",
@@ -21,7 +21,6 @@
     "static/media/close.svg": "/static/media/close.ebf2f3f4.svg",
     "static/media/font-awesome.min.css": "/static/media/fontawesome-webfont.fee66e71.woff",
     "static/media/hamburger.svg": "/static/media/hamburger.23766812.svg",
-    "static/media/message.svg": "/static/media/message.0663f006.svg",
     "static/media/offline_pin.svg": "/static/media/offline_pin.1d026773.svg",
     "static/media/remove_red_eye.svg": "/static/media/remove_red_eye.cbd11968.svg",
     "static/media/search-large.svg": "/static/media/search-large.5041a469.svg",
@@ -32,6 +31,6 @@
     "static/css/2.f7aabdcd.chunk.css",
     "static/js/2.eec2eced.chunk.js",
     "static/css/main.fdf65f7c.chunk.css",
-    "static/js/main.a5844a80.chunk.js"
+    "static/js/main.a763c40a.chunk.js"
   ]
 }
