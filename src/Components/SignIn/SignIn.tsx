@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 
 
 interface SignInProps {
-
+    changeProfilePic?:any;
 }
 interface SignInState {
     email:string,
@@ -69,7 +69,7 @@ class SignIn extends React.Component<SignInProps, SignInState> {
                 password:this.state.password,
               })
               .then((response) => {
-                   ;
+                   debugger;
                 that.setState({
                     isSuccess:true,
                     formSubmitted:false,
@@ -80,6 +80,8 @@ class SignIn extends React.Component<SignInProps, SignInState> {
                 });
                 localStorage.setItem('userToken',response.data.key);
                 localStorage.setItem('user',JSON.stringify(response.data.user))
+                response.data.user['profile_picture'] && this.props.changeProfilePic(response.data.user['profile_picture'])
+                
                 // ReactGA.set({
                 //     userId: response.data.key
                 // });

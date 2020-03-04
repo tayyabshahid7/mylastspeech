@@ -141,7 +141,6 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
             config
         )
         .then((response) => {
-             ;
             response.data.profile_picture && this.props.changeProfilePic(response.data.profile_picture)
         })
         .catch((error) => {

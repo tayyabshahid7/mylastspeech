@@ -159,7 +159,9 @@ const Routes: React.FC = () => {
                 setIsSignIn(true);
                 setIsSignUp(false);
                 return(
-                  <SignIn  {...props}/>
+                  <SignIn {...props} changeProfilePic = {(profile_url:string)=>{
+                    profile_url && setProfilePic(profile_url)
+                    }} />
                  )
               }
              

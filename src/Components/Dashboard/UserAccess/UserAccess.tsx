@@ -8,9 +8,7 @@ interface UserAccessProps {
 
 }
 interface UserAccessState {
-    email1: string,
-    email2: string,
-    email3: string,
+    emailList:any,
     isValidated: boolean,
     isSuccess: boolean,
     successMsg: string,
@@ -31,9 +29,7 @@ const override = css`
 class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
 
     state = {
-        email1: '',
-        email2: '',
-        email3: '',
+        emailList:[ '','',''],
         isValidated: true,
         isSuccess: false,
         successMsg: '',
@@ -46,9 +42,9 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
     }
 
     validateForm(): boolean {
-        if (this.state.email1 && this.state.email2 && this.state.email3) {
-            return true;
-        }
+        // if (this.state.email1 && this.state.email2 && this.state.email3) {
+        //     return true;
+        // }
         return false;
     }
 
@@ -66,9 +62,9 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
                 : this.setState({btnText:"Add"});
 
                 this.setState({
-                    email1:response.data.results[0]['email1'],
-                    email2:response.data.results[0]['email2'],
-                    email3:response.data.results[0]['email3'],
+                     emailList:response.data.results[0]['emails'],
+                    // email2:response.data.results[0]['email2'],
+                    // email3:response.data.results[0]['email3'],
                 });
             
             })
@@ -86,7 +82,7 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
         this.setState({
             isValidated: flag,
         });
-        if (flag) {
+        if (true) {
             this.setState({
                 isSuccess: true,
             });
@@ -95,9 +91,10 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
                 headers: { Authorization: `Token ${localStorage.getItem('userToken')}`}
             };
             const bodyParameters = {
-                email1: this.state.email1,
-                email2: this.state.email2,
-                email3: this.state.email3,
+                email:this.state.emailList,
+                // email1: this.state.email1,
+                // email2: this.state.email2,
+                // email3: this.state.email3,
             };
 
             let that = this;
@@ -106,7 +103,6 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
                 config
             )
             .then((response) => {
-                     ;
                     this.setState({
                         isSuccess: false,
                         successMsg: "Emails Added Successfully",
@@ -136,6 +132,15 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
 
     }
 
+    setEmail = (index:number,e:any) =>{
+        debugger;
+        let emails = this.state.emailList;
+        emails[index] = e.target.value;
+        this.setState({
+            emailList:emails,
+        });
+    }
+
     render() {
         return (
             <div>
@@ -150,13 +155,14 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
                 <div className="tabcontent">
                     <p>Add the email address’s of people you wish to allow access your <br /> speech, you need to add at least 3</p>
                     <div className="form-group mb-0">
-                        <input type="email"
-                            onChange={(event) => { this.setState({ email1: event.target.value }) }}
+                        {this.state.emailList.map((item:any,i:number)=>(
+                            <input type="email"
+                            onChange={this.setEmail.bind(this,i)}
                             className={"form-control ".concat(this.state.isValidated ? "" : "validate")}
-                            placeholder="Email 1"
-                            value={this.state.email1} />
-
-                        <input type="email"
+                            placeholder={"Email ".concat((i+1).toLocaleString())}
+                            value={item} />
+                        ))}
+                      {/* <input type="email"
                             onChange={(event) => { this.setState({ email2: event.target.value }) }}
                             className={"form-control ".concat(this.state.isValidated ? "" : "validate")}
                             placeholder="Email 2"
@@ -166,7 +172,7 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
                             onChange={(event) => { this.setState({ email3: event.target.value }) }}
                             className={"form-control ".concat(this.state.isValidated ? "" : "validate")}
                             placeholder="Email 3"
-                            value={this.state.email3} />                 
+                            value={this.state.email3} />                  */}
                     </div>
 
                     <div className="add-btn d-flex flex-column mt-4">
