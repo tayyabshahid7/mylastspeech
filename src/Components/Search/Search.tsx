@@ -1,55 +1,94 @@
 import React from 'react';
 import './search.scss';
 import Item from './Item/Item';
+import axios from 'axios';
+import * as url from '../../utils/constant';
 
 interface ItemListProps {}
 interface ItemListState {
-    displayedItems: Array<Object>,
+    usersList: Array<Object>,
+    showSearchDropDown:boolean,
+    searchText:string,
 }
 
-var ITEMS=[
-    {
-      id:1,
-      name: 'Geralt',
-      image: 'https://i.pinimg.com/736x/34/42/d7/3442d7bda02f7ca7bf0566304c0c939a.jpg',
-      phone: '+41242341287',
-      email: 'geraltfromrivia@morhen.kaed',
-      adress: "Kaer Morhen, Kaedwen"
-    },
-    {
-      id:2,
-      name: 'Dandelion',
-      image: 'http://i.playground.ru/i/98/19/20/00/wiki/content/y1rqpmxj.250xauto.png',
-      phone: '+46785412354',
-      email: 'thegreatestpoet@chameleon.red',
-      adress: "Cabaret 'Chameleon', Novigrad, Redania"
-    },
-    {
-      id:3,
-      name: 'Yennefer',
-      image: 'https://vignette2.wikia.nocookie.net/vedmak/images/c/cd/%D0%99%D0%B5%D0%BD%D0%BD%D0%B8%D1%84%D1%8D%D1%80%D0%923.png/revision/latest/scale-to-width-down/350?cb=20160414164624',
-      phone: '+28675674329',
-      email: 'yen.ven@aretuza.taned',
-      adress: "Vengerberg, Aedirn"
-    },
-   
-]
+
 
 class ItemList extends React.Component<ItemListProps, ItemListState> {
+    scrollMenuRef:any;
+    page = 1;
     state = {
-      displayedItems: ITEMS
+      usersList: [],
+      showSearchDropDown:false,
+      searchData:[],
+      searchText:''
     }
 
-    handleSearch =(event:any)=>{
-        var searchQuery = event.target.value.toLowerCase();
-        var displayedItems = ITEMS.filter(function(el) {
-            var searchValue = el.name.toLowerCase();
-            return searchValue.indexOf(searchQuery) !== -1;
-        });
+    constructor(props){
+      super(props);
+      this.scrollMenuRef = React.createRef();
+    }
 
+    componentDidMount(){
+      if(this.scrollMenuRef){
+        this.scrollMenuRef.current.addEventListener('scroll', () => this.handleUsersScroll(this.scrollMenuRef.current));
+      }
+    }
+
+    componentWillUnmount(){
+           if(this.scrollMenuRef){
+        this.scrollMenuRef.current.removeEventListener('scroll', () => this.handleUsersScroll(this.scrollMenuRef.current));
+      }
+    }
+
+    handleUsersScroll = (element)=>{
+      // set timeout is necessary as this function may fire multiple times.
+        if (element.offsetHeight + element.scrollTop >= element.scrollHeight) {
+          if(this.page !== -1 ){
+            this.getAllUsers(this.state.searchText, this.page);
+          }
+        }
+    };
+
+
+    getAllUsers = (searchText:string,page:number) => {
+      axios.get(url.getUsersListUrl, {
+        params: {
+          page:this.page,
+          text: this.state.searchText,
+        }
+      })
+      .then((response)=> {
+          let data = this.state.usersList;
+          data = data.concat(response.data.results);
+          this.setState({
+            usersList:data,
+          });
+          var url = response.data.next && new URL(response.data.next);
+          this.page = url ?  Number(url.searchParams.get("page")) : -1;
+      })
+      .catch((error:any)=> {
+      })
+      .finally(()=> {
+
+      });           
+  } 
+
+
+    handleSearch =(event:any)=>{      
+        var searchQuery = event.target.value.toLowerCase();
+        this.page = 1;
+        if(searchQuery.length === 0){
+          this.setState({showSearchDropDown:false});
+        }else{
+          this.setState({showSearchDropDown:true});
+        }
         this.setState({
-          displayedItems: displayedItems
+          searchText:searchQuery,
+          usersList:[]
+        },()=>{
+          this.getAllUsers(searchQuery,this.page);
         });
+           
     }
 
 
@@ -66,16 +105,20 @@ class ItemList extends React.Component<ItemListProps, ItemListState> {
                         
                     </div>
                 </form>
-                {/* <div className={"after-section "}></div> */}
-                <ul className="items-list d-none">
+                <div className={"after-section ".concat(!this.state.showSearchDropDown ? " d-none":"")}></div>
+                <ul ref={this.scrollMenuRef} className={"items-list".concat(!this.state.showSearchDropDown ? " d-none":"")}>
+                  
                     {
-                       this.state.displayedItems.map(function(el) {
+                      this.state.usersList.length>0 ? this.state.usersList.map(function(el:any) {
                            return <Item
                                key={el.id}
                                name={el.name}
-                               image={el.image}
+                               image={el.profile_picture}
+                               id = {el.id}
                            />;
                        })
+                       :
+                       <li className="no-result">No results found</li>
                     }
                 </ul>
               </div> 

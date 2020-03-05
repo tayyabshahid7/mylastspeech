@@ -6,10 +6,8 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import TextField from '@material-ui/core/TextField';
 import { css } from "@emotion/core";
 import { ClipLoader } from "react-spinners";
-
-
-import * as url from '../../utils/constant';
 import TermAndPrivacy from '../TermAndPrivacy/TermAndPrivacy';
+import * as url from '../../utils/constant';
 
 interface SignUpProps {
     location?:any,

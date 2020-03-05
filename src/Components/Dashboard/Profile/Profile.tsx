@@ -4,6 +4,8 @@ import axios from 'axios';
 import DatePicker from 'react-mobile-datepicker';
 import moment from 'moment';
 import TextField from '@material-ui/core/TextField';
+import avatarPic from '../../../assets/images/img_avatar.png';
+
 
 import './profile.scss';
 
@@ -95,8 +97,8 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
             config
             )
             .then((response) => {
-              let img = response.data[0]['profile_picture'] === null ? "https://www.pinclipart.com/picdir/big/355-3553881_stockvader-predicted-adig-user-profile-icon-png-clipart.png":
-                        response.data[0]['profile_picture'] ;
+              let img = response.data[0]['profile_picture'] === null ? avatarPic:
+                        response.data[0]['profile_picture'];
               let dob = (response.data[0]['dob']) ? moment(response.data[0]['dob']).format('Do-MMMM-YYYY'):'';
                 this.setState({
                     email:response.data[0]['email'],

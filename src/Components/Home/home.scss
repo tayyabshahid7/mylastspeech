@@ -19,6 +19,7 @@ h1, h2, h3, h4, h5 ,h6{
         border-radius: 9px;
         width: 23%;
         bottom: -15%;
+        z-index:99;
         font-size: 13px;
         p{
             a{
@@ -51,6 +52,7 @@ h1, h2, h3, h4, h5 ,h6{
     .banner-section{
         height: 55vh;
         margin-top: 10%;
+        z-index: 9999;
         h1{
             font-size: 4rem;
             letter-spacing: 2px;

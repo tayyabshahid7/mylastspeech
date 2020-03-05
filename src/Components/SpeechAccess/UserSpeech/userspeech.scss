@@ -1,0 +1,146 @@
+@import "../../../assets/fonts/fonts";
+@import "../../../assets/variables/variable";
+
+#user-speech{
+    .custom-text-field{
+        textarea{
+          background: transparent;
+          border: none;
+          width: 100%;
+          resize: none;
+          outline: none;
+          cursor: pointer;
+        }
+      } 
+      .custom-submit{
+        .btnSubmit{
+          display: flex;
+          justify-content: center;
+          right: 10px !important;
+          align-items: center;
+          margin-bottom: -7%;
+  
+          & .fa{
+            background: $Mountain-Meadow;
+            border-radius: 50%;
+            width: 40px;
+            height: 42px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+    
+          &:focus{
+            outline: none;
+          }
+          & span{
+            color: $white;
+            font-size: 1em;
+          }
+          &.spotify{
+            margin-right: 10%;
+          }
+          &.share{
+            min-width: 70px !important;
+          }
+        }
+      }
+}
+
+#no-speech-card{
+
+  .card-container{
+      overflow: hidden;
+      .custom-profile{
+        height: 90vh;
+        padding: 0 5%;
+      .card-profile{
+        background: transparent linear-gradient(141deg, $Wild-Sand 0%, $Mercury 100%) 0% 0% no-repeat padding-box;
+        box-shadow: 0px 8px 24px #00000029;
+        opacity: 1;
+        border-radius: 10px;
+    
+        form{
+          padding: 8% 5% 3% 5%;
+            & img{
+              width: 60px;
+              border-radius: 50%;
+            }
+          & span {
+            b {
+              font-size: 1.2em;
+              font-weight: bold;
+            }
+          }
+          p{
+            color: $Dove-Gray;
+          }
+          .form-group{
+            margin-bottom: 2rem;    
+            .form-control{
+              opacity: 0.4;
+              border: none;
+              padding: 0.7em;
+              color: #000;
+              margin-top: -8px;
+            }
+          }
+          .form-field{
+            span{
+              color: $Dove-Gray;
+    
+              & a{
+                text-decoration: underline;
+              }
+            }
+          }
+          .custom-submit{
+            position: relative;
+    
+            & .btnSubmit{
+              position: absolute;
+              right: 0;
+              top: 15px;
+              min-width: 100px;
+              min-height: 55px;
+              background: $Studio;
+    
+              .fa{
+                color: $white;
+                font-size: 25px;
+              }
+            }
+          }
+        }
+      }
+    }
+    input[type="checkbox"] {
+      display: none;
+    }
+    input[type="checkbox"] + span {
+      display: inline-block;
+      position: relative;
+      top: -1px;
+      width: 20px;
+      color: $Purple;
+      height: 20px;
+      font-size: 18px;
+      margin: -1px 0px 0 0;
+      vertical-align: middle;
+      background: white left top no-repeat;
+      cursor: pointer;
+    }
+    input[type="checkbox"]:checked + span::after {
+      content: '\2713\0020';
+      width: 18px;
+      height: 18px;
+      top: -2px;
+      position: absolute;
+      left: 3px;
+    }
+    
+    input[type="checkbox"] + span {
+      margin-right: 4px;
+    }
+  }
+}

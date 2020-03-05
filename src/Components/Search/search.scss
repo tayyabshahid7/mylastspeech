@@ -37,17 +37,12 @@
     opacity: 1;
     border-radius: 8px;
     right: -25px;
-    & ::after{
-      content: '';
-      height: 60px;
-      width: 55px;
-      -webkit-clip-path: polygon(45% 41%, 0 0, 86% 0);
-      clip-path: polygon(45% 41%, 0 0, 86% 0);
-      background: transparent linear-gradient(159deg, #E3E3E3 0%, #F4F4F4 100%) 0% 0% no-repeat padding-box;
-      position: absolute;
-      left: 11%;
-      bottom: 100%;
-      transform: rotate(180deg);
+    max-height: 400px;
+    overflow: auto;
+    .no-result{
+      list-style: none;
+      text-align: center;
+      font-family: "Sofia Pro";
     }
   }
   

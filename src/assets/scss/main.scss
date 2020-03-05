@@ -45,14 +45,9 @@ h1, h2, h3, h4, h5 ,h6{
             background: #2E2E2E 0% 0% no-repeat padding-box;
             border-radius: 22px;
             width: 350px;
-
-            .custom-input{
-
-            }
             & input{
                 background: transparent;
                 color:$Wild-Sand !important;
-                font-size:13px;
 
                 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
                     color: $black;

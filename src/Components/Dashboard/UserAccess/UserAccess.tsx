@@ -3,6 +3,8 @@ import * as url from '../../../utils/constant';
 import axios from 'axios';
 import { css } from "@emotion/core";
 import { ClipLoader } from "react-spinners";
+import './useraccess.scss';
+import Item from '../../Search/Item/Item';
 
 interface UserAccessProps {
 
@@ -29,7 +31,16 @@ const override = css`
 class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
 
     state = {
-        emailList:[ '','',''],
+        emailList:[ {
+            id: '',
+            email: "",
+        },{
+            id: '',
+            email: "",
+        },{
+            id: '',
+            email: "",
+        }],
         isValidated: true,
         isSuccess: false,
         successMsg: '',
@@ -42,10 +53,13 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
     }
 
     validateForm(): boolean {
-        // if (this.state.email1 && this.state.email2 && this.state.email3) {
-        //     return true;
-        // }
-        return false;
+        let flag = true;
+        this.state.emailList.map((item:any)=>{
+            if(item.email === ""){
+                flag = false
+            }
+        });
+        return flag;
     }
 
     retrieveEmails =()=>{
@@ -57,16 +71,16 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
             config
             )
             .then((response) => {
-                response.data.results && response.data.results.length>0 ?
-                  this.setState({btnText:"Update"})
-                : this.setState({btnText:"Add"});
-
-                this.setState({
-                     emailList:response.data.results[0]['emails'],
-                    // email2:response.data.results[0]['email2'],
-                    // email3:response.data.results[0]['email3'],
-                });
-            
+                let data = response.data;
+                if(data.length>0){
+                    data.map((item:any)=>{
+                        item.isChanged = false;
+                    });
+                    debugger;
+                    this.setState({
+                         emailList:data,                 
+                    });
+                }            
             })
             .catch((error) => {
                 
@@ -76,74 +90,218 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
         });        
     }
 
-    addCloseContacts = (e: any) => {
-        e.preventDefault();
-        let flag = this.validateForm();
-        this.setState({
-            isValidated: flag,
+    checkUniqueness = () =>{
+        var valueArr = this.state.emailList.map(function(item){ return item.email });
+        var isDuplicate = valueArr.some(function(item, idx){ 
+            return valueArr.indexOf(item) != idx 
         });
-        if (true) {
+        return isDuplicate;
+    }
+
+    addCloseContacts = (item:any,e: any) => {
+        if(!this.checkUniqueness()){
+            let flag = this.validateForm();
+            if(item.id === "" && flag){
+                e.preventDefault();
+                let flag = this.validateForm();
+                this.setState({
+                    isValidated: flag,
+                });
+                if (true) {
+                    this.setState({
+                        isSuccess: true,
+                    });
+                    const config = {
+                        headers: { Authorization: `Token ${localStorage.getItem('userToken')}`}
+                    };
+                    const bodyParameters = {
+                        email:this.state.emailList,
+                    };
+        
+                    let that = this;
+                    axios.post(url.closeContactsUrl,
+                        bodyParameters,
+                        config
+                    )
+                    .then((response) => {
+                        let data = response.data;
+                        if(data.length>0){
+                            data.map((item:any)=>{
+                                item.isChanged = false;
+                            });
+                            debugger;
+                            this.setState({
+                                emailList:data,                 
+                            });
+                        }    
+                        this.setState({
+                            isSuccess: false,
+                            successMsg: "Emails Added Successfully",
+                        });
+                        setTimeout(() => {
+                            this.setState({
+                                successMsg: ""
+                            });
+                        }, 2000);
+    
+                    })
+                    .catch((error) => {
+                        debugger;
+                        this.setState({
+                            isSuccess: false,
+                            errorMsg: "Enter valid email address in all 3 fields",
+                        });
+                            setTimeout(() => {
+                            this.setState({
+                                errorMsg: ""
+                            });
+                        }, 2000);
+                    })
+                    .finally(() => {
+                        // always executed
+                });
+                }
+            }else if(item.id === "" ){
+                this.setState({
+                    isSuccess: false,
+                    errorMsg: "Please enter valid email address and atleast 3 emails are required",
+                });
+                  setTimeout(() => {
+                    this.setState({
+                        errorMsg: ""
+                    });
+                }, 3000);
+            }
+        }else{
             this.setState({
-                isSuccess: true,
+                isSuccess: false,
+                errorMsg: "Same Email already added",
             });
-
-            const config = {
-                headers: { Authorization: `Token ${localStorage.getItem('userToken')}`}
-            };
-            const bodyParameters = {
-                email:this.state.emailList,
-                // email1: this.state.email1,
-                // email2: this.state.email2,
-                // email3: this.state.email3,
-            };
-
-            let that = this;
-            axios.post(url.closeContactsUrl,
-                bodyParameters,
-                config
-            )
-            .then((response) => {
-                    this.setState({
-                        isSuccess: false,
-                        successMsg: "Emails Added Successfully",
-                    });
-                    setTimeout(() => {
-                        this.setState({
-                            successMsg: ""
-                        });
-                    }, 2000);
-
-                })
-                .catch((error) => {
-                    this.setState({
-                        isSuccess: false,
-                        errorMsg: "Enter valid email address in all 3 fields",
-                    });
-                      setTimeout(() => {
-                        this.setState({
-                            errorMsg: ""
-                        });
-                    }, 2000);
-                })
-                .finally(() => {
-                    // always executed
-            });
-        }
-
+              setTimeout(() => {
+                this.setState({
+                    errorMsg: ""
+                });
+            }, 3000);
+        }    
     }
 
     setEmail = (index:number,e:any) =>{
-        debugger;
         let emails = this.state.emailList;
-        emails[index] = e.target.value;
+        emails[index]['email'] = e.target.value;
+        emails[index]['isChanged'] = true;
         this.setState({
             emailList:emails,
         });
     }
 
+    updateEmail = (obj:any,index:number,e:any) =>{  
+            const config = {
+                headers: { Authorization: `Token ${localStorage.getItem('userToken')}`}
+            };
+            const bodyParameters = {
+                email:obj.email,
+                id:obj.id
+            };
+            axios.put(url.closeContactsUrl,
+                bodyParameters,
+                config
+            )
+            .then((response) => {
+                let data = response.data;
+                if(data.length>0){
+                    data.map((item:any)=>{
+                        item.isChanged = false;
+                    });
+                    this.setState({
+                        emailList:data,                 
+                    });
+                }   
+                this.setState({
+                    isSuccess: false,
+                    successMsg: "Email Updated Successfully",
+                });
+                setTimeout(() => {
+                    this.setState({
+                        successMsg: ""
+                    });
+                }, 2000);
+            })
+        .catch((error) => {
+            
+        })
+        .finally(() => {
+
+      });
+    }
+
+    addField = (e:any) => {
+        var obj = {
+            id: '',
+            email: "",
+        };
+        let data = this.state.emailList;
+        if(data.length<10){
+            data.push(obj);
+            this.setState({
+                emailList:data,
+            });
+        }     
+    }
+    
+    removeEmail = (item:any,index:number,e:any) => {
+        if(this.state.emailList.length >3 ){
+            axios.delete(url.closeContactsUrl,{
+                    headers: { Authorization: `Token ${localStorage.getItem('userToken')}`},
+                    data :{
+                        email:item.email,
+                        id:item.id
+                    },
+                }         
+            )
+            .then((response) => {
+                let data = response.data;
+                if(data.length>0){
+                    data.map((item:any)=>{
+                        item.isChanged = false;
+                    });
+                    this.setState({
+                         emailList:data,                 
+                    });
+                }                  
+                this.setState({
+                    isSuccess: false,
+                    successMsg: "Email Removed Successfully",
+                });
+                setTimeout(() => {
+                    this.setState({
+                        successMsg: ""
+                    });
+                }, 2000);
+
+            })
+            .catch((error) => {
+                
+            })
+            .finally(() => {
+                // always executed
+            });
+        }else{
+            this.setState({
+                isSuccess: false,
+                errorMsg: "Atleast 3 emails are required can't delete",
+            });
+              setTimeout(() => {
+                this.setState({
+                    errorMsg: ""
+                });
+            }, 2000);
+        }
+       
+    }
+
     render() {
         return (
-            <div>
+            <div id="user-access">
                 <div className="align-items-center d-flex justify-content-center sweet-loading">
                     <ClipLoader
                         css={override}
@@ -156,29 +314,24 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
                     <p>Add the email address’s of people you wish to allow access your <br /> speech, you need to add at least 3</p>
                     <div className="form-group mb-0">
                         {this.state.emailList.map((item:any,i:number)=>(
-                            <input type="email"
-                            onChange={this.setEmail.bind(this,i)}
-                            className={"form-control ".concat(this.state.isValidated ? "" : "validate")}
-                            placeholder={"Email ".concat((i+1).toLocaleString())}
-                            value={item} />
+                            <div key ={i} className="position-relative">
+                                <input type="email"
+                                onChange={this.setEmail.bind(this,i)}
+                                className={"form-control ".concat(this.state.isValidated ? "" : "validate")}
+                                placeholder={"Email ".concat((i+1).toLocaleString())}
+                                value={item.email}
+                                onBlur = {this.addCloseContacts.bind(this,item)} />
+                                {item.isChanged && item.id!="" && <a style= {{cursor:"pointer",zIndex:9999}} onClick = {this.updateEmail.bind(this,item,i)} className="profile-inputs input-inner-btn">update</a>}
+                                { item.id!="" && <i onClick = {this.removeEmail.bind(this,item,i)} className="fa fa-minus-circle collapse-minus" aria-hidden="true"></i>}
+                            </div>
                         ))}
-                      {/* <input type="email"
-                            onChange={(event) => { this.setState({ email2: event.target.value }) }}
-                            className={"form-control ".concat(this.state.isValidated ? "" : "validate")}
-                            placeholder="Email 2"
-                            value={this.state.email2} />
 
-                        <input type="email"
-                            onChange={(event) => { this.setState({ email3: event.target.value }) }}
-                            className={"form-control ".concat(this.state.isValidated ? "" : "validate")}
-                            placeholder="Email 3"
-                            value={this.state.email3} />                  */}
                     </div>
 
                     <div className="add-btn d-flex flex-column mt-4">
                         <span className="response-msg">{this.state.successMsg}</span>
                         <span className="response-msg error">{this.state.errorMsg}</span>
-                        <a onClick={this.addCloseContacts.bind(this)}>+ {this.state.btnText}</a>
+                        <a onClick={this.addField.bind(this)}>+ {this.state.btnText}</a>
                     </div>
                 </div>
 

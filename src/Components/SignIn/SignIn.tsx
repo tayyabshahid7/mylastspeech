@@ -55,7 +55,6 @@ class SignIn extends React.Component<SignInProps, SignInState> {
     }
     
     submitForm = (e:any) => {
-         ;
         e.preventDefault();
         let flag = this.validateForm();
         this.setState({

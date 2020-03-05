@@ -96,7 +96,7 @@ class Resend extends React.Component<ResendProps, ResendState> {
                             </div>
                             <button className="resend-text mb-5" onClick = {this.resendCode.bind(this)}>Resend</button>
                             <div className="form-group custom-submit ">
-                                <button className="btn btnSubmit" type="submit">
+                                <button className="btn btnSubmit" style={{bottom:"unset"}} type="submit">
                                     <i className=" fa fa-long-arrow-right" aria-hidden="true"></i>
                                 </button>                            
                             </div>

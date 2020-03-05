@@ -15,6 +15,10 @@ import PasswordReset from '../PasswordReset/PasswordReset';
 import PasswordResetConfirm from '../PasswordResetConfirm/PasswordResetConfirm';
 import TermAndPrivacy from '../TermAndPrivacy/TermAndPrivacy';
 import ReactGA from 'react-ga';
+import SpeechAccess from '../SpeechAccess/SpeechAccess';
+import NextPage from '../SpeechAccess/NextPage/NextPage';
+import UserSpeech from '../SpeechAccess/UserSpeech/UserSpeech';
+
 
 const trackingId = "UA-158954661-1";
 ReactGA.initialize(trackingId);
@@ -87,17 +91,44 @@ const Routes: React.FC = () => {
           }
         /> 
 
-        {/* <Route exact path='/termandprivacy' render={(props) =>
-            {         
+        <Route exact path='/speechaccess' render={(props) =>
+            {
               setIsSignUp(true);
               setIsSignIn(true);
               setIsRightBar(false);
               return(
-                <TermAndPrivacy {...props} />
-              )          
+                <SpeechAccess {...props}/>
+              )
+            
           }
           }
-        />  */}
+      /> 
+      
+      <Route exact path='/access-next' render={(props) =>
+            {
+              setIsSignUp(true);
+              setIsSignIn(true);
+              setIsRightBar(false);
+              return(
+                <NextPage {...props} />
+              )
+          }
+          }
+      /> 
+
+      <Route exact path='/userspeech' render={(props) =>
+            {
+              setIsSignUp(true);
+              setIsSignIn(true);
+              setIsRightBar(false);
+              return(
+                <UserSpeech {...props} />
+              )
+          }
+          }
+      /> 
+
+
 
         <Route exact path='/dashboard' render={(props) =>
             {
