@@ -71,6 +71,7 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
             config
             )
             .then((response) => {
+                debugger;
                 let data = response.data;
                 if(data.length>0){
                     data.map((item:any)=>{
@@ -90,16 +91,23 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
         });        
     }
 
-    checkUniqueness = () =>{
-        var valueArr = this.state.emailList.map(function(item){ return item.email });
-        var isDuplicate = valueArr.some(function(item, idx){ 
-            return valueArr.indexOf(item) != idx 
+    checkUniqueness = (item:any) =>{
+        debugger;
+        let count = 0;
+        this.state.emailList.map((obj)=>{
+            if(obj.email === item.email){
+                count++;
+            }
         });
-        return isDuplicate;
+        if(count > 1){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     addCloseContacts = (item:any,e: any) => {
-        if(!this.checkUniqueness()){
+        if(!this.checkUniqueness(item)){
             let flag = this.validateForm();
             if(item.id === "" && flag){
                 e.preventDefault();

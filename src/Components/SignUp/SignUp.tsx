@@ -98,8 +98,7 @@ class SignUp extends React.Component<SignUpProps, SignUpState> {
                     });
                     history.push({
                         pathname: '/resend',
-                        search: this.state.email,
-
+                        state: { email: that.state.email }
                      });
                 }, 2500);
               })

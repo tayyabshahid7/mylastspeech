@@ -24,7 +24,7 @@ class Resend extends React.Component<ResendProps, ResendState> {
     }
     componentDidMount(){
         debugger;
-        this.email = this.props.location.email;
+        this.email = this.props.location.state.email;
     }
     submitCode = (e:any) => {
         e.preventDefault();

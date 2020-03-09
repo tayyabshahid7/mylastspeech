@@ -87,9 +87,9 @@ class SignIn extends React.Component<SignInProps, SignInState> {
                 history.push("/success");   
               })
               .catch((error) => {
-                 ;
+                 debugger;
                   let form_errors = {};   
-                  if(error.response?.data['email'] === "E-mail is not verified."){
+                  if(error.response?.data['email'][0] === "E-mail is not verified."){
                     history.push({
                         pathname: '/resend',
                         state: { email: that.state.email }
