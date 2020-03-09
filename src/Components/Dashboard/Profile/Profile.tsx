@@ -226,6 +226,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                      label="Full Name" 
                      variant="outlined" 
                      />
+                    {/* <a style= {{cursor:"pointer",zIndex:999}} onClick = {()=>{}} className="profile-inputs input-inner-btn">update</a> */}
 
                 </div>
                 

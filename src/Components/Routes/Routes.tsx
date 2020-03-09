@@ -18,7 +18,7 @@ import ReactGA from 'react-ga';
 import SpeechAccess from '../SpeechAccess/SpeechAccess';
 import NextPage from '../SpeechAccess/NextPage/NextPage';
 import UserSpeech from '../SpeechAccess/UserSpeech/UserSpeech';
-
+import Payment from '../Payment/Payment';
 
 const trackingId = "UA-158954661-1";
 ReactGA.initialize(trackingId);
@@ -129,6 +129,17 @@ const Routes: React.FC = () => {
       /> 
 
 
+      <Route exact path='/payment' render={(props) =>
+            {
+              setIsSignUp(true);
+              setIsSignIn(true);
+              setIsRightBar(false);
+              return(
+                <Payment {...props} />
+              )
+          }
+          }
+      /> 
 
         <Route exact path='/dashboard' render={(props) =>
             {

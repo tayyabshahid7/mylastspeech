@@ -77,7 +77,7 @@ class UserSpeech extends React.Component<UserSpeechProps, UserSpeechState> {
                     <div id="user-speech" className="container login-container tab-page mt-5 px-4 px-md-0">
                     <div className="align-items-center d-flex justify-content-center row tabs-section custom-login">
                       <div className=" col-12 col-lg-10 login-form mb-5 pb-5 tabs-card">
-                        <form>
+                        <form onSubmit={(e)=>{e.preventDefault()}}>
                             <div className="form-group">
                                     <div className="custom-text-field">
                                         <textarea rows={15}

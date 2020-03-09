@@ -2,6 +2,7 @@ import React from 'react';
 import './nextpage.scss';
 import axios from 'axios';
 import * as url from '../../../utils/constant';
+import history from '../../../utils/history';
 import TextField from '@material-ui/core/TextField';
 import { Link } from 'react-router-dom';
 
@@ -10,6 +11,7 @@ interface NextPageProps {
 }
 interface NextPageState {
     userObj:object,
+    error:boolean,
     questionsList:Array<object>
 }
 
@@ -17,7 +19,8 @@ class NextPage extends React.Component<NextPageProps, NextPageState> {
 
     state = {
         userObj:{},
-        questionsList:[{}]
+        questionsList:[{}],
+        error:false,
     }
 
     componentDidMount(){
@@ -67,6 +70,37 @@ class NextPage extends React.Component<NextPageProps, NextPageState> {
         });
     }
 
+    checkSecurityQuestion = (e:any) =>{
+        e.preventDefault();
+        const params = {
+            answer : this.state.questionsList,
+            user_id: this.props.location.state['id']
+        };
+        axios.post(url.checkSecurityQuestionUrl, {
+            params
+        })
+        .then((response) => {
+            debugger;
+            if(response.data.isCorrect){
+                history.push({
+                    pathname: '/userspeech',
+                    state: this.state.userObj
+                });
+            }else{
+                this.setState({error:true});
+                setTimeout(() => {
+                this.setState({error:false});
+                }, 4000);
+            }
+        })
+        .catch((error) => {
+        
+        })
+        .finally( () => {
+        // always executed
+        });           
+    }
+
     render() {
         return (               
             <div className="container card-container next-card-container mt-5">
@@ -75,7 +109,9 @@ class NextPage extends React.Component<NextPageProps, NextPageState> {
                         <form>
                             <img src={this.state.userObj['image']}  alt="Avatar"/>&nbsp; &nbsp; &nbsp; &nbsp;<span><b>{this.state.userObj['name']} </b></span>
                             <p className="mt-5 mb-4">No account has granted that address access yet. Please enter the following security questions to see this account</p>
-                           {this.state.questionsList.map((item:any,i:number)=>(
+                           {
+                           this.state.questionsList && this.state.questionsList.length >0 ? 
+                           this.state.questionsList.map((item:any,i:number)=>(
                                 <div className="mb-3">
                                  <TextField  
                                      onChange={this.setAnswer.bind(this,i)} 
@@ -87,12 +123,15 @@ class NextPage extends React.Component<NextPageProps, NextPageState> {
                                  />
                                 </div>
                            )
-                        )}
+                        )
+                        :
+                        <p className="mt-3 mb-4"><b>{this.state.userObj['name']}</b> has not added a speech yet. Please check again later.</p>
+                        }
+                        {this.state.error && <p className="mt-3 mb-3 error"> Answers are not correct.</p>}
+
                         <div className="form-group custom-submit ">
-                            <Link to="">
-                                <button className="btn btnSubmit" type="submit"><i className=" fa fa-long-arrow-right" aria-hidden="true"></i>
+                                <button onClick = {this.checkSecurityQuestion.bind(this)} className="btn btnSubmit" type="submit"><i className=" fa fa-long-arrow-right" aria-hidden="true"></i>
                                 </button>
-                            </Link>
                             <Link to={{pathname:"speechaccess", state:this.state.userObj}}>
                                 <button className="btn btnSubmit-back" type="submit"><i className=" fa fa-long-arrow-left" aria-hidden="true"></i>
                                 </button>

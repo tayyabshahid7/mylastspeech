@@ -47,6 +47,7 @@ class PasswordResetConfirm extends React.Component<PasswordResetConfirmProps, Pa
     }
 
     componentDidMount(){
+        debugger;
         let params = new URLSearchParams(this.props?.location?.search);
         this.uid = params.get("uidb64")?.toString();
         this.token =  params.get("token")?.toString();

@@ -1,0 +1,180 @@
+@import "../../assets/fonts/fonts";
+@import "../../assets/variables/variable";
+
+
+#payment{
+.payment-container{
+    overflow: visible;
+    .activeTab{
+        font-weight: 600;
+        color:$Dove-Gray !important;
+    }
+    .payment-card{
+        color:$Dove-Gray !important;
+      & h5{
+        b{
+          font-weight: bold;
+          font-size: 1.2em;
+          letter-spacing: 0;
+        }
+      }
+      .card-paragraph {
+        border: none;
+        background-color: #F4F4F4;
+        background-clip: padding-box;
+        padding: 0.8em;
+        margin-bottom: 1em;
+        margin-top: 8px;
+        border-radius: 0.25rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  
+        p{
+          color: $light-gray;
+  
+        }
+      }
+      .anchor-links{
+        & a{
+            color: $Dove-Gray;
+            font-size: 1.2em;
+            text-decoration: none;
+        }
+      }
+    }
+
+  }
+  .custom-submit{
+    position: relative;
+    & .btnSubmit{
+        position: absolute;
+        right: 0;
+        bottom: -125px;
+        min-width: 100px;
+        min-height: 55px;
+        background: $Studio;
+        color: $white;
+            .fa{
+                color: $white;
+                font-size: 25px;
+            }
+        }
+    }
+  .card-container{
+    .custom-profile{
+      height: 90vh;
+      padding: 0 5%;
+    .card-profile{
+      background: transparent linear-gradient(141deg, $Wild-Sand 0%, $Mercury 100%) 0% 0% no-repeat padding-box;
+      box-shadow: 0px 8px 24px #00000029;
+      opacity: 1;
+      border-radius: 10px;
+  
+      form{
+        padding: 8% 5% 3% 5%;
+          & img{
+            width: 60px;
+            border-radius: 50%;
+          }
+        & span {
+          b {
+            font-size: 1.2em;
+            font-weight: bold;
+          }
+        }
+        p{
+          color: $Dove-Gray;
+        }
+        .form-group{
+          margin-bottom: 2rem;    
+          .form-control{
+            opacity: 0.4;
+            border: none;
+            padding: 0.7em;
+            color: #000;
+            margin-top: -8px;
+          }
+        }
+        .form-field{
+          span{
+            color: $Dove-Gray;
+  
+            & a{
+              text-decoration: underline;
+            }
+          }
+        }
+        .custom-submit{
+          position: relative;
+  
+          & .btnSubmit{
+            position: absolute;
+            right: 0;
+            top: 15px;
+            min-width: 100px;
+            min-height: 55px;
+            background: $Studio;
+  
+            .fa{
+              color: $white;
+              font-size: 25px;
+            }
+          }
+        }
+      }
+    }
+  }
+  input[type="checkbox"] {
+    display: none;
+  }
+  input[type="checkbox"] + span {
+    display: inline-block;
+    position: relative;
+    top: -1px;
+    width: 20px;
+    color: $Purple;
+    height: 20px;
+    font-size: 18px;
+    margin: -1px 0px 0 0;
+    vertical-align: middle;
+    background: white left top no-repeat;
+    cursor: pointer;
+  }
+  input[type="checkbox"]:checked + span::after {
+    content: '\2713\0020';
+    width: 18px;
+    height: 18px;
+    top: -2px;
+    position: absolute;
+    left: 3px;
+  }
+  
+  input[type="checkbox"] + span {
+    margin-right: 4px;
+  }
+}
+}
+
+.toast {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 9999;
+  }
+  
+  .bootstrap-basic {
+    background: white;
+  }
+  
+  /* Braintree Hosted Fields styling classes*/
+  .braintree-hosted-fields-focused {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  .braintree-hosted-fields-focused.is-invalid {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+  }

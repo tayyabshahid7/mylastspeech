@@ -21,6 +21,7 @@ export const getUsersListUrl = baseUrl + "api/v1/retreive-mls-users/";
 export const searchedUserSecuirtyQuestionUrl = baseUrl + "api/v1/retreive-user-security-questions/";
 export const userAccessCheckUrl = baseUrl + "api/v1/user-access-check/";
 export const getUserSpeechUrl = baseUrl + "api/v1/get-user-speech/";
+export const checkSecurityQuestionUrl = baseUrl + "api/v1/check-security-question/";
 
 
 
