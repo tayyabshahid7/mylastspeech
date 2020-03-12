@@ -1,5 +1,6 @@
 import React from 'react';
 import * as url from '../../../utils/constant';
+import './speech.scss';
 import axios from 'axios';
 
 
@@ -75,23 +76,19 @@ class Speech extends React.Component<SpeechProps, SpeechState> {
 
     render() {
         return (
-        <form>
-            <div className="form-group">
-                <div className="custom-text-field">
-                    <textarea rows={15}
-                    onChange = {(e)=>{this.setState({speech:e.target.value})}}
-                    value = {this.state.speech}
-                    placeholder="Start Typing"></textarea>
-                </div>
-            </div>
-
-            <div className="form-group custom-submit ">
-                <button className="btn btnSubmit" type="submit">
-                    <i className="fa fa-spotify" aria-hidden="true"></i> &nbsp;
-                    <span>+ Spotify song</span>
-                </button>
-            </div>             
-        </form>
+            <div id = "speech">
+                <form>
+                    <div className="form-group">
+                        <div className="custom-text-field">
+                            <textarea rows={15}
+                            onChange = {(e)=>{this.setState({speech:e.target.value})}}
+                            value = {this.state.speech}
+                            placeholder="Start Typing"></textarea>
+                        </div>
+                    </div>       
+                </form>
+                
+            </div>   
         );
     }
 }

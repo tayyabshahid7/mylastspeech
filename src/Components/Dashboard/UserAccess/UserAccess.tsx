@@ -71,13 +71,11 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
             config
             )
             .then((response) => {
-                debugger;
                 let data = response.data;
                 if(data.length>0){
                     data.map((item:any)=>{
                         item.isChanged = false;
                     });
-                    debugger;
                     this.setState({
                          emailList:data,                 
                     });
@@ -317,9 +315,9 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
                         loading={this.state.isSuccess}
                     />
                 </div>
-                <div className="tabcontent">
-                    <p>Add the email address’s of people you wish to allow access your <br /> speech, you need to add at least 3</p>
-                    <div className="form-group mb-0">
+                <div className="col-12 col-md-10 pl-0 pl-md-3 pr-4 pr-md-0 tabcontent">
+                    <p className="d-md-block d-none">Add the email address’s of people you wish to allow access your <br /> speech, you need to add at least 3</p>
+                    <div className="col-12 col-md-10 form-group mb-0">
                         {this.state.emailList.map((item:any,i:number)=>(
                             <div key ={i} className="position-relative">
                                 <input type="email"

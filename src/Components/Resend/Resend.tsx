@@ -3,6 +3,7 @@ import history from '../../utils/history';
 import axios from 'axios';
 import * as url from '../../utils/constant';
 import SweetAlert from 'react-bootstrap-sweetalert';
+import tickIcon from '../../assets/images/tick.svg';
 import './resend.scss';
 
 interface ResendProps {
@@ -100,15 +101,20 @@ class Resend extends React.Component<ResendProps, ResendState> {
                                     <i className=" fa fa-long-arrow-right" aria-hidden="true"></i>
                                 </button>                            
                             </div>
-                            <SweetAlert
-                                success
-                                title={this.state.successText}
-                                onConfirm={()=>{}}
-                                onCancel={()=>{}}
-                                showConfirm = {false}
-                                show = {this.state.isSuccess}
-                            >                           
-                            </SweetAlert>
+
+                            <div className="position-relative">      
+                                <SweetAlert  
+                                    title={this.state.successText}
+                                    onConfirm={()=>{}}
+                                    onCancel={()=>{}}
+                                    showConfirm = {false}
+                                    show = {this.state.isSuccess}
+                                    >
+                                    <div>
+                                        <img className="tick-img" src = {tickIcon} />
+                                    </div>
+                                </SweetAlert>
+                            </div>
                         </form>
                     </div>
                 </div>

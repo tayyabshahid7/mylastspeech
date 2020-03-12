@@ -1,7 +1,6 @@
-import React , {createRef} from 'react';
+import React , {createRef, Fragment} from 'react';
 import * as url from '../../../utils/constant';
 import axios from 'axios';
-import DatePicker from 'react-mobile-datepicker';
 import moment from 'moment';
 import TextField from '@material-ui/core/TextField';
 import avatarPic from '../../../assets/images/img_avatar.png';
@@ -15,7 +14,6 @@ interface ProfileProps {
 interface ProfileState {
     email: string,
     name: string,
-    dob: string,
     time: Date,
     isCalenderOpen: boolean,
     old_password:string,
@@ -26,39 +24,6 @@ interface ProfileState {
     isPasswodChange:boolean,
 }
 
-const monthMap = {
-    '1': 'January',
-    '2': 'February',
-    '3': 'March',
-    '4': 'April',
-    '5': 'May',
-    '6': 'June',
-    '7': 'July',
-    '8': 'August',
-    '9': 'September',
-    '10': 'October',
-    '11': 'November',
-    '12': 'December',
-};
-const dateConfig = {
-   
-    'month': {
-        format: value => monthMap[value.getMonth() + 1],
-        caption: 'Mon',
-        step: 1,
-    },
-    'date': {
-        format: 'DD',
-        caption: 'Day',
-        step: 1,
-    },
-    'year': {
-        format: 'YYYY',
-        caption: 'Year',
-        step: 1,
-    },
-   
-};
 
 
 
@@ -68,7 +33,6 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
     state = {
         email: '',
         name: '',
-        dob: '',
         isCalenderOpen:false,
         time:new Date(),
         old_password:'',
@@ -103,7 +67,6 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                 this.setState({
                     email:response.data[0]['email'],
                     name:response.data[0]['name'],
-                    dob:dob,
                     time:new Date(response.data[0]['dob']),
                     profile_picture:img
                 });
@@ -118,7 +81,6 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
     }
 
     checkValue = (e) =>{
-         ;
         if(e.target.value !=""){
             this.updateProfile();
         }
@@ -182,20 +144,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
         
     }
 
-    handleClick = () => {
-        this.setState({ isCalenderOpen: true });
-    }
 
-    handleCancel = () => {
-        this.setState({ isCalenderOpen: false });
-    }
-
-    handleSelect = (time) => {
-        let date = moment(time).format('Do-MMMM-YYYY');
-        this.setState({time: time, isCalenderOpen: false,dob:date },()=>{
-            this.updateProfile();
-        });
-    }
 
     handleImageChange = (e) =>{
         if(e.target.files){
@@ -210,13 +159,13 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
 
     render() {
         return (
-            <div  className="tabcontent profile-section">
-            <div className="profile-img">                
+        <div id="profile"  className="col-12 col-md-10 pl-0 pl-md-3 pr-md-0 tabcontent  profile-section">
+            <div className="profile-img d-none d-md-block">                
                 <img  src={this.state.profile_picture} />
                 <input type="file" ref={this.inputOpenFileRef} className = "d-none"  onChange={this.handleImageChange.bind(this)}/>
                 &nbsp; &nbsp; &nbsp; &nbsp; <a onClick = {()=>{this.inputOpenFileRef.current.click()}} >Change</a>
             </div>
-            <form className="form-group">
+            <form className="col-12 col-md-10 form-group mb-0">
           
                 <div className="position-relative">
                      <TextField id="fullname" 
@@ -226,31 +175,10 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                      label="Full Name" 
                      variant="outlined" 
                      />
-                    {/* <a style= {{cursor:"pointer",zIndex:999}} onClick = {()=>{}} className="profile-inputs input-inner-btn">update</a> */}
+                    <a style= {{cursor:"pointer",zIndex:999}} onClick = {this.checkValue.bind(this)} className="profile-inputs input-inner-btn">change</a>
 
                 </div>
-                
-          
-                 <div className="position-relative custom-input">                   
-                    <TextField id="fullname" 
-                     onFocus={this.handleClick} 
-                     value= {this.state.dob && this.state.dob} 
-                     className = 'outlined-input-custom' 
-                     label="Date of Birth" 
-                     variant="outlined" 
-                     />
-                   
-                    <DatePicker
-                    headerFormat = "DD/MM/YYYY"
-                     dateConfig={dateConfig}
-                     showHeader = {true}
-                     cancelText = "Cancel"
-                     confirmText = "Ok"
-                     value={this.state.time}
-                     isOpen={this.state.isCalenderOpen}
-                     onSelect={this.handleSelect}
-                     onCancel={this.handleCancel} />
-                </div>
+
                 <div className="position-relative custom-input">
                     <TextField  
                       onChange={(event) => {this.setState({email: event.target.value})}} 
@@ -261,7 +189,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                      variant="outlined" 
                      />
                    
-                    {/* <a style= {{cursor:"pointer",zIndex:999}} onClick = {this.checkValue.bind(this)} className="profile-inputs input-inner-btn">change</a> */}
+                    <a style= {{cursor:"pointer",zIndex:999}} onClick = {this.checkValue.bind(this)} className="profile-inputs input-inner-btn">change</a>
                 </div>
                 <div className="position-relative custom-input">
                     <TextField 
@@ -273,7 +201,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                      type="password"   
                      variant="outlined" 
                      />
-                    {/* <a style= {{cursor:"pointer",zIndex:999}} onClick= {this.updatePassword.bind(this)}className="profile-inputs input-inner-btn">change</a> */}
+                    <a style= {{cursor:"pointer",zIndex:999}} onClick= {this.updatePassword.bind(this)}className="profile-inputs input-inner-btn">change</a>
                 </div>
                 {this.state.isPasswodChange && 
                 <div>
@@ -286,7 +214,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                         type="password"   
                         variant="outlined" 
                         />
-                        {/* <a href="#" className="profile-inputs input-inner-btn">change</a> */}
+                        <a href="#" className="profile-inputs input-inner-btn">change</a>
                     </div>
                     <div className="position-relative custom-input">
                         <TextField 
@@ -297,7 +225,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                         type="password"   
                         variant="outlined" 
                         />
-                        {/* <a style= {{cursor:"pointer",zIndex:999}} onClick = {this.checkValue.bind(this)}  className="profile-inputs input-inner-btn">change</a> */}
+                        <a style= {{cursor:"pointer",zIndex:999}} onClick = {this.checkValue.bind(this)}  className="profile-inputs input-inner-btn">change</a>
                     </div>
                 </div>
                 }

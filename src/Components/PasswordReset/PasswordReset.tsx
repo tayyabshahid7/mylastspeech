@@ -4,6 +4,7 @@ import axios from 'axios';
 import * as url from '../../utils/constant';
 import { css } from "@emotion/core";
 import { ClipLoader } from "react-spinners";
+import tickIcon from '../../assets/images/tick.svg';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import TextField from '@material-ui/core/TextField';
 
@@ -143,15 +144,19 @@ class PasswordReset extends React.Component<PasswordResetProps, PasswordResetSta
                                     <button className="btn btnSubmit" type="submit"><i className=" fa fa-long-arrow-right" aria-hidden="true"></i>
                                     </button>
                                 </div>
-                                <SweetAlert
-                                        success                                     
+                                <div className="position-relative">        
+                                    <SweetAlert  
                                         title="Check your email for a link to reset your password."
                                         onConfirm={()=>{}}
                                         onCancel={()=>{}}
                                         showConfirm = {false}
                                         show = {this.state.isSuccess}
-                                >                                        
-                                </SweetAlert>
+                                        >
+                                        <div>
+                                            <img className="tick-img" src = {tickIcon} />
+                                        </div>
+                                    </SweetAlert>
+                                </div>
                             </form>
                         </div>
                     </div>

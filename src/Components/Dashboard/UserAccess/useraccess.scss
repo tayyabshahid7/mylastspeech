@@ -1,4 +1,6 @@
 
+@import "../../../assets/fonts/fonts";
+@import "../../../assets/variables/variable";
 #user-access{
     .collapse-minus{
         position: absolute;
@@ -7,5 +9,10 @@
         font-size: 25px;
         color: #733EB4;
         cursor: pointer;
+    }
+}
+@media screen and (max-width:767px){
+    #user-access {
+      border-top: 1.5px solid $Alto;
     }
 }

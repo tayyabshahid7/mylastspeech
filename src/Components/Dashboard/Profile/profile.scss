@@ -1,32 +1,10 @@
 @import "../../../assets/fonts/fonts";
 @import "../../../assets/variables/variable";
 
-.datepicker-modal {
-    position: absolute;
-    right: auto;
-    /* bottom: 0; */
-    left: 41%;
-    top: -12%;
-    width: 20%;
-    height: 100%;
-    background-color: transparent;
-    z-index: 999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+@media screen and (max-width:767px){
+  #profile {
+    border-top: 1.5px solid $Alto;
+
   }
-.datepicker {
-    .datepicker-col-1{
-      margin: 0 !important;
-    }
-    &.default{
-      background: transparent linear-gradient(141deg, $Wild-Sand 0%, $Mercury 100%) 0% 0% no-repeat padding-box;
-      box-shadow: 0px 8px 24px #00000029;
-      border-radius: 5%;
-      .datepicker-wheel {
-        border-top: 1px solid $Dusty-Gray;
-        border-bottom: 1px solid $Dusty-Gray;
-      }
-    }
-  }
-  
+}

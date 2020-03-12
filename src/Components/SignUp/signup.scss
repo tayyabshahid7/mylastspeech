@@ -52,7 +52,7 @@
         .right-img {
             height: 350px;
             width: 250px;
-            background: transparent linear-gradient(180deg, #FFFFFF 0%, #FFFFFF45 100%) 0% 0% no-repeat padding-box;
+            background: transparent linear-gradient(180deg, $white 0%, #FFFFFF45 100%) 0% 0% no-repeat padding-box;
             mix-blend-mode: lighten;
             opacity: 0.05;
             float: right;
@@ -121,7 +121,7 @@
     font-size: 18px;
     margin: -1px 0px 0 0;
     vertical-align: middle;
-    background: white left top no-repeat;
+    background: $white left top no-repeat;
     cursor: pointer;
   }
   input[type="checkbox"]:checked + span::after {
@@ -138,8 +138,4 @@
   }
     
   }
- 
-  
-
-
  

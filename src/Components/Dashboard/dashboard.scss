@@ -2,23 +2,48 @@
 @import "../../assets/variables/variable";
 
 #dashboard{
-  // ::-webkit-scrollbar {
-  //   width: 2px !important;
-  // }
-
-  // /* Track */
-  // ::-webkit-scrollbar-track {
-  //   background: transparent !important;
-  // }
   
-  // /* Handle */
-  // ::-webkit-scrollbar-thumb {
-  //   background: transparent !important;
-  // }
+  .custom-submit{
+    
+      .btnSubmit{
+        position: absolute;
+        top: 85%;
+        background: $Purple;
+        left: auto;
+        right: 10% !important;
 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .fa{
+          background: $Mountain-Meadow;
+          border-radius: 50%;
+          width: 40px;
+          height: 42px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 26px;
+          color: $white;
+        }
+
+        &:focus{
+          outline: none;
+        }
+        & span{
+          color: $white;
+          font-size: 1em;
+        }
+      }
+    }
+
+  
   .tab-page{
     overflow:hidden ;
-  
+    
+   
+    
     .custom-text-field{
       textarea{
         background: transparent;
@@ -29,33 +54,7 @@
       }
     }
   
-    .custom-submit{
-      .btnSubmit{
-        display: flex;
-        justify-content: center;
-        right: 45px !important;
-        align-items: center;
-        margin-bottom: -15%;
-
-        & .fa{
-          background: $Mountain-Meadow;
-          border-radius: 50%;
-          width: 40px;
-          height: 42px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-  
-        &:focus{
-          outline: none;
-        }
-        & span{
-          color: $white;
-          font-size: 1em;
-        }
-      }
-    }
+ 
   
     .response-msg{
       color: $Mountain-Meadow;
@@ -112,8 +111,8 @@
         height: 500px;
         overflow: hidden;
         .tabcontent{
-          width: 80%;
-          margin: 0 auto;
+          // width: 80%;
+          // margin: 0 auto;
           & p{
             color: $Dove-Gray;
             font-size: 1em;
@@ -122,7 +121,7 @@
             padding-bottom: 30px;
           }
           .form-group{
-            width: 80%;
+            // width: 80%;
             .input-title{
               margin-bottom: 0;
               color:$Gray;
@@ -131,7 +130,7 @@
            .input-inner-btn{
               color: $Studio;
               position: absolute;
-              right: 8px;
+              right: 30px;
               text-decoration: none;
               top: 17px;
               font-size: 0.8em;
@@ -215,8 +214,6 @@
           }
         }
         .profile-section{
-          width: 90% !important;
-          margin-left: 5%;
           .custom-input{
             margin-top: 1em;
           }
@@ -286,13 +283,45 @@
       -webkit-transition:0.5s;
       -moz-transition:0.5s;
       position:absolute;
-      left:15%;
-      top:99.5%;
+      left: 45px;
+      bottom: 51%;
     }
     .after-section-animate{
-        left: 290px;
+        left: 185px;
     }
   }
   
 }
 
+
+@media screen and (max-width:767px){
+  #dashboard{
+    .tab-page{
+      .second-content{
+        border-top: 1.5px solid $Alto;;
+      }
+    
+      .ellipsis-icon{
+        position: absolute;
+        top: 83%;
+        right: auto;
+        left: 10px;
+        cursor: pointer;
+      }
+      .tabs-section {
+        .tabs-card {
+          overflow-y: scroll;
+          overflow-x: hidden;
+          .content-sec{
+            overflow:hidden !important;
+          }
+          .left-sec {
+            border-right:none;
+          }
+        }
+      }
+    } 
+  }
+
+ 
+}

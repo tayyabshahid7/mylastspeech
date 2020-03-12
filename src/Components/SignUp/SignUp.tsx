@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import { css } from "@emotion/core";
 import { ClipLoader } from "react-spinners";
 import TermAndPrivacy from '../TermAndPrivacy/TermAndPrivacy';
+import tickIcon from '../../assets/images/tick.svg';
 import * as url from '../../utils/constant';
 
 interface SignUpProps {
@@ -208,17 +209,19 @@ class SignUp extends React.Component<SignUpProps, SignUpState> {
                                     <span className="pl-2"> I agree to
                                         <a href="#" onClick = {()=>{this.setState({showPrivacyModal:true,activeTab:"Privacy"})}}> privacy policy</a> and <a href="#" onClick = {()=>{this.setState({showPrivacyModal:true,activeTab:"Terms"})}}>terms of service</a><br/>
                                     </span>
-                                    <SweetAlert
-                                        success
-                                        title="Successfully Registered!"
-                                        onConfirm={()=>{}}
-                                        onCancel={()=>{}}
-                                        showConfirm = {false}
-                                        show = {this.state.isSuccess}
-                                        >
-                                        
-                                    </SweetAlert>
-                                   
+                                    <div className="position-relative">        
+                                        <SweetAlert  
+                                            title="Successfully Registered!"
+                                            onConfirm={()=>{}}
+                                            onCancel={()=>{}}
+                                            showConfirm = {false}
+                                            show = {this.state.isSuccess}
+                                            >
+                                            <div>
+                                                <img className="tick-img" src = {tickIcon} />
+                                            </div>
+                                        </SweetAlert>
+                                    </div>    
                                 </div>
                                 <div className="form-group custom-submit">
                                     <button className="btn btnSubmit" type="submit"> <i className=" fa fa-long-arrow-right" aria-hidden="true"></i>

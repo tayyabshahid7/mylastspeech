@@ -1,5 +1,5 @@
-@import "./fonts";
-@import "./variable";
+@import "../fonts/fonts";
+@import "../variables/variable";
 
 .login-container{
     // overflow: hidden;
@@ -122,4 +122,27 @@ body {
 }
 .MuiFormLabel-root{
   font-family: $FontFamily-Sofia-pro !important;
+}
+
+.sweet-alert{
+  height: 200px !important;
+  width: 25em !important;
+  overflow: unset !important;
+  background-color: $black !important;
+  h2{
+    color: $white !important;
+    opacity: 0.9;
+    font-size: 25px !important;
+  }
+  .tick-img{
+    position: absolute;
+    width: 25px;
+    left: 30px;
+    padding: 5px;
+    opacity: 1;
+    background: $Purple;
+    top: -10px;
+    right: auto;
+    border-radius: 5px;
+  }
 }

@@ -1,0 +1,31 @@
+@import "../../../assets/fonts/fonts";
+@import "../../../assets/variables/variable";
+
+#security{
+    .line{
+        background: $Alto;
+        height: 1px;
+        margin: 0 20px;
+        width: 90%;
+        z-index: 999999999;
+    }
+    .custom-input{
+       margin-top: -1px !important;
+    }
+    .form-control[readonly] {
+        background-color: $white; 
+        opacity: 1;
+    }
+    .input-inner-btn{
+        cursor: pointer;
+    }
+    .collapse-minus{
+        left: auto;
+        right: -15px;
+        top: 15px;
+        font-size: 25px;
+        color: $Purple;
+        position: absolute;
+        cursor: pointer;
+    }
+}
