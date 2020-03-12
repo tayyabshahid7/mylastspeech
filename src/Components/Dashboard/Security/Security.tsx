@@ -38,7 +38,7 @@ class Security extends React.Component<SecurityProps, SecurityState> {
         showAnswerInput:false,
         isSuccess:false,
         msg:'',
-        questionsList:[{}],
+        questionsList:[],
         isValidated:true,
     }
 
@@ -188,7 +188,7 @@ class Security extends React.Component<SecurityProps, SecurityState> {
                     <a onClick = {this.addSecurityQuestion.bind(this)}>+ Save</a>
                 </div>
                 <br/>
-                {this.state.questionsList  && this.state.questionsList.map((item:any,i:number)=>
+                {this.state.questionsList && this.state.questionsList.length>0 && this.state.questionsList.map((item:any,i:number)=>
                         <div key={i} className = "col-12 col-md-10 form-group position-relative ">
                             <input type="text" 
                                 onChange={(event) => {}}

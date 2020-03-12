@@ -162,12 +162,11 @@ class PasswordResetConfirm extends React.Component<PasswordResetConfirmProps, Pa
                                     </button>
                                 </div>
                                 <SweetAlert
-                                        success                                     
-                                        title="Password has been reset with the new password."
-                                        onConfirm={()=>{}}
-                                        onCancel={()=>{}}
-                                        showConfirm = {false}
-                                        show = {this.state.isSuccess}
+                                    title="Password has been reset with the new password."
+                                    onConfirm={()=>{}}
+                                    onCancel={()=>{}}
+                                    showConfirm = {false}
+                                    show = {this.state.isSuccess}
                                 >                                        
                                 </SweetAlert>
                             </form>
