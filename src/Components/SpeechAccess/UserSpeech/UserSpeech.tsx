@@ -13,6 +13,9 @@ interface UserSpeechState {
     speech: string,
     userObj:object,
     apiCalled:boolean,
+    songUrl:string,
+    songName:string,
+    artistName:string
 }
 
 const override = css`
@@ -31,6 +34,9 @@ class UserSpeech extends React.Component<UserSpeechProps, UserSpeechState> {
         speech: '',
         userObj:{},
         apiCalled:false,
+        songUrl:'',
+        songName:'',
+        artistName:''
     }
 
     componentDidMount(){
@@ -58,6 +64,9 @@ class UserSpeech extends React.Component<UserSpeechProps, UserSpeechState> {
             debugger;
             this.setState({
                 speech: response?.data && response?.data[0]?.text,
+                songUrl:response?.data && response?.data[0]?.song_url,
+                songName:response?.data && response?.data[0]?.song_name,
+                artistName:response?.data && response?.data[0]?.artist_name,
                 apiCalled:false,
             });
         })
@@ -88,9 +97,9 @@ class UserSpeech extends React.Component<UserSpeechProps, UserSpeechState> {
                                     </div>
                                 </div>
                                 <div className="form-group custom-submit ">
-                                    <button className="btn btnSubmit spotify" type="submit">
+                                    <button onClick = {()=>{window.open(this.state.songUrl, "_blank")}}  className="btn btnSubmit spotify" type="submit">
                                         <i className="fa fa-spotify" aria-hidden="true"></i> &nbsp;
-                                        <span>+ Spotify song</span>
+                                            <span>{this.state.artistName && this.state.songName ? <span>{this.state.artistName }<br/>{this.state.songName}</span> : '+ Spotify Song'}</span>
                                     </button>
                                     <button className="btn btnSubmit share" type="submit">
                                         <img src = {shareIcon}/>

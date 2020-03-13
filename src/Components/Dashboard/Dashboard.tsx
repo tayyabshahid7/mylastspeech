@@ -5,7 +5,9 @@ import axios from 'axios';
 import history from '../../utils/history';
 import { css } from "@emotion/core";
 import ellipsisIcon from '../../assets/images/ellipsis.svg';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { ClipLoader } from "react-spinners";
+import SpotifyLogin from 'react-spotify-login';
 
 
 import './dashboard.scss';
@@ -27,6 +29,10 @@ interface DashboardState {
     msg:string,
     questionsList:Array<object>
     isValidated:boolean,
+    songsList:Array<object>,
+    searchText:string,
+    accessToken:string,
+    openSpotifyModal:boolean,
 }
 
 const override = css`
@@ -42,6 +48,8 @@ const override = css`
 
 class Dashboard extends React.Component<DashboardProps, DashboardState> {
 
+interval = null;
+
 state = {
     activeTab: 'accesspage',
     activeBottomTab:'Speech',
@@ -52,9 +60,21 @@ state = {
     isSuccess:false,
     msg:'',
     questionsList:[{}],
+    songsList:[],
     isValidated:true,
+    searchText:'',
+    accessToken:'',
+    openSpotifyModal:false,
 }
 
+componentDidMount(){
+    this.getAccessToken();
+    this.interval = setInterval(() => this.getAccessToken(), 3600);
+}
+
+componentWillUnmount() {
+    clearInterval(this.interval);
+}
 
 toggleActiveTab = (tab:string,e:any)=>{
     this.setState({
@@ -69,7 +89,56 @@ toggleBottomTabsHandler = (tabName:string,e:any) =>{
 }
 
 
+getAccessToken =()=>{
+    const params = "grant_type=client_credentials";
+    const xhr = new XMLHttpRequest();
 
+    xhr.open('POST', url.spotifyAccessTokenUrl, true);
+
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader('Authorization', `Basic ZmExZmRlMzc3Mjk3NDhlZGFlYjQzNTdjOWI1OThlNzc6Y2ZiY2I3NTY2OWMyNGIwMjgyYmY1YzFiMjk2MjdiZTI=`);
+
+    xhr.send((params));
+    xhr.onload= () => {
+        let token = JSON.parse(xhr.response);
+        console.log(token)
+        this.setState({
+            accessToken:token.access_token
+        });
+    };
+    xhr.onerror = (error) => {
+        console.log(error);
+    };  
+}
+
+
+retrieveSpotifySongs = (event:any)=>{
+    var searchText = event.target.value.toLowerCase();
+    this.setState({
+        searchText:searchText
+    },()=>{
+        const config = {
+            headers: { Authorization: `Bearer ${this.state.accessToken}` }
+        };
+      
+        axios.get(url.spotifySongSearchUrl+'?type=track&limit=500&q=' + this.state.searchText,        
+            config
+            )
+            .then((response) => {
+                debugger
+               this.setState({
+                   songsList:response.data.tracks.items,
+                   searchText:''
+               })
+            })
+            .catch((error) => {
+                
+            })
+            .finally( () => {
+            // always executed
+        });  
+    })
+}
 
 
 logout = ()=> {
@@ -120,10 +189,39 @@ deleteAccount = ()=> {
 }
 
 
-render() {
+saveSongUrl = (songUrl:string,artist_name,song_name,e:any) =>{
+    debugger;
+    const config = {
+        headers: { Authorization: `Token ${localStorage.getItem('userToken')}`}
+    };
+    const bodyParameters = {
+        song_url:songUrl,
+        artist_name:artist_name,
+        song_name:song_name
+    };
 
+    axios.patch(url.addRetrieveSpeechUrl,
+        bodyParameters,
+        config
+    )
+    .then((response) => {
+        this.setState({
+            openSpotifyModal:false,
+        });
+    })
+    .catch((error) => {
+            
+    })
+    .finally(() => {
+            // always executed
+    });
+}
+
+
+render() {
  return (
     <div id="dashboard" className="mb-5">
+    
         <div className="align-items-center d-flex justify-content-center sweet-loading">
             <ClipLoader
             css={override}
@@ -185,12 +283,39 @@ render() {
                 </div>
                
                 {this.state.activeBottomTab == "Speech" &&
-                    <div className="form-group custom-submit ">
-                        <button className="btn btnSubmit" type="submit">
-                            <i className="fa fa-spotify" aria-hidden="true"></i> &nbsp;
-                            <span>+ Spotify song</span>
-                        </button>
-                    </div>  
+                   
+                     <div>
+                        <div className="form-group custom-submit ">
+                            <button onClick={()=>{this.setState({openSpotifyModal:true})}} className="btn btnSubmit" type="submit">
+                                <i className="fa fa-spotify" aria-hidden="true"></i> &nbsp;
+                                <span>+ Spotify song</span>
+                            </button>   
+                        </div> 
+                        <Modal className = {"spotify-modal"} centered={true} isOpen={this.state.openSpotifyModal} toggle={()=>{}}>
+                                <ModalHeader>
+                                    <div className="ml-3 input-group rounded-pill  form-inner">
+                                        <div className="input-group-prepend border-0">
+                                            <button id="button-addon4" type="button" className="btn btn-link text-info"><i className="fa fa-search"></i></button>
+                                        </div>
+                                        <input type="search"  onChange={this.retrieveSpotifySongs.bind(this)}  placeholder="Search" aria-describedby="button-addon4" className="form-control bg-none border-0 custom-input" />         
+                                    </div>
+                                </ModalHeader>
+                                <ModalBody>
+                                    <ul>
+                                        {this.state.songsList && this.state.songsList.map((item:any)=>{
+                                            return(
+                                                <li  className="list-song align-content-center align-items-center d-flex my-2 pb-2"
+                                                    onClick = {this.saveSongUrl.bind(this,item.album.external_urls.spotify,item.album['artists'][0].name,item.album.name)}>
+                                                    <img src={item.album['images'][0].url}></img>
+                                                    <p className="ml-4 pb-0 mb-0">{item.album.name}</p>
+                                                </li>
+                                            )
+                                        })}
+                                    </ul>
+                                </ModalBody>
+                       
+                        </Modal>
+                   </div> 
                 }    
                 {this.state.activeBottomTab == "Settings" && 
                     <img onClick={this.toggleActiveTab.bind(this,'more')} className = "ellipsis-icon" src = {ellipsisIcon} />

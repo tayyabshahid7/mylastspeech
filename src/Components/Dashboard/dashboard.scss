@@ -72,6 +72,7 @@
    .tabs-section{
     height: auto !important;
     margin-top: 1%;
+    
     .tabs-card{
       height: 600px;
       .left-sec{
@@ -324,4 +325,42 @@
   }
 
  
+}
+.spotify-modal{
+    .modal-content{
+      background: $black !important;
+      color: $white !important;   
+      .modal-header{
+        border-bottom:1px solid $Dove-Gray !important;
+      }
+      .modal-body{
+        max-height: 250px;
+        overflow: auto;
+      }
+    }
+    .form-inner{
+      background: #2e2e2e 0 0 no-repeat padding-box;
+      border-radius: 22px;
+      width: 350px;
+      input{
+        background: transparent;
+        color: $white !important;
+        &:focus{
+          box-shadow: none;
+        }
+      }
+      #button-search{
+        .fa{
+          color: $white;
+        }
+      } 
+    }
+}
+.list-song{
+  cursor: pointer;
+  border-bottom: 1px solid #696969 !important;
+  img{
+    width: 50px;
+    border-radius: 50%;
+  }
 }
