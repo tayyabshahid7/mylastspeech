@@ -148,7 +148,7 @@ render() {
                                 </div>
                             </div>
                         
-                            <div  className="col-12 col-md-9 float-left pb-5 content-sec ">
+                            <div  className="col-12 col-md-9 float-left pb-5 content-sec mt-3">
                                 {this.state.activeTab === "accesspage" ?
                                     <UserAccess/>                              
                                 : this.state.activeTab === "security"?
