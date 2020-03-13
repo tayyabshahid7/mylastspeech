@@ -73,20 +73,12 @@ const Routes: React.FC = () => {
 
         <Route exact path='/success' render={(props) =>
             {
-
-              const loggedIn = localStorage.getItem("userToken");
-              if(loggedIn && loggedIn.length>0){
               setIsSignUp(true);
               setIsSignIn(true);
               setIsRightBar(false);
               return(
                 <Success  {...props}/>
               )
-            }else{
-              return(
-                <Redirect to="/signin"/>
-               )
-            }
           }
           }
         /> 

@@ -21,7 +21,7 @@ class Success extends React.Component<SuccessProps, SuccessState> {
                             editor where you will need to Fill<br />
                             in some additional information before you<br />
                             can get started.</p>
-                        <Link to="/dashboard">
+                        <Link to="/signin">
                             <button className="btn success-btn">
                             <a className="nav-link"> Lets get started &nbsp;&nbsp;
                             <i className=" fa fa-long-arrow-right" aria-hidden="true"></i>
