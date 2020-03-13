@@ -121,7 +121,7 @@ retrieveSpotifySongs = (event:any)=>{
             headers: { Authorization: `Bearer ${this.state.accessToken}` }
         };
       
-        axios.get(url.spotifySongSearchUrl+'?type=track&limit=500&q=' + this.state.searchText,        
+        axios.get(url.spotifySongSearchUrl+'?type=track&q=' + this.state.searchText,        
             config
             )
             .then((response) => {
