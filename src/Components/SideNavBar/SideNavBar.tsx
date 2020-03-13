@@ -3,8 +3,14 @@ import "./sidenavbar.scss";
 import Hambuger from '../../assets/images/hamburger.svg';
 import { Link } from 'react-router-dom';
 
+interface SideNavBarProps {
+  img:any,
+}
+interface SideNavBarState {
+  
+}
 
-class SideNavBar extends React.Component {
+class SideNavBar extends React.Component<SideNavBarProps,SideNavBarState> {
   state = {
     state: {
       showNav: false
@@ -62,6 +68,9 @@ class SideNavBar extends React.Component {
                     &times;
                   </a>
                   <div>
+                      <Link to="/dashboard" className = "mb-4">
+                        <img style={{width:"50px",borderRadius:"50%"}} src = {this.props.img}/>
+                      </Link>
                       <Link className="link-design" to="/signup">Sign up </Link>
                       <Link className="link-design" style={{borderTop:0}} to="/signin">Login</Link>
 

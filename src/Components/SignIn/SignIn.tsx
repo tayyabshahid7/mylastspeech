@@ -84,7 +84,7 @@ class SignIn extends React.Component<SignInProps, SignInState> {
                 // ReactGA.set({
                 //     userId: response.data.key
                 // });
-                history.push("/success");   
+                history.push("/dashboard");   
               })
               .catch((error) => {
                  debugger;

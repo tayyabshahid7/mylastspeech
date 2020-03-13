@@ -88,7 +88,7 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
                            
                             </div>
                             <li className="nav-item hamburger-icon d-none">
-                                <SideNavBar/>
+                                <SideNavBar img = {this.state.img} />
                             </li>
                             <div className="collapse navbar-collapse item-navbar justify-content-end" id="navbarsExampleDefault">
                                {token!="" && user ? 
