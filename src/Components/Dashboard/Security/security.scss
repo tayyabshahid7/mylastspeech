@@ -27,6 +27,7 @@
         color: $Purple;
         position: absolute;
         cursor: pointer;
+        z-index: 999999;
     }
     .question-answer{
         word-break: break-all;

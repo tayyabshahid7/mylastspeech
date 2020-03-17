@@ -78,7 +78,7 @@
       .left-sec{
         border-right: 1px solid $Alto;
         margin-top: 5%;
-        height: 500px;
+        max-height: 500px;
         .tab{
           & button{
             display: block;
