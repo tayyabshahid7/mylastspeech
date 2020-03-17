@@ -17,6 +17,7 @@ import Security from './Security/Security';
 
 interface DashboardProps {
     changeProfilePic(profile_url:string):any,
+    location?:any,
 }
 interface DashboardState {
     activeTab:string,
@@ -70,6 +71,12 @@ state = {
 componentDidMount(){
     this.getAccessToken();
     this.interval = setInterval(() => this.getAccessToken(), 3600);
+    debugger;
+    if(this.props.location.state.lastLogin == ""){
+        this.setState({
+            activeBottomTab:'Settings',
+        })
+    }
 }
 
 componentWillUnmount() {

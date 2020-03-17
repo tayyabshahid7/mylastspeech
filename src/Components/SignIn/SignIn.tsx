@@ -81,10 +81,10 @@ class SignIn extends React.Component<SignInProps, SignInState> {
                 localStorage.setItem('user',JSON.stringify(response.data.user))
                 response.data.user['profile_picture'] && this.props.changeProfilePic(response.data.user['profile_picture'])
                 
-                // ReactGA.set({
-                //     userId: response.data.key
-                // });
-                history.push("/dashboard");   
+                history.push({
+                    pathname: '/dashboard',
+                    state: { lastLogin: response.data.user.is_first_login }
+                 });
               })
               .catch((error) => {
                  debugger;
