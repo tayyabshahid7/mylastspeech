@@ -72,7 +72,7 @@ componentDidMount(){
     this.getAccessToken();
     this.interval = setInterval(() => this.getAccessToken(), 3600);
     debugger;
-    if(this.props.location.state.lastLogin == ""){
+    if(this.props.location && this.props.location?.state?.lastLogin == ""){
         this.setState({
             activeBottomTab:'Settings',
         })
