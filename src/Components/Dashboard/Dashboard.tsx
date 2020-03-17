@@ -154,6 +154,7 @@ logout = ()=> {
     .then((response) => {
         localStorage.removeItem('userToken');
         localStorage.removeItem('user');
+        this.props.changeProfilePic('');
         history.push("/");
     })
     .catch((error) => {

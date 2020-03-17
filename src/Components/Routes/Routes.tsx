@@ -143,8 +143,7 @@ const Routes: React.FC = () => {
                 return(
                  <Dashboard {...props}
                   changeProfilePic = {(profile_url:string)=>{
-                      profile_url && setProfilePic(profile_url)
-
+                     setProfilePic(profile_url)
                   }} />
                 )
               }else{

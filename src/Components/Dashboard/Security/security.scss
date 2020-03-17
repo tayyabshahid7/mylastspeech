@@ -28,4 +28,26 @@
         position: absolute;
         cursor: pointer;
     }
+    .question-answer{
+        word-break: break-all;
+        padding:1em !important;
+        height: auto !important;
+        padding-right: 3em !important;
+    }
+    textarea{
+        padding: 13px !important;
+    }
+}
+
+@media screen and (max-width:767px){
+    #security{
+        .input-inner-btn{
+            position: unset !important;
+        }
+        .question-answer{
+            word-break: break-all;
+            padding:1em !important;
+            padding-right: unset;
+        }
+    }
 }

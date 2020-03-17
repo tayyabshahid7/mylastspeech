@@ -40,16 +40,17 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
     }
     
     componentWillReceiveProps(nextProps:any){
+        let user = JSON.parse(localStorage.getItem('user'));
         if(nextProps?.profilePic != ""){
-            let user = JSON.parse(localStorage.getItem('user'));
             if(user){
                 user['profile_picture'] = nextProps?.profilePic;
                 localStorage.setItem('user',JSON.stringify(user));
                 this.setState({
                     img:nextProps?.profilePic,
                 });     
-            }     
+            }   
         }
+        
         this.setState({
             isSignUp:nextProps.signUpNavBar,
             isSignIn:nextProps.signInNavBar,

@@ -52,6 +52,7 @@ class SideNavBar extends React.Component<SideNavBarProps,SideNavBarState> {
     const { showNav } :any= this.state
     let navCoverStyle = { width: showNav ? "100%" : "0" }
     let sideNavStyle = { opacity: showNav ? "1" : "0" }
+    let user = JSON.parse(localStorage.getItem('user'));
 
     return (
       <div id="side-navbar1">
@@ -68,9 +69,11 @@ class SideNavBar extends React.Component<SideNavBarProps,SideNavBarState> {
                     &times;
                   </a>
                   <div>
-                      <Link to="/dashboard" className = "mb-4">
-                        <img style={{width:"50px",borderRadius:"50%"}} src = {this.props.img}/>
-                      </Link>
+                      {user &&
+                        <Link to="/dashboard" className = "mb-4">
+                          <img style={{width:"50px",borderRadius:"50%"}} src = {this.props.img}/>
+                        </Link>
+                       }
                       <Link className="link-design" to="/signup">Sign up </Link>
                       <Link className="link-design" style={{borderTop:0}} to="/signin">Login</Link>
 
