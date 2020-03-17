@@ -10,6 +10,13 @@
         color: #733EB4;
         cursor: pointer;
     }
+    .success-tick-icon{
+        width:  18px;
+        position: absolute;
+        left: auto;
+        right: 10px;
+        top: 30%;
+    }
 }
 @media screen and (max-width:767px){
     #user-access {

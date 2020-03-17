@@ -4,7 +4,7 @@ import axios from 'axios';
 import { css } from "@emotion/core";
 import { ClipLoader } from "react-spinners";
 import './useraccess.scss';
-import Item from '../../Search/Item/Item';
+import tickIcon from '../../../assets/images/success-tick.png';
 
 interface UserAccessProps {
 
@@ -34,18 +34,12 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
         emailList:[ {
             id: '',
             email: "",
-        },{
-            id: '',
-            email: "",
-        },{
-            id: '',
-            email: "",
         }],
         isValidated: true,
         isSuccess: false,
         successMsg: '',
         errorMsg:'',
-        btnText:'Add'
+        btnText:'Add one more'
     }
 
     componentDidMount(){
@@ -104,90 +98,92 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
     }
 
     addCloseContacts = (item:any,e: any) => {
-        if(!this.checkUniqueness(item)){
-            let flag = this.validateForm();
-            if(item.id === "" && flag){
-                e.preventDefault();
+        let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(re.test(String(item.email).toLowerCase())){
+            if(!this.checkUniqueness(item)){
                 let flag = this.validateForm();
-                this.setState({
-                    isValidated: flag,
-                });
-                if (true) {
-                    this.setState({
-                        isSuccess: true,
-                    });
-                    const config = {
-                        headers: { Authorization: `Token ${localStorage.getItem('userToken')}`}
-                    };
-                    const bodyParameters = {
-                        email:this.state.emailList,
-                    };
-        
-                    let that = this;
-                    axios.post(url.closeContactsUrl,
-                        bodyParameters,
-                        config
-                    )
-                    .then((response) => {
-                        let data = response.data;
-                        if(data.length>0){
-                            data.map((item:any)=>{
-                                item.isChanged = false;
+                if(item.id === "" ){
+                    e.preventDefault();
+                 
+                    if (true) {
+                        this.setState({
+                            isSuccess: true,
+                        });
+                        const config = {
+                            headers: { Authorization: `Token ${localStorage.getItem('userToken')}`}
+                        };
+                        const bodyParameters = {
+                            email:this.state.emailList,
+                        };
+            
+                        let that = this;
+                        axios.post(url.closeContactsUrl,
+                            bodyParameters,
+                            config
+                        )
+                        .then((response) => {
+                            let data = response.data;
+                            if(data.length>0){
+                                data.map((item:any)=>{
+                                    item.isChanged = false
+                                });
+                                debugger;
+                                this.setState({
+                                    emailList:data,                 
+                                });
+                            }    
+                            this.setState({
+                                isSuccess: false,
+                                successMsg: "Emails Added Successfully",
                             });
+                            setTimeout(() => {
+                                this.setState({
+                                    successMsg: ""
+                                });
+                            }, 2000);
+        
+                        })
+                        .catch((error) => {
                             debugger;
                             this.setState({
-                                emailList:data,                 
+                                isSuccess: false,
+                                errorMsg: "Enter valid email address in all 3 fields",
                             });
-                        }    
-                        this.setState({
-                            isSuccess: false,
-                            successMsg: "Emails Added Successfully",
-                        });
-                        setTimeout(() => {
-                            this.setState({
-                                successMsg: ""
-                            });
-                        }, 2000);
-    
-                    })
-                    .catch((error) => {
-                        debugger;
-                        this.setState({
-                            isSuccess: false,
-                            errorMsg: "Enter valid email address in all 3 fields",
-                        });
-                            setTimeout(() => {
-                            this.setState({
-                                errorMsg: ""
-                            });
-                        }, 2000);
-                    })
-                    .finally(() => {
-                        // always executed
-                });
+                                setTimeout(() => {
+                                this.setState({
+                                    errorMsg: ""
+                                });
+                            }, 2000);
+                        })
+                        .finally(() => {
+                            // always executed
+                    });
+                    }
                 }
-            }else if(item.id === "" ){
+                
+            }else{
                 this.setState({
                     isSuccess: false,
-                    errorMsg: "Please enter valid email address and atleast 3 emails are required",
+                    errorMsg: "Same Email already added",
                 });
                   setTimeout(() => {
                     this.setState({
                         errorMsg: ""
                     });
                 }, 3000);
-            }
+            }    
         }else{
             this.setState({
                 isSuccess: false,
-                errorMsg: "Same Email already added",
+                errorMsg: "Enter Valid Email Address",
             });
-              setTimeout(() => {
+            setTimeout(() => {
                 this.setState({
                     errorMsg: ""
                 });
-            }, 3000);
-        }    
+            }, 2000);
+        }
+
     }
 
     setEmail = (index:number,e:any) =>{
@@ -200,37 +196,37 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
     }
 
     updateEmail = (obj:any,index:number,e:any) =>{  
-            const config = {
-                headers: { Authorization: `Token ${localStorage.getItem('userToken')}`}
-            };
-            const bodyParameters = {
-                email:obj.email,
-                id:obj.id
-            };
-            axios.put(url.closeContactsUrl,
-                bodyParameters,
-                config
-            )
-            .then((response) => {
-                let data = response.data;
-                if(data.length>0){
-                    data.map((item:any)=>{
-                        item.isChanged = false;
-                    });
-                    this.setState({
-                        emailList:data,                 
-                    });
-                }   
-                this.setState({
-                    isSuccess: false,
-                    successMsg: "Email Updated Successfully",
+        const config = {
+            headers: { Authorization: `Token ${localStorage.getItem('userToken')}`}
+        };
+        const bodyParameters = {
+            email:obj.email,
+            id:obj.id
+        };
+        axios.put(url.closeContactsUrl,
+            bodyParameters,
+            config
+        )
+        .then((response) => {
+            let data = response.data;
+            if(data.length>0){
+                data.map((item:any)=>{
+                    item.isChanged = false;
                 });
-                setTimeout(() => {
-                    this.setState({
-                        successMsg: ""
-                    });
-                }, 2000);
-            })
+                this.setState({
+                    emailList:data,                 
+                });
+            }   
+            this.setState({
+                isSuccess: false,
+                successMsg: "Email Updated Successfully",
+            });
+            setTimeout(() => {
+                this.setState({
+                    successMsg: ""
+                });
+            }, 2000);
+        })
         .catch((error) => {
             
         })
@@ -254,7 +250,7 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
     }
     
     removeEmail = (item:any,index:number,e:any) => {
-        if(this.state.emailList.length >3 ){
+        if(this.state.emailList.length > 1 ){
             axios.delete(url.closeContactsUrl,{
                     headers: { Authorization: `Token ${localStorage.getItem('userToken')}`},
                     data :{
@@ -270,7 +266,7 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
                         item.isChanged = false;
                     });
                     this.setState({
-                         emailList:data,                 
+                            emailList:data,                 
                     });
                 }                  
                 this.setState({
@@ -293,7 +289,7 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
         }else{
             this.setState({
                 isSuccess: false,
-                errorMsg: "Atleast 3 emails are required can't delete",
+                errorMsg: "Atleast 1 email is required can't delete",
             });
               setTimeout(() => {
                 this.setState({
@@ -301,8 +297,9 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
                 });
             }, 2000);
         }
-       
     }
+
+
 
     render() {
         return (
@@ -327,6 +324,9 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
                                 value={item.email}
                                 onBlur = {this.addCloseContacts.bind(this,item)} />
                                 {item.isChanged && item.id!="" && <a style= {{cursor:"pointer",zIndex:9999}} onClick = {this.updateEmail.bind(this,item,i)} className="profile-inputs input-inner-btn">update</a>}
+                                {item.id!="" && !item.isChanged &&
+                                    <img className = "success-tick-icon"  src = {tickIcon} />
+                                }                          
                                 { item.id!="" && <i onClick = {this.removeEmail.bind(this,item,i)} className="fa fa-minus-circle collapse-minus" aria-hidden="true"></i>}
                             </div>
                         ))}
@@ -336,7 +336,7 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
                     <div className="add-btn d-flex flex-column mt-4">
                         <span className="response-msg">{this.state.successMsg}</span>
                         <span className="response-msg error">{this.state.errorMsg}</span>
-                        <a onClick={this.addField.bind(this)}>+ {this.state.btnText}</a>
+                        <span><a onClick={this.addField.bind(this)}>+ {this.state.btnText}</a></span>
                     </div>
                 </div>
 
