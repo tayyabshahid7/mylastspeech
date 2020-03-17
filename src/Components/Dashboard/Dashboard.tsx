@@ -225,6 +225,12 @@ saveSongUrl = (songUrl:string,artist_name,song_name,e:any) =>{
     });
 }
 
+toggleModal = (e:any) =>{
+    this.setState({
+        openSpotifyModal: false,
+    })
+}
+
 
 render() {
  return (
@@ -299,7 +305,7 @@ render() {
                                 <span>+ Spotify song</span>
                             </button>   
                         </div> 
-                        <Modal className = {"spotify-modal"} centered={true} isOpen={this.state.openSpotifyModal} toggle={()=>{}}>
+                        <Modal className = {"spotify-modal"} centered={true} isOpen={this.state.openSpotifyModal} toggle={this.toggleModal.bind(this)}>
                                 <ModalHeader>
                                     <div className="ml-3 input-group rounded-pill  form-inner">
                                         <div className="input-group-prepend border-0">
