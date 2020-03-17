@@ -104,7 +104,6 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
                 let flag = this.validateForm();
                 if(item.id === "" ){
                     e.preventDefault();
-                 
                     if (true) {
                         this.setState({
                             isSuccess: true,
@@ -147,7 +146,7 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
                             debugger;
                             this.setState({
                                 isSuccess: false,
-                                errorMsg: "Enter valid email address in all 3 fields",
+                                errorMsg: "Enter Valid Email Address",
                             });
                                 setTimeout(() => {
                                 this.setState({
@@ -313,7 +312,7 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
                     />
                 </div>
                 <div className="col-12 col-md-10 pl-0 pl-md-3 pr-4 pr-md-0 tabcontent">
-                    <p className="d-md-block d-none">Add the email address’s of people you wish to allow access your <br /> speech, you need to add at least 3</p>
+                    <p className="d-md-block d-none">Add the email address’s of people you wish to allow access your speech</p>
                     <div className="col-12 col-md-10 form-group mb-0">
                         {this.state.emailList.map((item:any,i:number)=>(
                             <div key ={i} className="position-relative">

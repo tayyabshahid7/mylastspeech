@@ -5,7 +5,7 @@ import axios from 'axios';
 
 
 interface SpeechProps {
-
+    getSpeechData?:any,
 }
 interface SpeechState {
     speech:string,
@@ -35,10 +35,10 @@ class Speech extends React.Component<SpeechProps, SpeechState> {
             config
         )
         .then((response) => {
-             ;
             this.setState({
                 speech:response?.data?.text
-            });     
+            });    
+            this.props.getSpeechData(response.data);
         })
         .catch((error) => {
             

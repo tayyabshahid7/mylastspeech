@@ -34,6 +34,8 @@ interface DashboardState {
     searchText:string,
     accessToken:string,
     openSpotifyModal:boolean,
+    artistName:string,
+    songName:string,
 }
 
 const override = css`
@@ -66,6 +68,8 @@ state = {
     searchText:'',
     accessToken:'',
     openSpotifyModal:false,
+    artistName:'',
+    songName:'',
 }
 
 componentDidMount(){
@@ -131,8 +135,7 @@ retrieveSpotifySongs = (event:any)=>{
         axios.get(url.spotifySongSearchUrl+'?type=track&q=' + this.state.searchText,        
             config
             )
-            .then((response) => {
-                debugger
+            .then((response) => {               
                this.setState({
                    songsList:response.data.tracks.items,
                    searchText:''
@@ -213,8 +216,11 @@ saveSongUrl = (songUrl:string,artist_name,song_name,e:any) =>{
         config
     )
     .then((response) => {
+        debugger;
         this.setState({
             openSpotifyModal:false,
+            artistName:response.data.artist_name,
+            songName: response.data.song_name
         });
     })
     .catch((error) => {
@@ -289,8 +295,13 @@ render() {
                     }
                     
                     {this.state.activeBottomTab == "Speech" &&
-                        <div >
-                            <Speech/>               
+                        <div>
+                            <Speech getSpeechData = {(data)=>{
+                                 this.setState({
+                                    artistName:data.artist_name,
+                                    songName: data.song_name
+                                });
+                            }} />               
                         </div>
                     }                  
                                   
@@ -302,8 +313,10 @@ render() {
                         <div className="form-group custom-submit ">
                             <button onClick={()=>{this.setState({openSpotifyModal:true})}} className="btn btnSubmit" type="submit">
                                 <i className="fa fa-spotify" aria-hidden="true"></i> &nbsp;
-                                <span>+ Spotify song</span>
+                                <span>+ Spotify Song</span>
+                                {/* <span>{this.state.artistName && this.state.songName ? <span>{this.state.artistName }<br/>{this.state.songName}</span> : '+ Spotify Song'}</span> */}
                             </button>   
+                            
                         </div> 
                         <Modal className = {"spotify-modal"} centered={true} isOpen={this.state.openSpotifyModal} toggle={this.toggleModal.bind(this)}>
                                 <ModalHeader>
