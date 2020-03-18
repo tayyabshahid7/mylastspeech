@@ -16,7 +16,8 @@ interface SignUpProps {
 
 interface SignUpState {
     isResend:boolean,
-    name:string,
+    firstName:string,
+    lastName:string,
     email:string,
     password1:string,
     password2:string,
@@ -43,7 +44,8 @@ class SignUp extends React.Component<SignUpProps, SignUpState> {
 
     state = {
         isResend:false,
-        name:"",
+        firstName:"",
+        lastName:"",
         email:"",
         password1:"",
         password2:"",
@@ -66,7 +68,7 @@ class SignUp extends React.Component<SignUpProps, SignUpState> {
     }
     
     validateForm():boolean{ 
-        if(this.state.name && this.state.password1 && this.state.password2 && this.state.email && this.state.tosChecked){
+        if(this.state.firstName && this.state.lastName && this.state.password1 && this.state.password2 && this.state.email && this.state.tosChecked){
           return true;
         }
         return false;
@@ -82,7 +84,8 @@ class SignUp extends React.Component<SignUpProps, SignUpState> {
         if(flag){
            let that = this;
             axios.post(url.registerURL, {
-                name:this.state.name,
+                first_name:this.state.firstName,
+                last_name:this.state.lastName,
                 password1:this.state.password1,
                 password2:this.state.password2,
                 email:this.state.email,
@@ -159,12 +162,21 @@ class SignUp extends React.Component<SignUpProps, SignUpState> {
                     <div className="align-items-center d-flex justify-content-center row custom-login signup-dialog">
                         <div className=" col-lg-6 col-12  login-form">
                             <form   onSubmit={this.submitForm.bind(this)}>
-                                <div className={"form-group mt-4 ".concat(!this.state.isValidated && this.state.name ==="" ? 'validate':'' )}>
+                                <div className={"form-group mt-4 ".concat(!this.state.isValidated && this.state.firstName ==="" ? 'validate':'' )}>
                                     <TextField 
-                                        onChange={(event) => {this.setState({name: event.target.value});}}
-                                        value = {this.state.name} 
+                                        onChange={(event) => {this.setState({firstName: event.target.value});}}
+                                        value = {this.state.firstName} 
                                         className = 'outlined-input-custom' 
-                                        label="Enter Your Name" 
+                                        label="Enter Your First Name" 
+                                        variant="outlined" 
+                                    />
+                                </div>
+                                <div className={"form-group mt-4 ".concat(!this.state.isValidated && this.state.lastName ==="" ? 'validate':'' )}>
+                                    <TextField 
+                                        onChange={(event) => {this.setState({lastName: event.target.value});}}
+                                        value = {this.state.lastName} 
+                                        className = 'outlined-input-custom' 
+                                        label="Enter Your Last Name" 
                                         variant="outlined" 
                                     />
                                 </div>

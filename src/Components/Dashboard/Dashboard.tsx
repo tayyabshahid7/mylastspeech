@@ -74,8 +74,6 @@ state = {
 
 componentDidMount(){
     this.getAccessToken();
-    this.interval = setInterval(() => this.getAccessToken(), 3600);
-    debugger;
     if(this.props.location && this.props.location?.state?.lastLogin == ""){
         this.setState({
             activeBottomTab:'Settings',
@@ -97,6 +95,11 @@ toggleBottomTabsHandler = (tabName:string,e:any) =>{
     this.setState({
         activeBottomTab:tabName
     });
+    if(tabName === "Speech"){
+        this.interval = setInterval(() => this.getAccessToken(), 3600);
+    }else{
+        clearInterval(this.interval);
+    }
 }
 
 
@@ -261,11 +264,15 @@ render() {
                                     <button className={"pt-4 pb-4 tablinks ".concat(this.state.activeTab === "accesspage" ? 'active': '')} onClick={this.toggleActiveTab.bind(this,'accesspage')} id="defaultOpen">Who can access my page</button>
                                     <button className={"pb-4 tablinks ".concat(this.state.activeTab === "security" ? 'active': '')} onClick={this.toggleActiveTab.bind(this,'security')} >Security questions</button>
                                     <button className={"pb-4 tablinks ".concat(this.state.activeTab === "profile" ? 'active': '')} onClick={this.toggleActiveTab.bind(this,'profile')} >Profile</button>
-                                    <button className={"d-none d-md-block pb-4 more-btn tablinks ".concat(this.state.activeTab === "more" ? 'active': '')} onClick={this.toggleActiveTab.bind(this,'more')} >More</button>
                                   
                                 </div>
+                               
                             </div>
-                        
+                            <div className="more-btn">
+                                <button className={"ml-4 d-none d-md-block pb-4 more-btn tablinks ".concat(this.state.activeTab === "more" ? 'active': '')} onClick={this.toggleActiveTab.bind(this,'more')} >
+                                    More
+                                </button>
+                            </div>
                             <div  className="col-12 col-md-9 float-left pb-5 content-sec ">
                                 {this.state.activeTab === "accesspage" ?
                                     <UserAccess/>                              
@@ -345,7 +352,7 @@ render() {
                    </div> 
                 }    
                 {this.state.activeBottomTab == "Settings" && 
-                    <img onClick={this.toggleActiveTab.bind(this,'more')} className = "ellipsis-icon" src = {ellipsisIcon} />
+                    <img onClick={this.toggleActiveTab.bind(this,'more')} className = "d-md-none ellipsis-icon" src = {ellipsisIcon} />
                 }
                 <div className="col-8 d-flex upper-list">
                     <div className={"after-section ".concat(this.state.activeBottomTab === "Settings" ? "after-section-animate": "" )}>

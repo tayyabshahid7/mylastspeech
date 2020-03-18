@@ -1,6 +1,51 @@
 @import "../../../assets/fonts/fonts";
 @import "../../../assets/variables/variable";
-
+#profile{
+  .profile-section{
+    border-bottom: 2.5px solid $Geyser !important;
+    .input-label{
+      font-size: 13px;
+    }
+    .input-inner-btn{
+      top: 31px !important;
+      font-weight: 500 !important;
+      left: auto;
+      right: 5px !important;
+    }
+    .save-btn{
+      background: transparent linear-gradient(180deg,$Heliotrope,$Studio) 0 0 no-repeat padding-box;
+      box-shadow: 0 3px 12px rgba(0,0,0,.16);
+      border-radius: 8px;
+      padding: 7px 20px;
+      margin-top: 3%;
+      border: none;
+      color: $white;
+    }
+    .cancel-btn{
+      color: $Studio;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .error{
+      color: $Froly !important;
+      font-size: 12px;
+    }
+    .hide-show-icon{
+      width: 23px;
+      position: absolute;
+      top: 15px;
+      left: auto;
+      right: 13px;
+      fill: $Dove-Gray;
+      cursor: pointer;
+    }
+    
+  }
+  .change-profile-pic{
+    color: $Studio !important;
+    cursor: pointer !important;
+  }
+}
 
 @media screen and (max-width:767px){
   #profile {

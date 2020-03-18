@@ -99,18 +99,40 @@
              color: $black;
             }
           }
-          .more-btn{
-            position: absolute;
-            bottom: -7%;
-          }
+         
         }
       }
-  
+      .more-btn{
+        position: absolute;
+        bottom: 10px;
+        button{
+          background-color: inherit;
+          color: $light-gray;
+          padding: 0px 7px 40px 5px;
+          width: 100%;
+          border: none;
+          outline: none;
+          text-align: left;
+          line-height: 1.3em;
+          font-size: 1em;
+          font-weight: 500;
+          cursor: pointer;
+          z-index: 0;
+          transition: 0.3s;
+          &.active{
+            color: $black;
+           }
+        }
+      }
       .content-sec{
         margin-top: 5%;
-        overflow-y: scroll !important;
-        height: 500px;
-        overflow: hidden;
+        max-height: 500px;
+        overflow: auto;
+
+        // margin-top: 5%;
+        // overflow-y: scroll !important;
+        // height: 500px;
+        // overflow: hidden;
         .tabcontent{
           // width: 80%;
           // margin: 0 auto;
@@ -312,11 +334,7 @@
       }
       .tabs-section {
         .tabs-card {
-          overflow-y: scroll;
-          overflow-x: hidden;
-          .content-sec{
-            overflow:hidden !important;
-          }
+          overflow-y: auto;
           .left-sec {
             border-right:none;
           }

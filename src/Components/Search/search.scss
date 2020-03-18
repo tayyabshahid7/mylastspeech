@@ -12,7 +12,7 @@
     -moz-transition: 0.5s;
     position: absolute;
     left: 15%;
-    top: 90%;
+    top: 91%;
     transform: rotate(180deg);
   }
   .items {
@@ -75,4 +75,15 @@
     margin: 5px;
   }
 
+}
+
+
+@media screen and (max-width:767px){
+  #search{
+    .items-list{
+      width: 125%;
+      right: -20%;
+      max-height: 310px;
+    }
+  }
 }
