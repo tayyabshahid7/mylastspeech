@@ -101,8 +101,9 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
     }
 
     updateName = (e:any) =>{
+        debugger;
         e.preventDefault();
-        if(this.state.firstName && this.state.lastName){
+        if(this.state.firstName.trim().length>0 && this.state.lastName.trim().length>0){
             this.updateProfile('name',e);
         }else{
             this.setState({nameErrorMsg:"Enter valid first and last name"});
