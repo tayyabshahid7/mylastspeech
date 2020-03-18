@@ -112,7 +112,7 @@ class ItemList extends React.Component<ItemListProps, ItemListState> {
                       this.state.usersList.length>0 ? this.state.usersList.map(function(el:any) {
                            return <Item
                                key={el.id}
-                               name={el.name}
+                               name={el.first_name +' '+ el.last_name}
                                image={el.profile_picture}
                                id = {el.id}
                            />;
