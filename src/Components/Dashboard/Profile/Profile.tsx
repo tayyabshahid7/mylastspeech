@@ -31,6 +31,7 @@ interface ProfileState {
     showNewPass2:boolean,
     errorMsg:string,
     passwordError:string,
+    nameErrorMsg:string,
 }
 
 
@@ -57,7 +58,8 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
         showNewPass1:false,
         showNewPass2:false,
         errorMsg:'',
-        passwordError:''
+        passwordError:'',
+        nameErrorMsg:'',
     }
 
     constructor(props){
@@ -98,8 +100,20 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
         });        
     }
 
-   updateEmail = (e:any) =>{
-         e.preventDefault();
+    updateName = (e:any) =>{
+        e.preventDefault();
+        if(this.state.firstName && this.state.lastName){
+            this.updateProfile('name',e);
+        }else{
+            this.setState({nameErrorMsg:"Enter valid first and last name"});
+            setTimeout(() => {
+                this.setState({nameErrorMsg:""});              
+            }, 4000);
+        }
+    }
+
+    updateEmail = (e:any) =>{
+        e.preventDefault();
         let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if(re.test(String(this.state.email).toLowerCase())){
             this.updateProfile('email',e);
@@ -265,7 +279,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                         <div className="align-items-baseline col-12 d-flex mt-2 px-0"> 
                             <div className="col-6 pl-1"> 
                                 <button 
-                                onClick = {this.updateProfile.bind(this,'name')}  
+                                onClick = {this.updateName.bind(this)}  
                                 className="save-btn">
                                     Save
                                 </button>
@@ -276,6 +290,8 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                                 </a>
                             </div>  
                         </div>
+                        <span className="error ml-1">{(this.state.nameErrorMsg && this.state.nameErrorMsg.length>0 ) && this.state.nameErrorMsg }</span>
+
                     </div>
                     }
                 </div>
