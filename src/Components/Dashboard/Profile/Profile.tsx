@@ -30,6 +30,7 @@ interface ProfileState {
     showNewPass1:boolean,
     showNewPass2:boolean,
     errorMsg:string,
+    passwordError:string,
 }
 
 
@@ -55,7 +56,8 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
         showOldPassword:false,
         showNewPass1:false,
         showNewPass2:false,
-        errorMsg:''
+        errorMsg:'',
+        passwordError:''
     }
 
     constructor(props){
@@ -166,10 +168,21 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
         .then((response) => {
             this.setState({
                 isPasswordChange:false,
+                old_password:'',
+                new_password1:'',
+                new_password2:'',
+                showOldPassword:false,
+                showNewPass1:false,
+                showNewPass2:false,
             })
         })
         .catch((error) => {
-           
+            debugger
+            console.log(error.response)
+            this.setState({passwordError:error.response.data.new_password2[0]});
+            setTimeout(() => {
+                this.setState({passwordError:""});              
+            }, 4000);
         })
         .finally(() => {
                 // always executed
@@ -378,6 +391,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                                 </a>
                             </div> 
                         </div>
+                        <span className="error ml-1">{(this.state.passwordError && this.state.passwordError.length>0 ) && this.state.passwordError }</span>
                     </div>
                     }
                 </div>
