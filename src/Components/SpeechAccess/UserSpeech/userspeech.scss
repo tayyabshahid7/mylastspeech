@@ -2,7 +2,7 @@
 @import "../../../assets/variables/variable";
 
 #user-speech{
-    .custom-text-field{
+      .custom-text-field{
         textarea{
           background: transparent;
           border: none;
@@ -12,24 +12,34 @@
           cursor: pointer;
         }
       } 
-      .custom-submit{
+      .custom-submit{   
         .btnSubmit{
+          overflow: hidden;
+          position: absolute;
+          top: 95%;
+          padding: 10px 15px;
+          background: $Studio;
+          left: auto;
+          right: 5% !important;
           display: flex;
           justify-content: center;
-          right: 10px !important;
           align-items: center;
-          margin-bottom: -7%;
-  
-          & .fa{
-            background: $Mountain-Meadow;
-            border-radius: 50%;
-            width: 40px;
-            height: 42px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+          border-radius: 10px;
+          p{
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
           }
-    
+          &.spotify{
+            margin-right: 12%;
+          }
+          &.share{
+            display: block ;
+          }
+          img{
+            width: 50px;
+          }
+  
           &:focus{
             outline: none;
           }
@@ -37,13 +47,42 @@
             color: $white;
             font-size: 1em;
           }
-          &.spotify{
-            margin-right: 10%;
-          }
-          &.share{
-            min-width: 70px !important;
+        }
+      }
+      .upper-list{
+        cursor: pointer;
+        bottom: -75px;
+        position: absolute;
+        left: 45px;
+        img{
+          width: 45px;
+          border-radius: 50%;
+        }
+        & a{
+            color: $light-gray;
+            padding: 0 3%;
+        }
+        .active{
+          color: $white; 
+          &:hover{
+            color: $white;
           }
         }
+        
+      }
+      .after-section{
+        content: "";
+        height: 60px;
+        width: 55px;
+        clip-path: polygon(45% 41%, 0 0, 86% 0);
+        background: transparent linear-gradient(141deg, $Wild-Sand 0%, $Mercury 100%) 0% 0% no-repeat padding-box;
+        position: absolute;
+        transition:0.5s;
+        -webkit-transition:0.5s;
+        -moz-transition:0.5s;
+        position:absolute;
+        left: 45px;
+        bottom: -59.5px;
       }
 }
 
@@ -141,6 +180,30 @@
     
     input[type="checkbox"] + span {
       margin-right: 4px;
+    }
+  }
+}
+
+
+@media screen and (max-width:767px){ 
+  #user-speech{
+    .custom-submit{
+      .btnSubmit{
+        right: 5% !important;
+        max-width: 160px;
+        p{
+          max-width: 85px;
+        }
+        img{
+          width: 40px;
+        }
+        &.spotify{
+          margin-right: 0;
+        }
+        &.share{
+          display: none ;
+        }
+      }
     }
   }
 }

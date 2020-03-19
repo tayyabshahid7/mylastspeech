@@ -8,24 +8,17 @@
       .btnSubmit{
         position: absolute;
         top: 85%;
-        background: $Purple;
+        padding: 10px 15px;
+        background: $Studio;
         left: auto;
         right: 10% !important;
-
         display: flex;
         justify-content: center;
         align-items: center;
+        border-radius: 10px;
 
-        .fa{
-          background: $Mountain-Meadow;
-          border-radius: 50%;
-          width: 40px;
-          height: 42px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-size: 26px;
-          color: $white;
+        img{
+          width: 50px;
         }
 
         &:focus{
@@ -319,8 +312,16 @@
 }
 
 
-@media screen and (max-width:767px){
+@media screen and (max-width:767px){ 
   #dashboard{
+    .custom-submit{
+      .btnSubmit{
+        right: 5% !important;
+        img{
+          width: 40px;
+        }
+      }
+    }
     .tab-page{
       .second-content{
         border-top: 1.5px solid $Alto;;
@@ -343,9 +344,10 @@
       }
     } 
   }
-
- 
 }
+
+
+
 .preferences-modal{
   .modal-content{
     background: $Mine-Shaft !important;

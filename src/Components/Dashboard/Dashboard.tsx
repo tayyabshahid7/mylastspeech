@@ -5,6 +5,7 @@ import axios from 'axios';
 import history from '../../utils/history';
 import { css } from "@emotion/core";
 import ellipsisIcon from '../../assets/images/ellipsis.svg';
+import spotifyIcon from '../../assets/images/spotifylogo.png';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { ClipLoader } from "react-spinners";
 import SpotifyLogin from 'react-spotify-login';
@@ -400,9 +401,9 @@ render() {
                      <div>
                         <div className="form-group custom-submit ">
                             <button onClick={()=>{this.setState({openSpotifyModal:true})}} className="btn btnSubmit" type="submit">
-                                <i className="fa fa-spotify" aria-hidden="true"></i> &nbsp;
-                                <span>+ Spotify Song</span>
-                                {/* <span>{this.state.artistName && this.state.songName ? <span>{this.state.artistName }<br/>{this.state.songName}</span> : '+ Spotify Song'}</span> */}
+                                <img className = "mr-2" src = {spotifyIcon}></img>
+                                {/* <span>+ Spotify Song</span> */}
+                                <span>{this.state.artistName && this.state.songName ? <p style = {{lineHeight:"1"}} className="m-0">{this.state.artistName }<p className="m-0">{this.state.songName}</p></p> : '+ Spotify Song'}</span>
                             </button>   
                             
                         </div> 

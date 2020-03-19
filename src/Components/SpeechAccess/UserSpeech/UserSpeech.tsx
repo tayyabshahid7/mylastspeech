@@ -3,6 +3,7 @@ import * as url from '../../../utils/constant';
 import axios from 'axios';
 import shareIcon from '../../../assets/images/share.svg';
 import { css } from "@emotion/core";
+import spotifyIcon from '../../../assets/images/spotifylogo.png';
 import { ClipLoader } from "react-spinners";
 import './userspeech.scss';
 
@@ -81,30 +82,39 @@ class UserSpeech extends React.Component<UserSpeechProps, UserSpeechState> {
     render() {
         return (
             !this.state.apiCalled ?
-                    <div id="user-speech" className="container login-container tab-page mt-5 px-4 px-md-0">
-                    <div className="align-items-center d-flex justify-content-center row tabs-section custom-login">
-                      <div className=" col-12 col-lg-10 login-form mb-5 pb-5 tabs-card">
-                        <form onSubmit={(e)=>{e.preventDefault()}}>
-                            <div className="form-group">
-                                    <div className="custom-text-field">
-                                        <textarea rows={15}
-                                            onChange={(e) => { }}
-                                            value={this.state.speech}
-                                            readOnly
-                                        ></textarea>
+                <div id="user-speech" className="container login-container tab-page mt-5 px-4 px-md-0">
+                    <div className="mb-5 pb-5align-items-center d-flex justify-content-center row tabs-section custom-login">
+                      <div className="col-12 col-lg-10 login-form mb-5 pb-5 tabs-card">
+                            <form onSubmit={(e)=>{e.preventDefault()}}>
+                                <div className="form-group">
+                                        <div className="custom-text-field">
+                                            <textarea rows={15}
+                                                onChange={(e) => { }}
+                                                value={this.state.speech}
+                                                readOnly
+                                            ></textarea>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="form-group custom-submit ">
-                                    <button onClick = {()=>{window.open(this.state.songUrl, "_blank")}}  className="btn btnSubmit spotify" type="submit">
-                                        <i className="fa fa-spotify" aria-hidden="true"></i> &nbsp;
-                                            <span>{this.state.artistName && this.state.songName ? <span>{this.state.artistName }<br/>{this.state.songName}</span> : '+ Spotify Song'}</span>
-                                    </button>
-                                    <button className="btn btnSubmit share" type="submit">
-                                        <img src = {shareIcon}/>
-                                    </button>
-                                </div>
                             </form>
+                            <div className="form-group custom-submit ">
+                                <button onClick = {()=>{window.open(this.state.songUrl, "_blank")}}  className="btn btnSubmit spotify" type="submit">                                      
+                                    <img className = "mr-2" src = {spotifyIcon}></img>
+                                    <span>{this.state.artistName && this.state.songName ? <p style = {{lineHeight:"1"}} className="m-0">{this.state.artistName }<p className="m-0">{this.state.songName}</p></p> : '+ Spotify Song'}</span>
+                                </button>
+                                <button className="btn btnSubmit share" type="submit">
+                                    <img src = {shareIcon}/>
+                                </button>
+                            </div> 
+                            <div className={"after-section "}>
+                            </div >   
+                            <div className="col-8 d-flex upper-list pl-0">      
+                               <div className="d-flex align-content-center align-items-center">
+                                   <img src = {this.state.userObj['image']} />
+                                    <a style={{minWidth:"130px"}} className={ "active"} >{this.state.userObj['name']}</a>
+                               </div>                              
+                            </div>
                         </div>
+                     
                     </div>
                 </div>
                

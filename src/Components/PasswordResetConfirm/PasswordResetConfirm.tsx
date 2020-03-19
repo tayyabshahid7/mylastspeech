@@ -4,6 +4,7 @@ import * as url from '../../utils/constant';
 import history from '../../utils/history';
 import { css } from "@emotion/core";
 import { ClipLoader } from "react-spinners";
+import tickIcon from '../../assets/images/tick.svg';
 import TextField from '@material-ui/core/TextField';
 import SweetAlert from 'react-bootstrap-sweetalert';
 
@@ -166,7 +167,10 @@ class PasswordResetConfirm extends React.Component<PasswordResetConfirmProps, Pa
                                     onCancel={()=>{}}
                                     showConfirm = {false}
                                     show = {this.state.isSuccess}
-                                >                                        
+                                >           
+                                    <div>
+                                        <img className="tick-img" src = {tickIcon} />
+                                    </div>                             
                                 </SweetAlert>
                             </form>
                         </div>
