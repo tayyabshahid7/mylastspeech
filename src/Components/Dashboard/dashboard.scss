@@ -313,6 +313,7 @@
     .after-section-animate{
         left: 185px;
     }
+   
   }
   
 }
@@ -345,6 +346,111 @@
 
  
 }
+.preferences-modal{
+  .modal-content{
+    background: $Mine-Shaft !important;
+    min-height: 500px;
+    color: $white !important;   
+    .modal-header{
+      padding: 0.5rem 1rem;
+      border-bottom:none;
+      button{
+        border: none;
+        background: transparent;
+        text-shadow: none;
+        font-weight: 500;
+        color: $white !important;
+        opacity: 1 !important;
+        &:focus{
+          outline: none;
+        }
+        span{
+          font-size: 45px;
+          color: $white;
+        }
+      }
+    }
+    .modal-body{
+      min-height: 500px;
+      overflow: auto;
+      .header-text{
+        opacity: 0.9;
+      }
+      .radio-btn{
+        .checkbox-text{
+          font-size: 1em;
+          opacity: 0.9;
+        }
+        .container-radio{
+          display: block;
+          position: relative;
+          padding-left: 35px;
+          margin-bottom: 12px;
+          cursor: pointer;
+          font-size: 22px;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          input{
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+          }
+          .checkmark{
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            border-radius: 50%;
+            width: 20px;
+            background-color: $white;
+          }
+          .checked{
+            background: $Studio;
+          }
+        }
+      }
+      .unsubscribe-all{
+        position: absolute;
+        bottom: 50px;
+      }
+    }
+    .modal-footer{
+      border: none;
+      .update-btn{
+        position: absolute;
+        right: 15px;
+        bottom: -30px;
+        min-width: 100px;
+        min-height: 55px;
+        background: $Studio;
+        border: none;
+        color: $white;
+      }
+    }
+  }
+  .form-inner{
+    background: #2e2e2e 0 0 no-repeat padding-box;
+    border-radius: 22px;
+    width: 350px;
+    input{
+      background: transparent;
+      color: $white !important;
+      &:focus{
+        box-shadow: none;
+      }
+    }
+    #button-search{
+      .fa{
+        color: $white;
+      }
+    } 
+  }
+}
+
 .spotify-modal{
     .modal-content{
       background: $black !important;
@@ -355,6 +461,7 @@
       .modal-body{
         max-height: 250px;
         overflow: auto;
+       
       }
     }
     .form-inner{
@@ -375,6 +482,7 @@
       } 
     }
 }
+
 .list-song{
   cursor: pointer;
   border-bottom: 1px solid #696969 !important;
