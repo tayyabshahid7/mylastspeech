@@ -317,6 +317,13 @@
     .custom-submit{
       .btnSubmit{
         right: 5% !important;
+        p{
+          line-height: 1;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          max-width: 62px;
+        }
         img{
           width: 40px;
         }
