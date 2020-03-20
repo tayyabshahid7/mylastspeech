@@ -77,7 +77,7 @@ class BrainTree extends React.Component<BrainTreeProps, BrainTreeState>  {
           <DropIn
             options={{
               authorization: this.state.clientToken,
-              paypal:true
+              paypal: { amount: 10.00, currency: 'USD',flow:'checkout' } 
             }}
             onInstance={(instance) => (this.instance = instance)}
           />
