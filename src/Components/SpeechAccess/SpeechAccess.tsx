@@ -51,15 +51,25 @@ class SpeechAccess extends React.Component<SpeechAccessProps, SpeechAccessState>
                 }
         })
         .then((response) => {
+               let data = this.state.userObj;
+               data['close_contact_email'] = this.state.email;
+               data['payment_status'] = response.data.payment_status;
                 if(response.data.hasAccess){
-                    history.push({
-                        pathname: '/userspeech',
-                        state: this.state.userObj
-                    });
+                    if(response.data.payment_status){
+                        history.push({
+                            pathname: '/userspeech',
+                            state: data
+                        });
+                    }else{
+                        history.push({
+                            pathname: '/payment',
+                            state: data
+                        });
+                    }                  
                 }else{
                     history.push({
                         pathname: '/access-next',
-                        state: this.state.userObj
+                        state: data
                      });
                 } 
             })

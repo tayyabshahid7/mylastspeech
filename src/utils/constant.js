@@ -22,6 +22,7 @@ export const userAccessCheckUrl = baseUrl + "api/v1/user-access-check/";
 export const getUserSpeechUrl = baseUrl + "api/v1/get-user-speech/";
 export const checkSecurityQuestionUrl = baseUrl + "api/v1/check-security-question/";
 export const changeNotificationSettingsUrl = baseUrl + "api/v1/change-notification-settings/";
+export const getPaymentAccessTokenUrl = baseUrl + "api/v1/get-payment-token/";
 
 export const spotifyAccessTokenUrl = "https://accounts.spotify.com/api/token";
 export const spotifySongSearchUrl = "https://api.spotify.com/v1/search/";

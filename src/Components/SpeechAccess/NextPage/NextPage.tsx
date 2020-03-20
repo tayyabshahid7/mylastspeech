@@ -29,7 +29,8 @@ class NextPage extends React.Component<NextPageProps, NextPageState> {
         let data = {
             name:name,
             image:this.props.location.state['image'],
-            id:this.props.location.state['id']
+            id:this.props.location.state['id'],
+            close_contact_email:this.props.location.state['close_contact_email'],
         }
         this.setState({
             userObj:data,
@@ -80,18 +81,26 @@ class NextPage extends React.Component<NextPageProps, NextPageState> {
             params
         })
         .then((response) => {
-            debugger;
-            if(response.data.isCorrect){
+            let data = this.state.userObj;
+            data['payment_status'] = this.props.location.state['payment_status'];
+            if(this.props.location.state['payment_status']){
+                if(response.data.isCorrect){
+                    history.push({
+                        pathname: '/userspeech',
+                        state: data
+                    });
+                }else{
+                    this.setState({error:true});
+                    setTimeout(() => {
+                    this.setState({error:false});
+                    }, 4000);
+                }                
+            }else{              
                 history.push({
-                    pathname: '/userspeech',
-                    state: this.state.userObj
-                });
-            }else{
-                this.setState({error:true});
-                setTimeout(() => {
-                this.setState({error:false});
-                }, 4000);
-            }
+                    pathname: '/payment',
+                    state: data
+                 });
+            }            
         })
         .catch((error) => {
         

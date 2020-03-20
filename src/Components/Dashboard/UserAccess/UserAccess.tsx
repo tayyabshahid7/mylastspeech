@@ -96,6 +96,7 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
             return false;
         }
     }
+    
 
     addCloseContacts = (item:any,e: any) => {
         let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -298,6 +299,11 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
         }
     }
 
+    _handleKeyDown(item,e) {
+        if (e.key === 'Enter') {
+            this.addCloseContacts(item,e);
+        }
+    }
 
 
     render() {
@@ -321,6 +327,7 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
                                 className={"form-control ".concat(this.state.isValidated ? "" : "validate")}
                                 placeholder={"Email ".concat((i+1).toLocaleString())}
                                 value={item.email}
+                                onKeyDown={this._handleKeyDown.bind(this,item)}
                                 onBlur = {this.addCloseContacts.bind(this,item)} />
                                 {item.isChanged && item.id!="" && <a style= {{cursor:"pointer",zIndex:9999}} onClick = {this.updateEmail.bind(this,item,i)} className="profile-inputs input-inner-btn">update</a>}
                                 {item.id!="" && !item.isChanged &&
