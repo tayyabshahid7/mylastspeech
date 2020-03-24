@@ -6,6 +6,9 @@ import history from '../../utils/history';
 import TextField from '@material-ui/core/TextField';
 import TermAndPrivacy from '../TermAndPrivacy/TermAndPrivacy';
 
+
+
+
 import { Link } from 'react-router-dom';
 
 interface SpeechAccessProps {
@@ -85,6 +88,7 @@ class SpeechAccess extends React.Component<SpeechAccessProps, SpeechAccessState>
         return ( 
         <div id="speechaccess" >
             {this.state.showPrivacyModal ?
+            
             <div className="privacy-card">
                 <TermAndPrivacy 
                     activeTab = {this.state.activeTab}

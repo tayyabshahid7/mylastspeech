@@ -6,6 +6,8 @@ import { css } from "@emotion/core";
 import spotifyIcon from '../../../assets/images/spotifylogo.png';
 import { ClipLoader } from "react-spinners";
 import './userspeech.scss';
+import { PDFExport } from '@progress/kendo-react-pdf';
+import PdfTemplate from './PdfTemplate/PdfTemplate';
 
 interface UserSpeechProps {
     location?: any
@@ -30,15 +32,31 @@ const override = css`
 `;
 
 class UserSpeech extends React.Component<UserSpeechProps, UserSpeechState> {
+    pdfExportComponent;
     interval = null;
+    userName = '';
+
     state = {
         speech: '',
         userObj:{},
         apiCalled:false,
         songUrl:'',
         songName:'',
-        artistName:''
+        artistName:'',
+        // name: 'Still, Jaime',
+        // rank: 'SGT',
+        // description: 'Demonstrate how to export an HTML section to PDF'
     }
+    
+    // onChange = (event) => {
+    //     const name = event.target.name;
+    //     const value = event.target.value;
+    //     this.setState((state) => {
+    //       state[name] = value;
+    //       return state;
+    //     })
+    //   }
+    
 
     componentDidMount(){
         let name: string =this.props.location.state['name'];
@@ -52,6 +70,12 @@ class UserSpeech extends React.Component<UserSpeechProps, UserSpeechState> {
             userObj:data,
             apiCalled:true
         });
+        let s:string =  this.props.location.state['name']
+        s = s.toLocaleLowerCase()
+        let tmp:any = s.split(' ');
+        let s1 = tmp[0].charAt(0).toUpperCase() + tmp[0].slice(1);
+        let s2 = tmp[1].charAt(0).toUpperCase() + tmp[1].slice(1);      
+        this.userName = s1 +' '+ s2;
         this.retrieveSpeech();
     }
 
@@ -78,6 +102,7 @@ class UserSpeech extends React.Component<UserSpeechProps, UserSpeechState> {
         });
     }
 
+  
 
     render() {
         return (
@@ -101,9 +126,24 @@ class UserSpeech extends React.Component<UserSpeechProps, UserSpeechState> {
                                     <img className = "mr-2" src = {spotifyIcon}></img>
                                     <span>{this.state.artistName && this.state.songName ? <p style = {{lineHeight:"1"}} className="m-0">{this.state.artistName }<p className="m-0">{this.state.songName}</p></p> : '+ Spotify Song'}</span>
                                 </button>
-                                <button className="btn btnSubmit share" type="submit">
-                                    <img src = {shareIcon}/>
-                                </button>
+                                <button onClick={() => { this.pdfExportComponent.save(); }}  className="btn btnSubmit share" type="submit">
+                            <img src = {shareIcon}/>
+                        </button>
+
+                        <div style={{ position: "absolute", left: "-1000px", top: 0 }}>
+                            <PDFExport
+                                paperSize="A4"
+                                margin="1cm"
+                                fileName={this.userName.concat('\'s_MyLastSpeech')}
+                                ref={(component) => this.pdfExportComponent = component}
+                            >
+                                <div style={{ width: "500px" }}>
+                                  <PdfTemplate songName = {this.state.songName}  speech = {this.state.speech} name = {this.userName}/>
+                                </div>
+                            </PDFExport>
+                        </div>
+ 
+                             
                             </div> 
                             <div className={"after-section "}>
                             </div >   
