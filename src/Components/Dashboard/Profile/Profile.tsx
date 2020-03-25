@@ -83,14 +83,21 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                 let img = response.data[0]['profile_picture'] === null ? avatarPic:
                         response.data[0]['profile_picture'];
                 response.data[0]['profile_picture'] === null ? this.isDefaultPic = true : this.isDefaultPic = false;
+          
+                let tmp = response.data[0]['first_name'];
+                let s1 = tmp.charAt(0).toUpperCase() + tmp.slice(1);
+                tmp = response.data[0]['last_name'];
+                let s2 = tmp.charAt(0).toUpperCase() + tmp.slice(1);      
+                
                 this.setState({
                     email:response.data[0]['email'],
-                    firstName:response.data[0]['first_name'],
-                    lastName:response.data[0]['last_name'],
+                    firstName:s1,
+                    lastName:s2,
                     time:new Date(response.data[0]['dob']),
                     profile_picture:img
                 });
-            
+ 
+              
             })
             .catch((error) => {
                 
@@ -236,7 +243,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
 
     render() {
         return (
-        <div id="profile"  className="col-12 col-md-10 pl-0 pl-md-3 pr-md-0 tabcontent  profile-section">
+        <div id="profile"  className="col-12 col-md-10 pl-0  pr-md-0 tabcontent  profile-section">
             <div className="profile-img d-none d-md-block">                
                 <img  src={this.state.profile_picture} />
                 <input type="file" ref={this.inputOpenFileRef} className = "d-none"  onChange={this.handleImageChange.bind(this)}/>
