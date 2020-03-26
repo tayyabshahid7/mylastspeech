@@ -403,7 +403,7 @@ render() {
                             <button onClick={()=>{this.setState({openSpotifyModal:true})}} className="btn btnSubmit" type="submit">
                                 <img className = "mr-2" src = {spotifyIcon}></img>
                                 {/* <span>+ Spotify Song</span> */}
-                                <span>{this.state.artistName && this.state.songName ? <p style = {{lineHeight:"1"}} className="m-0">{this.state.artistName }<p className="m-0">{this.state.songName}</p></p> : '+ Spotify Song'}</span>
+                                <span>{this.state.artistName && this.state.songName ? <p style = {{lineHeight:"1"}} className="m-0 song-text">{this.state.artistName }<p className="m-0">{this.state.songName}</p></p> : '+ Spotify Song'}</span>
                             </button>   
                             
                         </div> 
