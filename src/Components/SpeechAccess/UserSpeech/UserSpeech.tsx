@@ -150,7 +150,7 @@ class UserSpeech extends React.Component<UserSpeechProps, UserSpeechState> {
                             <div className="col-8 d-flex upper-list pl-0">      
                                <div className="d-flex align-content-center align-items-center">
                                    <img src = {this.state.userObj['image']} />
-                                    <a style={{minWidth:"130px"}} className={ "active"} >{this.state.userObj['name']}</a>
+                                    <a style={{minWidth:"130px"}} className={ "active ml-2"} >{this.userName}</a>
                                </div>                              
                             </div>
                         </div>

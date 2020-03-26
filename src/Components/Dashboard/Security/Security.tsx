@@ -189,7 +189,7 @@ class Security extends React.Component<SecurityProps, SecurityState> {
                 </div>
                 <br/>
                 {this.state.questionsList && this.state.questionsList.length>0 && this.state.questionsList.map((item:any,i:number)=>
-                        <div key={i} className = "mt-3 col-12 pl-md-0 col-md-11 form-group position-relative ">
+                        <div key={i} className = "mt-3 col-12 pl-md-0 pr-md-0 col-md-11 form-group position-relative mobile-screen ">
                              <p className={"mb-0 question-answer form-control custom-input "}>
                                         {item.question}
                              </p>

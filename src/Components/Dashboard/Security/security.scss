@@ -21,7 +21,7 @@
     }
     .collapse-minus{
         left: auto;
-        right: -15px;
+        right: -35px;
         top: 15px;
         font-size: 25px;
         color: $Purple;
@@ -50,6 +50,12 @@
             word-break: break-all;
             padding:1em !important;
             padding-right: unset;
+        }
+        .collapse-minus{
+            right: -3px;
+        }
+        .mobile-screen{
+            padding-right: 1.5rem !important;
         }
     }
 }
