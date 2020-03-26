@@ -74,7 +74,8 @@ class ItemList extends React.Component<ItemListProps, ItemListState> {
   } 
 
 
-    handleSearch =(event:any)=>{      
+    handleSearch =(event:any)=>{  
+        this.setState({ usersList:[]});    
         var searchQuery = event.target.value.toLowerCase();
         this.page = 1;
         if(searchQuery.length === 0){
