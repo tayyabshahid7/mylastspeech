@@ -61,11 +61,11 @@ class Payment extends React.Component<PaymentProps, PaymentState> {
                 <div className="container card-container payment-container mt-5">
                     <div className="align-items-center d-flex justify-content-center row custom-profile">
                         <div className=" col-lg-6 card-profile payment-card p-4 ">
-                            <h5 className="pt-4 mb-0" ><b>Success, juts one more thing…</b></h5>
-                            <p className="mt-5 mb-4">To help this site run we ask that you make a contribution, you will
-                                only need to make this payment once.<br/>
-                                If you have accessed this page before you should have received a
-                                code by email which you can use to view it again.</p>
+                            <h5 className="pt-4 mb-0" ><b>Success! just one more thing…</b></h5>
+                            <p className="mt-5 mb-4">To help us run this site, we ask that you make a small contribution, you will only need to make this payment once.
+                                <br/>
+                                If you have accessed this speech before you will have received a code by email which you can use to view it again.
+                            </p>
                            
                             <div className="">
                                 <p className="mb-0"></p>

@@ -125,6 +125,7 @@ class NextPage extends React.Component<NextPageProps, NextPageState> {
                                  <TextField  
                                      onChange={this.setAnswer.bind(this,i)} 
                                      value = {item.answer} 
+                                     multiline
                                      className = 'outlined-input-custom' 
                                      label={item.question}
                                      type="email"
