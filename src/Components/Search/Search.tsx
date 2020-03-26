@@ -44,7 +44,12 @@ class ItemList extends React.Component<ItemListProps, ItemListState> {
       // set timeout is necessary as this function may fire multiple times.
         if (element.offsetHeight + element.scrollTop >= element.scrollHeight) {
           if(this.page !== -1 ){
+            let data = this.state.usersList;
             this.getAllUsers(this.state.searchText, this.page);
+            data = data.concat(this.state.usersList);
+            this.setState({
+              usersList:data,
+            });
           }
         }
     };
@@ -59,7 +64,7 @@ class ItemList extends React.Component<ItemListProps, ItemListState> {
       })
       .then((response)=> {
           let data = this.state.usersList;
-          data = data.concat(response.data.results);
+          // data = data.concat(response.data.results);
           this.setState({
             usersList:data,
           });
