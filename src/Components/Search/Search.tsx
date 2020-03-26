@@ -63,7 +63,7 @@ class ItemList extends React.Component<ItemListProps, ItemListState> {
         }
       })
       .then((response)=> {
-          let data = this.state.usersList;
+          let data = response.data.results;
           // data = data.concat(response.data.results);
           this.setState({
             usersList:data,
