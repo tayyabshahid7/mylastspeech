@@ -99,17 +99,17 @@ class Home extends React.Component<HomeProps, HomeState> {
                     data-aos-easing="ease-in-sine">
                     <div className="col-8 sidebar-image-background"></div>
                     <div className="container side-by-side pt-5">
-                        <div className="row d-flex align-items-center">
+                        <div className="row d-flex align-items-center ml-2">
                             <div className="col-12 col-md-6 col-lg-6">
-                                <div className="d-flex justify-content-around list-section" data-aos="fade-left">
+                                <div className="d-flex justify-content-around list-section ml-2" data-aos="fade-left">
                                     <img src={ShortTextLogo} />
                                     <p >You log in and write your last<br />speech, you can even link your <br />favourite song</p>
                                 </div>
-                                <div className="d-flex justify-content-around list-section" data-aos="fade-right" >
+                                <div className="d-flex justify-content-around list-section ml-2" data-aos="fade-right" >
                                     <img src={EyeLogo} />
                                     <p>We save them and encrypt them.<br /> You can come back anytime to<br /> update or make amendments as<br /> life goes on.</p>
                                 </div>
-                                <div className="image-section-mobile" data-aos="fade-right"
+                                <div className="image-section-mobile ml-2" data-aos="fade-right"
                                     data-aos-offset="300"
                                     data-aos-easing="ease-in-sine">
                                 </div>
