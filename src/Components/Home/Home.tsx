@@ -44,7 +44,7 @@ class Home extends React.Component<HomeProps, HomeState> {
         user = user && JSON.parse(user);
         let token = localStorage.getItem('userToken');
         return (
-            <div id="home">
+            <div id="home" className="col-12">
                 <div className="banner-section container d-flex justify-content-center mb-0">
                     <div className="text-left custom-banner">
                         <h1 className="mt-5" data-aos="fade-up" >It’s your<br /> Funeral</h1>

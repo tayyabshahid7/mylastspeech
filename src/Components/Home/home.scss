@@ -635,6 +635,22 @@ h1, h2, h3, h4, h5 ,h6{
         .cookies-popup{
             display: none !important;
         }
+       .custom-upper {
+        .upper-footer{
+            .newsletter{
+                .right-fixed{
+                    right: 25px;
+                    width: 149px;
+                    top: -15%;
+                    height: 105px;
+                    :after{
+                        top: 99.5%;
+                        right: 14%;
+                    }
+                }
+            }
+        }
+       }
     }
 
 }
