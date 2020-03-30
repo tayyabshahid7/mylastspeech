@@ -84,15 +84,15 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                         response.data[0]['profile_picture'];
                 response.data[0]['profile_picture'] === null ? this.isDefaultPic = true : this.isDefaultPic = false;
           
-                let tmp = response.data[0]['first_name'];
-                let s1 = tmp.charAt(0).toUpperCase() + tmp.slice(1);
-                tmp = response.data[0]['last_name'];
-                let s2 = tmp.charAt(0).toUpperCase() + tmp.slice(1);      
+                // let tmp = response.data[0]['first_name'];
+                // let s1 = tmp.charAt(0).toUpperCase() + tmp.slice(1);
+                // tmp = response.data[0]['last_name'];
+                // let s2 = tmp.charAt(0).toUpperCase() + tmp.slice(1);      
                 
                 this.setState({
                     email:response.data[0]['email'],
-                    firstName:s1,
-                    lastName:s2,
+                    firstName:response.data[0]['first_name'],
+                    lastName:response.data[0]['last_name'],
                     time:new Date(response.data[0]['dob']),
                     profile_picture:img
                 });

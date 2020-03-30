@@ -44,7 +44,7 @@ class Home extends React.Component<HomeProps, HomeState> {
         user = user && JSON.parse(user);
         let token = localStorage.getItem('userToken');
         return (
-            <div id="home" className="col-12">
+            <div id="home" >
                 <div className="banner-section container d-flex justify-content-center mb-0">
                     <div className="text-left custom-banner">
                         <h1 className="mt-5" data-aos="fade-up" >It’s your<br /> Funeral</h1>
@@ -83,7 +83,7 @@ class Home extends React.Component<HomeProps, HomeState> {
                                 <div className="col-12 col-md-4 card-custom" data-aos="zoom-in">
                                     <div className="card-section">
                                         <h2>How it works…</h2>
-                                        <p>My last speech allows you to write your<br /> own speech at your funeral that can be<br />unlocked by your loved ones when you<br /> pass.</p>
+                                        <p>My last speech allows you to write your own speech at your funeral that can be unlocked by your loved ones when you pass.</p>
                                     </div>
 
                                 </div>
@@ -99,27 +99,27 @@ class Home extends React.Component<HomeProps, HomeState> {
                     data-aos-easing="ease-in-sine">
                     <div className="col-8 sidebar-image-background"></div>
                     <div className="container side-by-side pt-5">
-                        <div className="row d-flex align-items-center ml-2">
+                        <div className="row d-flex align-items-center ">
                             <div className="col-12 col-md-6 col-lg-6">
-                                <div className="d-flex justify-content-around list-section ml-2" data-aos="fade-left">
+                                <div className="d-flex list-section" data-aos="fade-left">
                                     <img src={ShortTextLogo} />
-                                    <p >You log in and write your last<br />speech, you can even link your <br />favourite song</p>
+                                    <p className="pl-5" >You log in and write your last<br />speech, you can even link your <br />favourite song</p>
                                 </div>
-                                <div className="d-flex justify-content-around list-section ml-2" data-aos="fade-right" >
+                                <div className="d-flex list-section" data-aos="fade-right" >
                                     <img src={EyeLogo} />
-                                    <p>We save them and encrypt them.<br /> You can come back anytime to<br /> update or make amendments as<br /> life goes on.</p>
+                                    <p className="pl-5">We save them and encrypt them.<br /> You can come back anytime to<br /> update or make amendments as<br /> life goes on.</p>
                                 </div>
-                                <div className="image-section-mobile ml-2" data-aos="fade-right"
+                                <div className="image-section-mobile " data-aos="fade-right"
                                     data-aos-offset="300"
                                     data-aos-easing="ease-in-sine">
                                 </div>
-                                <div className="d-flex justify-content-around list-section" data-aos="fade-left">
+                                <div className="d-flex list-section" data-aos="fade-left">
                                     <img src={SearchLogo} />
-                                    <p>When you’re gone, we notify your<br /> loved ones about your saved speech <br />and grant them access</p>
+                                    <p className="pl-5">When you’re gone, we notify your<br /> loved ones about your saved speech <br />and grant them access</p>
                                 </div>
-                                <div className="d-flex justify-content-around list-section" data-aos="fade-right">
+                                <div className="d-flex list-section" data-aos="fade-right">
                                     <img src={OfflineLogo} />
-                                    <p>It’s your last chance to tell your <br />friends and family everything<br /> you wanted to but didn’t, Crack a <br />joke or just say thanks for being <br />there…</p>
+                                    <p className="pl-5">It’s your last chance to tell your <br />friends and family everything<br /> you wanted to but didn’t, Crack a <br />joke or just say thanks for being <br />there…</p>
                                 </div>
                             </div>
                             <div className="col-12 col-md-6 col-lg-6">

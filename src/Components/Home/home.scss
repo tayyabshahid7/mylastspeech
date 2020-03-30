@@ -17,8 +17,7 @@ h1, h2, h3, h4, h5 ,h6{
         background: transparent linear-gradient(180deg, $Wild-Sand 0%, $Mercury 100%) 0% 0% no-repeat padding-box;
         left: 1%;
         border-radius: 9px;
-        width: 23%;
-        bottom: -15%;
+        // width: 23%;
         z-index:99;
         font-size: 13px;
         p{
@@ -672,7 +671,6 @@ h1, h2, h3, h4, h5 ,h6{
     #home{
         .cookies-popup{
             width: auto !important;
-            bottom: -55% !important;
             padding-right: 1%;
         }
     }
