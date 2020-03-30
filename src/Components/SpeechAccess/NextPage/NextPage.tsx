@@ -25,7 +25,6 @@ class NextPage extends React.Component<NextPageProps, NextPageState> {
 
     componentDidMount(){
         let name: string =this.props.location.state['name'];
-        name = name.toUpperCase();
         let data = {
             name:name,
             image:this.props.location.state['image'],

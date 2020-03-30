@@ -1,5 +1,5 @@
 // BASE URL
-  // export const baseUrl = "http://127.0.0.1:8000/";
+// export const baseUrl = "http://127.0.0.1:8000/";
 export const baseUrl = "http://api.mylastspeech.com/";
 
 export const registerURL = baseUrl + "api/v1/auth/registration/";

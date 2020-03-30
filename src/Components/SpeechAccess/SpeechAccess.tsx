@@ -34,7 +34,6 @@ class SpeechAccess extends React.Component<SpeechAccessProps, SpeechAccessState>
 
     componentDidMount(){
         let name: string =this.props.location.state['name'];
-        name = name.toUpperCase();
         let data = {
             name:name,
             image:this.props.location.state['image'],

@@ -48,7 +48,7 @@ class Home extends React.Component<HomeProps, HomeState> {
                 <div className="banner-section container d-flex justify-content-center mb-0">
                     <div className="text-left custom-banner">
                         <h1 className="mt-5" data-aos="fade-up" >It’s your<br /> Funeral</h1>
-                        <p className="d-flex m-auto pb-4 pt-4 text-left text-light">Funerals are sad times, especially when it’s your own.<br /> Take a few moments to Write your last speech now.</p>
+                        <p className="d-flex m-auto pb-4  text-left text-light">Turn a sad occasion into a celebration of life. <br/> Take a few moments to Write your last speech now.</p>
                         {token!="" && user ? '':  
                         <button className="btn btn-custom d-flex justify-content-center align-items-center">
                               <Link to="/signup">Create a Free Account</Link>

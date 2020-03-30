@@ -25,8 +25,12 @@ class Resend extends React.Component<ResendProps, ResendState> {
     }
     componentDidMount(){
         debugger;
-        let params = new URLSearchParams(this.props?.location?.search);
-        this.email = params.get('email')?.toString();
+        if(this.props.location.state && this.props.location.state.email){
+            this.email = this.props.location.state.email;
+        }else{
+            let params = new URLSearchParams(this.props?.location?.search);
+            this.email = params.get('email')?.toString();
+        }
     }
     submitCode = (e:any) => {
         e.preventDefault();

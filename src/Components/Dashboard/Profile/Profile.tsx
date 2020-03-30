@@ -243,7 +243,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
 
     render() {
         return (
-        <div id="profile"  className="col-12 col-md-10 pl-0  pr-md-0 tabcontent  profile-section">
+        <div id="profile"  className="col-12 col-md-10 pl-0  pr-md-0 tabcontent pt-4 profile-section">
             <div className="profile-img d-none d-md-block">                
                 <img  src={this.state.profile_picture} />
                 <input type="file" ref={this.inputOpenFileRef} className = "d-none"  onChange={this.handleImageChange.bind(this)}/>

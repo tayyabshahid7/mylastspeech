@@ -160,7 +160,7 @@ class Security extends React.Component<SecurityProps, SecurityState> {
   
     render() {
         return (
-        <div id = "security" className="col-12 col-md-10 pl-0 pl-md-3 pr-0 tabcontent second-content">
+        <div id = "security" className="col-12 col-md-10 pl-0 pl-md-3 pr-0 tabcontent second-content pt-4">
             <p className="pt-0 d-none d-md-block">Add questions that we will ask your loved ones when <br/>they try to access your speech</p>
             <form>
                 <div className="pr-0 col-12 col-md-11 pl-md-0 form-group position-relative ">
