@@ -147,17 +147,30 @@ class NextPage extends React.Component<NextPageProps, NextPageState> {
                            this.state.questionsList && this.state.questionsList.length >0 ? 
                            this.state.questionsList.map((item:any,i:number)=>(
                                 <div className="mb-3 position-relative">
-                                 <TextField  
+                                    <p className = "label-input"> {item.question} </p>
+                                    <input 
+                                     className="custom-input"
+                                     placeholder = "Answer"
                                      onChange={this.setAnswer.bind(this,i)} 
-                                     value = {item.answer} 
-                                     multiline
-                                     className = 'outlined-input-custom' 
-                                     label={item.question}
                                      onKeyDown={this._handleKeyDown.bind(this,item,i)}
                                      onBlur = {this.checkSecurityQuestion.bind(this,item,i)}
-                                     type="email"
-                                     variant="outlined" 
-                                 />
+                                    />
+                                   {/* <TextField
+                                    id="filled-full-width"
+                                    onChange={this.setAnswer.bind(this,i)} 
+                                    label={item.question}
+                                    style={{ margin: 8 }}
+                                    placeholder="Placeholder"
+                                    fullWidth
+                                    onKeyDown={this._handleKeyDown.bind(this,item,i)}
+                                    onBlur = {this.checkSecurityQuestion.bind(this,item,i)}
+                                    type="email"
+                                    margin="normal"
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    variant="filled"
+                                    /> */}
                                  {item.isCorrect &&
                                     <img className = "success-tick-icon"  src = {tickIcon} />
                                 } 
