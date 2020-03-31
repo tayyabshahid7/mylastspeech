@@ -3,7 +3,15 @@
 
 .next-card-container{
     overflow: visible;
+    
     &.card-container{
+          .success-tick-icon{
+            width:  18px !important;
+            position: absolute;
+            left: auto;
+            right: 15px;
+            top: 30%;
+        }
         .MuiInputLabel-formControl{
           max-width: 486px;
           word-break: break-all;

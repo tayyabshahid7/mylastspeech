@@ -5,6 +5,7 @@ import * as url from '../../../utils/constant';
 import history from '../../../utils/history';
 import TextField from '@material-ui/core/TextField';
 import { Link } from 'react-router-dom';
+import tickIcon from '../../../assets/images/success-tick.png';
 
 interface NextPageProps {
     location?:any,
@@ -16,7 +17,6 @@ interface NextPageState {
 }
 
 class NextPage extends React.Component<NextPageProps, NextPageState> {
-
     state = {
         userObj:{},
         questionsList:[{}],
@@ -49,6 +49,7 @@ class NextPage extends React.Component<NextPageProps, NextPageState> {
                 let data = response.data.results;
                 data.map((obj:any)=>{
                     obj.answer = '';
+                    obj.isCorrect = false;
                 });
                 this.setState({
                   questionsList:data,
@@ -70,36 +71,24 @@ class NextPage extends React.Component<NextPageProps, NextPageState> {
         });
     }
 
-    checkSecurityQuestion = (e:any) =>{
+    checkSecurityQuestion = (item:any,index:any,e:any) =>{
         e.preventDefault();
         const params = {
-            answer : this.state.questionsList,
-            user_id: this.props.location.state['id']
+            answer : item.answer,
+            user_id: this.props.location.state['id'],
+            id: item.id
         };
         axios.post(url.checkSecurityQuestionUrl, {
             params
         })
         .then((response) => {
-            let data = this.state.userObj;
-            data['payment_status'] = this.props.location.state['payment_status'];
-            if(this.props.location.state['payment_status']){
-                if(response.data.isCorrect){
-                    history.push({
-                        pathname: '/userspeech',
-                        state: data
-                    });
-                }else{
-                    this.setState({error:true});
-                    setTimeout(() => {
-                    this.setState({error:false});
-                    }, 4000);
-                }                
-            }else{              
-                history.push({
-                    pathname: '/payment',
-                    state: data
-                 });
-            }            
+            if(response.data.isCorrect){
+                let data = this.state.questionsList;
+                data[index]['isCorrect'] = true;
+                this.setState({
+                    questionsList:data,
+                });
+            }
         })
         .catch((error) => {
         
@@ -107,6 +96,43 @@ class NextPage extends React.Component<NextPageProps, NextPageState> {
         .finally( () => {
         // always executed
         });           
+    }
+
+    checkAllAnswerValidity = (e:any) =>{
+        e.preventDefault();
+        let flag = true;
+        this.state.questionsList.map((item:any)=>{
+            if(!item.isCorrect){
+                flag = false;
+            }
+        })
+        if (flag){
+            let data = this.state.userObj;
+            data['payment_status'] = this.props.location.state['payment_status'];
+            if(this.props.location.state['payment_status']){
+                history.push({
+                    pathname: '/userspeech',
+                    state: data
+                });                            
+            }else{              
+                history.push({
+                    pathname: '/payment',
+                    state: data
+                });
+            }   
+        }
+        else{
+            this.setState({error:true});
+            setTimeout(() => {
+            this.setState({error:false});
+            }, 4000);
+        }                
+    }
+
+    _handleKeyDown(item,i,e) {
+        if (e.key === 'Enter') {
+            this.checkSecurityQuestion(item,i,e);
+        }
     }
 
     render() {
@@ -120,16 +146,21 @@ class NextPage extends React.Component<NextPageProps, NextPageState> {
                            {
                            this.state.questionsList && this.state.questionsList.length >0 ? 
                            this.state.questionsList.map((item:any,i:number)=>(
-                                <div className="mb-3">
+                                <div className="mb-3 position-relative">
                                  <TextField  
                                      onChange={this.setAnswer.bind(this,i)} 
                                      value = {item.answer} 
                                      multiline
                                      className = 'outlined-input-custom' 
                                      label={item.question}
+                                     onKeyDown={this._handleKeyDown.bind(this,item,i)}
+                                     onBlur = {this.checkSecurityQuestion.bind(this,item,i)}
                                      type="email"
                                      variant="outlined" 
                                  />
+                                 {item.isCorrect &&
+                                    <img className = "success-tick-icon"  src = {tickIcon} />
+                                } 
                                 </div>
                            )
                         )
@@ -139,7 +170,7 @@ class NextPage extends React.Component<NextPageProps, NextPageState> {
                         {this.state.error && <p className="mt-3 mb-3 error"> Answers are not correct.</p>}
 
                         <div className="form-group custom-submit ">
-                                <button onClick = {this.checkSecurityQuestion.bind(this)} className="btn btnSubmit" type="submit"><i className=" fa fa-long-arrow-right" aria-hidden="true"></i>
+                                <button onClick = {this.checkAllAnswerValidity.bind(this)} className="btn btnSubmit" type="submit"><i className=" fa fa-long-arrow-right" aria-hidden="true"></i>
                                 </button>
                             <Link to={{pathname:"speechaccess", state:this.state.userObj}}>
                                 <button className="btn btnSubmit-back" type="submit"><i className=" fa fa-long-arrow-left" aria-hidden="true"></i>
