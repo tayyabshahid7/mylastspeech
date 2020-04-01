@@ -440,7 +440,7 @@ render() {
                         <ModalHeader  toggle={()=>{this.setState({emailPreferencesModal:false,})}}>
                            
                         </ModalHeader>
-                        <ModalBody className="pt-0">
+                        <ModalBody className="pt-0 m-auto">
                            <span className="px-4">Notification settings</span>
                            <p className="header-text px-4 pt-3">
                                Help us improve the experience of this site for everyone.Please update
