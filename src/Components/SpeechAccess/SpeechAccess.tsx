@@ -100,8 +100,8 @@ class SpeechAccess extends React.Component<SpeechAccessProps, SpeechAccessState>
                 <div className="align-items-center d-flex justify-content-center row custom-profile">
                     <div className=" col-lg-6 card-profile">
                         <form onSubmit = {this.checkUserSpeechAccess.bind(this)}>
-                            <img src={this.state.userObj['image']} alt="Avatar"/>&nbsp; &nbsp; &nbsp; &nbsp;<span><b>{(this.state.userObj['name'])}</b></span>
-                            <p className="mt-5 mb-4">Please enter your email to see if you have beed granted access automatically by this person</p>
+                            <img src={this.state.userObj['image']} alt="Avatar"/><span className="body-text pl-3"><b >{(this.state.userObj['name'])}</b></span>
+                            <p className="body-text mt-5 mb-4">Please enter your email to see if you have beed granted access automatically by this person</p>
                             <div className="form-group">
                                 <TextField  
                                     onChange={(event) => {this.setState({email: event.target.value})}} 
@@ -116,11 +116,11 @@ class SpeechAccess extends React.Component<SpeechAccessProps, SpeechAccessState>
                                 <input type="checkbox" checked={this.state.tosChecked} />
                                 <span className="checkmark"></span>
                             </span>
-                            <span className="pl-2"> I agree to
-                                        <a href="#" onClick = {()=>{this.setState({showPrivacyModal:true,activeTab:"Privacy"})}}> privacy policy</a> and <a href="#" onClick = {()=>{this.setState({showPrivacyModal:true,activeTab:"Terms"})}}>terms of service</a><br/>
-                                    </span>
+                            <span className="pl-2 privacy-text"> I agree to
+                                <a style = {{color:"black"}} href="#" onClick = {()=>{this.setState({showPrivacyModal:true,activeTab:"Privacy"})}}> privacy policy</a> and <a style = {{color:"black"}} href="#" onClick = {()=>{this.setState({showPrivacyModal:true,activeTab:"Terms"})}}>terms of service</a><br/>
+                            </span>
                             <div className="form-group custom-submit ">
-                                <button  className="btn btnSubmit" type="submit"><i className=" fa fa-long-arrow-right" aria-hidden="true"></i>
+                                    <button  className="btn btnSubmit" type="submit"><i className=" fa fa-long-arrow-right" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </form>
