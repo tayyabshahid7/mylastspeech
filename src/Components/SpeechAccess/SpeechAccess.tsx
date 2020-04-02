@@ -112,13 +112,16 @@ class SpeechAccess extends React.Component<SpeechAccessProps, SpeechAccessState>
                                     variant="outlined" 
                                 />
                             </div>
-                            <span onClick={(event) => { this.setState({tosChecked: !this.state.tosChecked});}} >
-                                <input type="checkbox" checked={this.state.tosChecked} />
-                                <span className="checkmark"></span>
-                            </span>
-                            <span className="pl-2 privacy-text"> I agree to
-                                <a style = {{color:"black"}} href="#" onClick = {()=>{this.setState({showPrivacyModal:true,activeTab:"Privacy"})}}> privacy policy</a> and <a style = {{color:"black"}} href="#" onClick = {()=>{this.setState({showPrivacyModal:true,activeTab:"Terms"})}}>terms of service</a><br/>
-                            </span>
+                            <div className = "align-items-center d-flex privacy-link">
+                                <span onClick={(event) => { this.setState({tosChecked: !this.state.tosChecked});}} >
+                                    <input type="checkbox" checked={this.state.tosChecked} />
+                                    <span className="checkmark"></span>
+                                </span>
+                                <div className="pl-2 privacy-text"> I agree to
+                                    <a style = {{textDecoration:"underline", color:"black"}} href="#" onClick = {()=>{this.setState({showPrivacyModal:true,activeTab:"Privacy"})}}> privacy policy</a> and <a style = {{textDecoration:"underline",color:"black"}} href="#" onClick = {()=>{this.setState({showPrivacyModal:true,activeTab:"Terms"})}}>terms of service</a><br/>
+                                </div>
+                            </div>
+                            
                             <div className="form-group custom-submit ">
                                     <button  className="btn btnSubmit" type="submit"><i className=" fa fa-long-arrow-right" aria-hidden="true"></i>
                                 </button>

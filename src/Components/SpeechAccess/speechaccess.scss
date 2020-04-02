@@ -112,9 +112,15 @@
        .body-text{
          font-size: 14px;
        }
-       .privacy-text{
-        font-size: 12px;
+       .privacy-link{
+        max-width: 68%;
+        line-height: normal;
+        .privacy-text{
+          font-size: 12px;
+          
+         }
        }
+      
       .custom-submit{
           .btnSubmit-back{
             right: 17% !important;
