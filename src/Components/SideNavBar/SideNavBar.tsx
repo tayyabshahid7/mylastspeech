@@ -2,19 +2,20 @@ import React from "react";
 import "./sidenavbar.scss";
 import Hambuger from '../../assets/images/hamburger.svg';
 import { Link } from 'react-router-dom';
+import TermAndPrivacy from '../TermAndPrivacy/TermAndPrivacy';
 
 interface SideNavBarProps {
   img:any,
 }
 interface SideNavBarState {
-  
+  showPrivacyModal:boolean,
+  showNav:boolean
 }
 
 class SideNavBar extends React.Component<SideNavBarProps,SideNavBarState> {
   state = {
-    state: {
-      showNav: false
-    }
+      showNav: false,
+      showPrivacyModal: false,
   }
 
   openNavClick = (e:any) => {
@@ -46,6 +47,10 @@ class SideNavBar extends React.Component<SideNavBarProps,SideNavBarState> {
     if (e.key === "Escape") {
       this.closeNav()
     }
+  }
+
+  mailTo=(e:any)=>{
+    window.location.href = `mailto:brad@acidtestdesign.com`;
   }
 
   render() {
@@ -96,9 +101,14 @@ class SideNavBar extends React.Component<SideNavBarProps,SideNavBarState> {
                     
                   </div>
                   <div className="position-absolute" style={{bottom:0}}>
-                      <Link to="/signup">Contact Us </Link>
-                      <Link to="/signin">Legal</Link>
-                  </div>                 
+                      <a onClick={this.mailTo.bind(this)}>Contact Us </a>
+                      <a onClick = {()=>{this.setState({showPrivacyModal:true})}}>Legal</a>
+                  </div> 
+                  <TermAndPrivacy 
+                    showPrivacyModal = {this.state.showPrivacyModal}
+                    closeModal = {()=>{
+                    this.setState({showPrivacyModal:false});
+                  }}/>                 
               </div>
              <div>
 

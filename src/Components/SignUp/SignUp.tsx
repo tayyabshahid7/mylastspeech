@@ -130,14 +130,8 @@ class SignUp extends React.Component<SignUpProps, SignUpState> {
     render() {
      
         return (
-            this.state.showPrivacyModal ?
-                <TermAndPrivacy 
-                    activeTab = {this.state.activeTab}
-                    closeModal = {()=>{
-                        this.setState({showPrivacyModal:false});
-                }}/>
-            :
-            <div>
+             
+              <div>
                 <div className="align-items-center d-flex justify-content-center sweet-loading">
                     <ClipLoader
                     css={override}
@@ -219,7 +213,7 @@ class SignUp extends React.Component<SignUpProps, SignUpState> {
                                     </span>
                                     
                                     <span className="pl-2"> I agree to
-                                        <a href="#" onClick = {()=>{this.setState({showPrivacyModal:true,activeTab:"Privacy"})}}> privacy policy</a> and <a href="#" onClick = {()=>{this.setState({showPrivacyModal:true,activeTab:"Terms"})}}>terms of service</a><br/>
+                                        <a href="#" style ={{color:"#000"}} onClick = {()=>{this.setState({showPrivacyModal:true,activeTab:"Privacy"})}}> privacy policy</a> and <a style ={{color:"#000"}} href="#" onClick = {()=>{this.setState({showPrivacyModal:true,activeTab:"Terms"})}}>terms of service</a><br/>
                                     </span>
                                     <div className="position-relative">        
                                         <SweetAlert  
@@ -243,7 +237,14 @@ class SignUp extends React.Component<SignUpProps, SignUpState> {
                     </div>
                 </div>
                         
-                </div>             
+                </div>  
+                
+                <TermAndPrivacy 
+                    showPrivacyModal =  {this.state.showPrivacyModal}
+                    closeModal = {()=>{
+                    this.setState({showPrivacyModal:false});
+                }}/> 
+                  
             </div> 
         );
     }

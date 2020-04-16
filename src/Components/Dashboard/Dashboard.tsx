@@ -91,19 +91,19 @@ componentDidMount(){
     }
     let user:any = localStorage.getItem('user');
     user = JSON.parse(user);
-    if(user.has_subscribed_to_notificatons && user.has_subscribed_to_updates_features){
+    if(user && user.has_subscribed_to_notificatons && user.has_subscribed_to_updates_features){
         this.setState({
             isAccountAndNotification:user.has_subscribed_to_notificatons,
             isUpdatesAndFeatures:user.has_subscribed_to_updates_features,
             unSubscribeAll:false,
         })
-    }else if(user.has_subscribed_to_notificatons || user.has_subscribed_to_updates_features){
+    }else if(user && (user.has_subscribed_to_notificatons || user.has_subscribed_to_updates_features)){
         this.setState({
             isAccountAndNotification:user.has_subscribed_to_notificatons,
             isUpdatesAndFeatures:user.has_subscribed_to_updates_features,
             unSubscribeAll:false,
         })
-    }else if(!(user.has_subscribed_to_notificatons && user.has_subscribed_to_updates_features)){
+    }else if(user && !(user.has_subscribed_to_notificatons && user.has_subscribed_to_updates_features)){
         this.setState({
             isAccountAndNotification:user.has_subscribed_to_notificatons,
             isUpdatesAndFeatures:user.has_subscribed_to_updates_features,

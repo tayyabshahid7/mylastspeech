@@ -30,6 +30,9 @@ class Home extends React.Component<HomeProps, HomeState> {
             // initialise with other settings
             duration: 500
         });
+        let viewportmeta = document.querySelector('meta[name="viewport"]');
+        viewportmeta.setAttribute('content', "initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0");
+        console.log(document.querySelector('meta[name="viewport"]'));
     }
 
     goToSignUp = () =>{

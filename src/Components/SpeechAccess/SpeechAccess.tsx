@@ -5,10 +5,6 @@ import * as url from '../../utils/constant';
 import history from '../../utils/history';
 import TextField from '@material-ui/core/TextField';
 import TermAndPrivacy from '../TermAndPrivacy/TermAndPrivacy';
-
-
-
-
 import { Link } from 'react-router-dom';
 
 interface SpeechAccessProps {
@@ -86,16 +82,11 @@ class SpeechAccess extends React.Component<SpeechAccessProps, SpeechAccessState>
     render() {
         return ( 
         <div id="speechaccess" >
-            {this.state.showPrivacyModal ?
-            
-            <div className="privacy-card">
-                <TermAndPrivacy 
-                    activeTab = {this.state.activeTab}
+            <TermAndPrivacy 
+                    showPrivacyModal = {this.state.showPrivacyModal}
                     closeModal = {()=>{
-                        this.setState({showPrivacyModal:false});
-                }}/>
-            </div>
-            :
+                    this.setState({showPrivacyModal:false});
+            }}/>        
             <div className="container card-container mt-5">
                 <div className="align-items-center d-flex justify-content-center row custom-profile">
                     <div className=" col-lg-6 card-profile">
