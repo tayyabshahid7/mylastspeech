@@ -11,7 +11,15 @@ h1, h2, h3, h4, h5 ,h6{
 }
 //Header-section
 #home{
-    
+    .funeral-text{
+       
+        .btn-funeral{
+            margin-left: 110px;
+        }
+        .para-text{
+            padding-left: 110px;
+        }
+    }
     .cookies-popup{
         color: $black;
         position: absolute;
@@ -636,6 +644,18 @@ h1, h2, h3, h4, h5 ,h6{
         .cookies-popup{
             display: none !important;
         }
+        .funeral-text{
+            .main-text{
+                text-align: left;
+            }
+            .btn-funeral{
+                margin-left: 0;
+            }
+            .para-text{
+                padding-left: 0;
+            }
+        }
+        
        .custom-upper {
         margin-top: 30%;
          width: 100%;
