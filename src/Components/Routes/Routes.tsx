@@ -34,7 +34,7 @@ const Routes: React.FC = () => {
   return (
     
     <Router history={history}>
-      <div id="main-div">
+      <div id="main-div" style={{width:"100%"}}>
         <Navbar profilePic = {profilePic}  isRightBar = {isRightBar} signUpNavBar = {isSignUp} signInNavBar = {isSignIn}/>   
 
         <Route exact path='/' render={(props) =>
