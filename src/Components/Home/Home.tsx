@@ -10,6 +10,7 @@ import ArrowBackLogo from '../../assets/images/arrow_back.svg';
 import HeartLogo from '../../assets/images/Ei-heart.svg';
 import { Link } from 'react-router-dom';
 import history from '../../utils/history';
+import CookiesPolicy from '../CookiesPolicy/CookiesPolicy';
 
 
 interface HomeProps {
@@ -18,12 +19,14 @@ interface HomeProps {
 interface HomeState {
     email:string,
     cookiesAgreed:boolean,
+    showCookiesModal:boolean,
 }
 
 class Home extends React.Component<HomeProps, HomeState> {
     state = {
         email:'',
         cookiesAgreed:false,
+        showCookiesModal:false
     }
     componentDidMount() {
         AOS.init({
@@ -38,6 +41,10 @@ class Home extends React.Component<HomeProps, HomeState> {
             pathname : '/signup',
             state: { email: this.state.email }
         })
+    }
+
+    showCookiesModal = () =>{
+        this.setState({showCookiesModal:true})
     }
 
     render() {
@@ -67,9 +74,10 @@ class Home extends React.Component<HomeProps, HomeState> {
                         </div>
                         <div className={"align-items-baseline cookies-popup  justify-content-center py-2 ".concat(this.state.cookiesAgreed ? "d-none": "d-flex" )}>
                             <p className="mb-0 ml-3 mr-4">
-                                 Our site uses Cookies. <a>Learn more </a>
+                                 Our site uses Cookies.  <a style={{zIndex:9999}} onClick = {this.showCookiesModal.bind(this)}>Learn more </a>
                             </p>
-                             <button onClick = {()=>{this.setState({cookiesAgreed:true})}} className="btn btn-custom d-flex justify-content-center align-items-center">
+                           
+                             <button onClick = {()=>{this.setState({cookiesAgreed:true})}} className="mr-2 btn btn-custom d-flex justify-content-center align-items-center">
                                 Got it                          
                             </button>
                         </div>
@@ -104,11 +112,11 @@ class Home extends React.Component<HomeProps, HomeState> {
                             <div className="col-12 col-md-6 col-lg-6">
                                 <div className="d-flex list-section" data-aos="fade-left">
                                     <img src={ShortTextLogo} />
-                                    <p className="pl-5" >You log in and write your last<br />speech, you can even link your <br />favourite song</p>
+                                    <p className="pl-5" >You log in and write your last speech, you can even link your favourite song</p>
                                 </div>
                                 <div className="d-flex list-section" data-aos="fade-right" >
                                     <img src={EyeLogo} />
-                                    <p className="pl-5">We save them and encrypt them.<br /> You can come back anytime to<br /> update or make amendments as<br /> life goes on.</p>
+                                    <p className="pl-5">We save them and encrypt them.You can come back anytime to update or make amendments as life goes on.</p>
                                 </div>
                                 <div className="image-section-mobile " data-aos="fade-right"
                                     data-aos-offset="300"
@@ -116,11 +124,11 @@ class Home extends React.Component<HomeProps, HomeState> {
                                 </div>
                                 <div className="d-flex list-section" data-aos="fade-left">
                                     <img src={SearchLogo} />
-                                    <p className="pl-5">When you’re gone, we notify your<br /> loved ones about your saved speech <br />and grant them access</p>
+                                    <p className="pl-5">When you’re gone, we notify your loved ones about your saved speech and grant them access</p>
                                 </div>
                                 <div className="d-flex list-section" data-aos="fade-right">
                                     <img src={OfflineLogo} />
-                                    <p className="pl-5">It’s your last chance to tell your <br />friends and family everything<br /> you wanted to but didn’t, Crack a <br />joke or just say thanks for being <br />there…</p>
+                                    <p className="pl-5">It’s your last chance to tell your friends and family everything you wanted to but didn’t, Crack a joke or just say thanks for being there…</p>
                                 </div>
                             </div>
                             <div className="col-12 col-md-6 col-lg-6">
@@ -183,6 +191,11 @@ class Home extends React.Component<HomeProps, HomeState> {
                         </div>
                     </div>
                 </div>
+                <CookiesPolicy 
+                    showCookiesModal =  {this.state.showCookiesModal}
+                    closeModal = {()=>{
+                    this.setState({showCookiesModal:false});
+                }}/> 
             </div>
         );
     }

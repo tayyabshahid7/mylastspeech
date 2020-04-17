@@ -1,6 +1,8 @@
 import React from 'react';
 import './navbar.scss';
-import HeaderLogo from '../../assets/images/message-email.png';
+import HeaderLogo from '../../assets/images/main_logo.png';
+import HeaderLogo2 from '../../assets/images/message-email.png';
+
 import SideNavBar2 from '../SideNavBar/SideNavbar2/SideNavbar2';
 import SideNavBar from '../SideNavBar/SideNavBar';
 import { Link } from 'react-router-dom';
@@ -74,7 +76,9 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
                         <div className="container-fluid p-0">
                             <div className="form-search d-flex align-items-center justify-content-center " >
                                 <Link to="/" >
-                                    <img src={HeaderLogo}/>
+                                    <img className="header-logo"/>
+
+                                    {/* <img src={HeaderLogo}/> */}
                                 </Link>  
                                 {/* <form action="#" className="ml-5">
                                     <div className="input-group rounded-pill  form-inner">
@@ -117,7 +121,7 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
                         <div className="container-fluid p-0">
                             <div className="form-search-login d-flex align-items-center justify-content-center fixed-top" >
                                 <Link to="/">
-                                    <img src={HeaderLogo}/>
+                                    <img src={HeaderLogo2}/>
                                 </Link>                          
                             </div>
                             {!this.state.isSignUp && this.state.isSignIn?
