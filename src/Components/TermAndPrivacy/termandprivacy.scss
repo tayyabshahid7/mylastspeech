@@ -8,6 +8,7 @@
 }
 
 .privacy-modal{
+    z-index: 9999;
     margin: 0;
     max-width: unset !important;
     .modal-content{

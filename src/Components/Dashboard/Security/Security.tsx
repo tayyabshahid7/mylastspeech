@@ -3,6 +3,7 @@ import * as url from '../../../utils/constant';
 import { Collapse, CardBody, Card } from 'reactstrap';
 import axios from 'axios';
 import { css } from "@emotion/core";
+import history from '../../../utils/history';
 import './security.scss';
 
 interface SecurityProps {
@@ -137,7 +138,13 @@ class Security extends React.Component<SecurityProps, SecurityState> {
         
                 })
                 .catch((error) => {
-                    
+                    if(error.response.data.detail === "Invalid token."){
+                        localStorage.removeItem('userToken');
+                        localStorage.removeItem('user');
+                        history.push({
+                            pathname:'/signin',
+                        });
+                    }
                 })
                 .finally( () => {
                 // always executed

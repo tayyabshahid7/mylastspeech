@@ -87,3 +87,28 @@
     }
   }
 }
+
+/* Clearable text inputs */
+.clearable{
+  position: relative;
+  display: inline-block;
+}
+.clearable input[type=text]{
+  padding-right: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.clearable__clear{
+  position: absolute;
+  right: 7px;
+  top: -2px;
+  padding: 0 8px;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  font-size: 30px;
+  color: white;
+}
+.clearable input::-ms-clear {  /* Remove IE default X */
+  display: none;
+}

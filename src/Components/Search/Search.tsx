@@ -108,7 +108,8 @@ class ItemList extends React.Component<ItemListProps, ItemListState> {
                             <button id="button-addon4" type="button" className="btn btn-link text-info"><i className="fa fa-search"></i></button>
                         </div>
                         <input type="search"  onChange={this.handleSearch.bind(this)}  placeholder="Search" aria-describedby="button-addon4" className="form-control bg-none border-0 custom-input" />
-                        
+                        <i className="clearable__clear">&times;</i>
+
                     </div>
                 </form>
                 <div className={"after-section ".concat(!this.state.showSearchDropDown ? " d-none":"")}></div>

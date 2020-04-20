@@ -9,12 +9,12 @@ import spotifyIcon from '../../assets/images/spotifylogo.png';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { ClipLoader } from "react-spinners";
 import SpotifyLogin from 'react-spotify-login';
-
-
-import './dashboard.scss';
+import SweetAlert from 'react-bootstrap-sweetalert';
+import warningIcon from '../../assets/images/warning.svg';
 import Profile from './Profile/Profile';
 import Speech from './Speech/Speech';
 import Security from './Security/Security';
+import './dashboard.scss';
 
 interface DashboardProps {
     changeProfilePic(profile_url:string):any,
@@ -41,6 +41,7 @@ interface DashboardState {
     isAccountAndNotification:boolean,
     isUpdatesAndFeatures:boolean,
     unSubscribeAll:boolean,
+    showDeleteDialog:boolean,
 }
 
 const override = css`
@@ -79,6 +80,7 @@ state = {
     isAccountAndNotification:false,
     isUpdatesAndFeatures:false,
     unSubscribeAll:false,
+    showDeleteDialog:false,
 }
 
 componentDidMount(){
@@ -218,7 +220,13 @@ logout = ()=> {
         history.push("/");
     })
     .catch((error) => {
-            
+        if(error.response.data.detail === "Invalid token."){
+            localStorage.removeItem('userToken');
+            localStorage.removeItem('user');
+            history.push({
+                pathname:'/signin',
+            });
+        }
     })
     .finally(() => {
             // always executed
@@ -241,7 +249,13 @@ deleteAccount = ()=> {
         history.push("/");
     })
     .catch((error) => {
-            
+        if(error.response.data.detail === "Invalid token."){
+            localStorage.removeItem('userToken');
+            localStorage.removeItem('user');
+            history.push({
+                pathname:'/signin',
+            });
+        } 
     })
     .finally(() => {
             // always executed
@@ -273,7 +287,13 @@ saveSong = (songUrl:string,artist_name,song_name,e:any) =>{
         });
     })
     .catch((error) => {
-            
+        if(error.response.data.detail === "Invalid token."){
+            localStorage.removeItem('userToken');
+            localStorage.removeItem('user');
+            history.push({
+                pathname:'/signin',
+            });
+        }
     })
     .finally(() => {
             // always executed
@@ -305,7 +325,13 @@ changeNotificationSettings = (e:any) =>{
         });
     })
     .catch((error) => {
-            
+        if(error.response.data.detail === "Invalid token."){
+            localStorage.removeItem('userToken');
+            localStorage.removeItem('user');
+            history.push({
+                pathname:'/signin',
+            });
+        }
     })
     .finally(() => {
             // always executed
@@ -367,7 +393,7 @@ render() {
                                             <a onClick={this.logout.bind(this)} className="ml-2">Logout<span> - You can sign back in at any time</span></a>
                                         </div>
                                         <div className = "col-12 col-md-10 mt-4 more-card d-flex flex-column align-content-center justify-content-center">
-                                            <a onClick={this.deleteAccount.bind(this)} className="ml-2">Delete<span> - This will remove your account forever</span></a>
+                                            <a onClick={()=>{this.setState({showDeleteDialog:true})}} className="ml-2">Delete<span> - This will remove your account forever</span></a>
                                         </div>
                                         <div className = "col-12 col-md-10 mt-4 more-card d-flex flex-column align-content-center justify-content-center">
                                             <a className="ml-2">Contact us <span> - Get in touch if you need to speak to us about anything</span></a>
@@ -514,7 +540,31 @@ render() {
                     <a style={{minWidth:"130px"}} className={this.state.activeBottomTab === "Speech" ? "active": ""} onClick={this.toggleBottomTabsHandler.bind(this,"Speech")}>My Speech</a>
                     <a className={"ml-4 ".concat(this.state.activeBottomTab === "Settings" ? "active": "" )} onClick={this.toggleBottomTabsHandler.bind(this,"Settings")} >Settings</a>
                 </div>
-        
+                <div className="position-relative">        
+                    <SweetAlert  
+                        title="Warning"
+                        onConfirm={this.deleteAccount.bind(this)}
+                        onCancel={()=>this.setState({showDeleteDialog:false})}
+                        showConfirm = {true}
+                        show = {this.state.showDeleteDialog}
+                        showCancel={true}
+                        customButtons={
+                        <React.Fragment>
+                            <button className = "dialog-btn cancel-btn" onClick={()=>this.setState({showDeleteDialog:false})}>Cancel</button>
+                            <button className = "dialog-btn confirm-btn" onClick={this.deleteAccount.bind(this)}>Confirm</button>
+                        </React.Fragment>
+                        }
+                        >
+                        <div>
+                            <img className="warning-img" src = {warningIcon} />
+                            <p className = "body-text"> 
+                                This will erase your speech and data, this is not
+                                reversible.Are you sure you wish to completely remove your
+                                account from mylastspeech?
+                            </p>
+                        </div>
+                    </SweetAlert>
+                </div> 
             </div>
             
         </div>

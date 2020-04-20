@@ -314,7 +314,24 @@
       text-overflow: ellipsis;
     }
   }
-  
+  .sweet-alert{
+    width: 30em !important;
+    min-height: 35vh !important;
+    h2{
+      margin-left: 9%;
+      margin-top: -30px;
+      text-align: left;
+    }
+    .body-text{
+      color: $white;
+      font-weight: 700;
+      opacity: 0.8;
+      line-height: 1.5;
+      padding: 0 9%;
+      font-size: 16px;
+      text-align: left;
+    }
+  }
 }
 
 

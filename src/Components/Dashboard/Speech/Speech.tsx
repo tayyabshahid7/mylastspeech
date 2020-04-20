@@ -1,8 +1,8 @@
 import React from 'react';
 import * as url from '../../../utils/constant';
-import './speech.scss';
 import axios from 'axios';
-
+import history from '../../../utils/history';
+import './speech.scss';
 
 interface SpeechProps {
     getSpeechData?:any,
@@ -41,7 +41,13 @@ class Speech extends React.Component<SpeechProps, SpeechState> {
             this.props.getSpeechData(response.data);
         })
         .catch((error) => {
-            
+            if(error.response.data.detail === "Invalid token."){
+                localStorage.removeItem('userToken');
+                localStorage.removeItem('user');
+                history.push({
+                    pathname:'/signin',
+                });
+            }
         })
         .finally( () => {
         // always executed
@@ -62,11 +68,16 @@ class Speech extends React.Component<SpeechProps, SpeechState> {
                 config
             )
             .then((response) => {
-                    
-    
+               
             })
             .catch((error) => {
-                    
+                if(error.response.data.detail === "Invalid token."){
+                    localStorage.removeItem('userToken');
+                    localStorage.removeItem('user');
+                    history.push({
+                        pathname:'/signin',
+                    });
+                } 
             })
             .finally(() => {
                     // always executed

@@ -4,8 +4,7 @@ import axios from 'axios';
 import moment from 'moment';
 import TextField from '@material-ui/core/TextField';
 import avatarPic from '../../../assets/images/img_avatar.png';
-
-
+import history from '../../../utils/history';
 import './profile.scss';
 import Item from '../../Search/Item/Item';
 
@@ -83,12 +82,10 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                 let img = response.data[0]['profile_picture'] === null ? avatarPic:
                         response.data[0]['profile_picture'];
                 response.data[0]['profile_picture'] === null ? this.isDefaultPic = true : this.isDefaultPic = false;
-          
                 // let tmp = response.data[0]['first_name'];
                 // let s1 = tmp.charAt(0).toUpperCase() + tmp.slice(1);
                 // tmp = response.data[0]['last_name'];
                 // let s2 = tmp.charAt(0).toUpperCase() + tmp.slice(1);      
-                
                 this.setState({
                     email:response.data[0]['email'],
                     firstName:response.data[0]['first_name'],
@@ -96,11 +93,15 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                     time:new Date(response.data[0]['dob']),
                     profile_picture:img
                 });
- 
-              
             })
             .catch((error) => {
-                
+                if(error.response.data.detail === "Invalid token."){
+                    localStorage.removeItem('userToken');
+                    localStorage.removeItem('user');
+                    history.push({
+                        pathname:'/signin',
+                    });
+                }
             })
             .finally( () => {
             // always executed
@@ -161,7 +162,13 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
             }           
         })
         .catch((error) => {
-          
+            if(error.response.data.detail === "Invalid token."){
+                localStorage.removeItem('userToken');
+                localStorage.removeItem('user');
+                history.push({
+                    pathname:'/signin',
+                });
+            }
         })
         .finally(() => {
             // always executed

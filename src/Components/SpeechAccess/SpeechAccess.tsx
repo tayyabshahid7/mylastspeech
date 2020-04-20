@@ -19,7 +19,7 @@ interface SpeechAccessState {
 }
 
 class SpeechAccess extends React.Component<SpeechAccessProps, SpeechAccessState> {
-
+    user_id = '';
     state = {
         email: '',
         tosChecked:false,
@@ -29,12 +29,15 @@ class SpeechAccess extends React.Component<SpeechAccessProps, SpeechAccessState>
     }
 
     componentDidMount(){
-        let name: string =this.props.location.state['name'];
+        debugger;
+        let params = new URLSearchParams(this.props?.location?.search);
+        let name: string =params.get('name')?.toString();
         let data = {
             name:name,
-            image:this.props.location.state['image'],
-            id:this.props.location.state['id']
+            image:params.get('image')?.toString(),
+            id:params.get('id')?.toString()
         }
+        this.user_id = params.get('id')?.toString();
         this.setState({
             userObj:data,
         });
@@ -44,7 +47,7 @@ class SpeechAccess extends React.Component<SpeechAccessProps, SpeechAccessState>
         e.preventDefault();
         axios.get(url.userAccessCheckUrl, {
                 params: {
-                    user_id:this.props.location.state['id'],
+                    user_id: this.user_id,
                     email:this.state.email
                 }
         })
@@ -104,11 +107,11 @@ class SpeechAccess extends React.Component<SpeechAccessProps, SpeechAccessState>
                                 />
                             </div>
                             <div className = "align-items-center d-flex privacy-link">
-                                <span onClick={(event) => { this.setState({tosChecked: !this.state.tosChecked});}} >
+                                <span style = {{zIndex:999}} onClick={(event) => { this.setState({tosChecked: !this.state.tosChecked});}} >
                                     <input type="checkbox" checked={this.state.tosChecked} />
                                     <span className="checkmark"></span>
                                 </span>
-                                <div className="pl-2 privacy-text"> I agree to
+                                <div  className="pl-2 privacy-text"> I agree to
                                     <a style = {{textDecoration:"underline", color:"black"}} href="#" onClick = {()=>{this.setState({showPrivacyModal:true,activeTab:"Privacy"})}}> privacy policy</a> and <a style = {{textDecoration:"underline",color:"black"}} href="#" onClick = {()=>{this.setState({showPrivacyModal:true,activeTab:"Terms"})}}>terms of service</a><br/>
                                 </div>
                             </div>

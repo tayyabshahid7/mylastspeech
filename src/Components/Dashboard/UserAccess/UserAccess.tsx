@@ -5,6 +5,7 @@ import { css } from "@emotion/core";
 import { ClipLoader } from "react-spinners";
 import './useraccess.scss';
 import tickIcon from '../../../assets/images/success-tick.png';
+import history from '../../../utils/history';
 
 interface UserAccessProps {
 
@@ -76,7 +77,13 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
                 }            
             })
             .catch((error) => {
-                
+                if(error.response.data.detail === "Invalid token."){
+                    localStorage.removeItem('userToken');
+                    localStorage.removeItem('user');
+                    history.push({
+                        pathname:'/signin',
+                    });
+                }
             })
             .finally( () => {
             // always executed
@@ -144,15 +151,21 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
         
                         })
                         .catch((error) => {
-                            debugger;
+                            if(error.response.data.detail === "Invalid token."){
+                                localStorage.removeItem('userToken');
+                                localStorage.removeItem('user');
+                                history.push({
+                                    pathname:'/signin',
+                                });
+                            }
                             this.setState({
                                 isSuccess: false,
                                 errorMsg: "Enter Valid Email Address",
                             });
-                                setTimeout(() => {
-                                this.setState({
-                                    errorMsg: ""
-                                });
+                            setTimeout(() => {
+                            this.setState({
+                                errorMsg: ""
+                            });
                             }, 2000);
                         })
                         .finally(() => {
@@ -228,7 +241,13 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
             }, 2000);
         })
         .catch((error) => {
-            
+            if(error.response.data.detail === "Invalid token."){
+                localStorage.removeItem('userToken');
+                localStorage.removeItem('user');
+                history.push({
+                    pathname:'/signin',
+                });
+            }
         })
         .finally(() => {
 
@@ -281,7 +300,13 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
 
             })
             .catch((error) => {
-                
+                if(error.response.data.detail === "Invalid token."){
+                    localStorage.removeItem('userToken');
+                    localStorage.removeItem('user');
+                    history.push({
+                        pathname:'/signin',
+                    });
+                }
             })
             .finally(() => {
                 // always executed

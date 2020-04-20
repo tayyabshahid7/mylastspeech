@@ -1,6 +1,7 @@
 import React from 'react';
 import avatarPic from '../../../assets/images/img_avatar.png';
 import history from '../../../utils/history';
+import { stringify } from 'querystring';
 
 
 interface ItemProps {
@@ -21,11 +22,12 @@ class Item extends React.Component<ItemProps, ItemState> {
     }
 
     handleOpen = (id:number,name:string,image:string) => {
-      let obj = {id:id, name:name, image:this.getProfilePic(image)}
+      let obj:any = {id:id, name:name, image:this.getProfilePic(image)};
+      
         history.push({
           pathname: '/speechaccess',
-          state:obj,
-      });
+          search: '?name=' + name +'&image=' + this.getProfilePic(image) + '&id=' + id,
+      }); 
     }
 
     getProfilePic(image:any){
