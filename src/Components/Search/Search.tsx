@@ -107,8 +107,8 @@ class ItemList extends React.Component<ItemListProps, ItemListState> {
                         <div className="input-group-prepend border-0">
                             <button id="button-addon4" type="button" className="btn btn-link text-info"><i className="fa fa-search"></i></button>
                         </div>
-                        <input type="search"  onChange={this.handleSearch.bind(this)}  placeholder="Search" aria-describedby="button-addon4" className="form-control bg-none border-0 custom-input" />
-                        <i className="clearable__clear">&times;</i>
+                        <input type="search" value = {this.state.searchText} onChange={this.handleSearch.bind(this)}  placeholder="Search" aria-describedby="button-addon4" className="form-control bg-none border-0 custom-input" />
+                        {this.state.searchText &&  <p style = {{zIndex : 999}} onClick = {()=>{this.setState({searchText:'',showSearchDropDown:false,usersList:[]})}} className="clearable__clear">&times;</p> }
 
                     </div>
                 </form>

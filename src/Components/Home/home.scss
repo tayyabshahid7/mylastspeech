@@ -14,10 +14,10 @@ h1, h2, h3, h4, h5 ,h6{
     .funeral-text{
        
         .btn-funeral{
-            margin-left: 110px;
+            // margin-left: 110px;
         }
         .para-text{
-            padding-left: 110px;
+            // padding-left: 110px;
         }
     }
     .cookies-popup{
@@ -429,7 +429,7 @@ h1, h2, h3, h4, h5 ,h6{
 //Responsiveness
 
 
-@media only screen and (min-device-width : 320px) and (max-device-width : 768px) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) {
 
     .container-fluid{
         padding-right: 0;
@@ -438,7 +438,7 @@ h1, h2, h3, h4, h5 ,h6{
         display: none;
     }
 
-.navbar {
+    .navbar {
     position: relative;
     .fixed-top{
         position: relative;
@@ -463,8 +463,8 @@ h1, h2, h3, h4, h5 ,h6{
                 width: 90%;
             }
         }
+        }
     }
-}
     .banner-section{
         padding-left: 12%;
         margin-top: 35% !important;
@@ -504,7 +504,7 @@ h1, h2, h3, h4, h5 ,h6{
         }
     }
     .work-section{
-        margin-top: 35% !important;
+        margin-top: 115% !important;
         .card-custom{
             position: relative;
             .card-section{
@@ -635,7 +635,7 @@ h1, h2, h3, h4, h5 ,h6{
 @media only screen and (max-device-width : 320px) {
     #home{
         .work-section{
-            margin-top: 40% !important;          
+            margin-top: 140% !important        
         }
     }
 
@@ -643,8 +643,9 @@ h1, h2, h3, h4, h5 ,h6{
 @media only screen and (max-device-width : 768px) {
     #home{
         .cookies-popup{
-            top: 117%;
-            left: 10%;
+            left: 7%;
+            position: fixed;
+            top: 86%;
         }
         .funeral-text{
             .main-text{
@@ -705,7 +706,7 @@ h1, h2, h3, h4, h5 ,h6{
 @media only screen and (max-device-width : 375px) {
     #home{
         .cookies-popup{
-            display: none !important;
+            left: 1.5%;
         }
         .sidebar-image-background{
             &:after{

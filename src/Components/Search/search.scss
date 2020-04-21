@@ -112,3 +112,13 @@
 .clearable input::-ms-clear {  /* Remove IE default X */
   display: none;
 }
+
+::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+::-webkit-search-cancel-button:after {
+  content: 'X';
+  font-style: italic;
+  color: red;
+}

@@ -238,6 +238,7 @@
             & img{
               width: 70px;
               border-radius: 50%;
+              object-fit: cover;
               height: 70px;
             } 
             a{
@@ -337,6 +338,9 @@
 
 @media screen and (max-width:767px){ 
   #dashboard{
+    .tabs-card{
+      height: 450px !important;
+    }
     .custom-submit{
       .btnSubmit{
         right: 5% !important;

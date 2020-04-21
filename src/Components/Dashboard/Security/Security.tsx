@@ -192,7 +192,12 @@ class Security extends React.Component<SecurityProps, SecurityState> {
                 </div>
                 
                 <div className="mt-3 add-btn position-relative">
-                    <a onClick = {this.addSecurityQuestion.bind(this)}>+ Save</a>
+                        <button 
+                        onClick = {this.addSecurityQuestion.bind(this)}
+                        className="save-btn">
+                            Save
+                        </button>
+                    {/* <a onClick = {this.addSecurityQuestion.bind(this)}>+ Save</a> */}
                 </div>
                 <br/>
                 {this.state.questionsList && this.state.questionsList.length>0 && this.state.questionsList.map((item:any,i:number)=>

@@ -98,7 +98,7 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
                             <div className="collapse navbar-collapse item-navbar justify-content-end" id="navbarsExampleDefault">
                                {token!="" && user ? 
                                <Link to="/dashboard">
-                                    <img style={{width:"50px",borderRadius:"50%"}} src = {this.state.img}/>
+                                    <img  style={{height:"50px",objectFit:"cover",width:"50px",borderRadius:"50%"}} src = {this.state.img}/>
                                </Link>
                                :
                                  <ul className="navbar-nav ml-auto mr-5">

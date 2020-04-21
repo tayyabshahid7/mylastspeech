@@ -38,6 +38,14 @@
     textarea{
         padding: 13px !important;
     }
+    .save-btn{
+        background: transparent linear-gradient(180deg,$Heliotrope,$Studio) 0 0 no-repeat padding-box;
+        box-shadow: 0 3px 12px rgba(0,0,0,.16);
+        border-radius: 8px;
+        padding: 7px 20px;
+        border: none;
+        color: $white;
+      }
 }
 
 @media screen and (max-width:767px){

@@ -77,8 +77,7 @@ class SideNavBar extends React.Component<SideNavBarProps,SideNavBarState> {
                       {user ?
                       <div className="align-items-center d-flex profile-pic">
                         <Link to="/dashboard">
-                          <img style={{width:"50px",borderRadius:"50%"}} src = {this.props.img}/>
-                          
+                          <img style={{height:"50px",objectFit:"cover",width:"50px",borderRadius:"50%"}} src = {this.props.img}/>
                         </Link>
                           <p
                           style={{ color: "white", flexDirection: "column" }}

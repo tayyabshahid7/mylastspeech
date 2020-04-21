@@ -252,6 +252,7 @@ deleteAccount = ()=> {
         if(error.response.data.detail === "Invalid token."){
             localStorage.removeItem('userToken');
             localStorage.removeItem('user');
+            this.props.changeProfilePic('');
             history.push({
                 pathname:'/signin',
             });
@@ -358,7 +359,7 @@ render() {
             loading={this.state.isSuccess}
             />
         </div>
-        <div className="container login-container tab-page mt-5 px-4 px-md-0">
+        <div className="container login-container tab-page mt-5 px-4 pt-5 pt-md-0 px-md-0">
             <div className="position-relative align-items-center d-flex justify-content-center row tabs-section custom-login">               
                 <div className=" col-12 col-lg-10 login-form mb-5 pb-5 tabs-card">
                     {this.state.activeBottomTab == "Settings"&&
@@ -429,7 +430,7 @@ render() {
                             <button onClick={()=>{this.setState({openSpotifyModal:true})}} className="btn btnSubmit" type="submit">
                                 <img className = "mr-2" src = {spotifyIcon}></img>
                                 {/* <span>+ Spotify Song</span> */}
-                                <span>{this.state.artistName && this.state.songName ? <p style = {{lineHeight:"1"}} className="m-0 song-text">{this.state.artistName }<p className="m-0 song-text">{this.state.songName}</p></p> : '+ Spotify Song'}</span>
+                                <span>{this.state.artistName && this.state.songName ? <p style = {{lineHeight:"1"}} className="m-0 song-text font-weight-bold text-left">{this.state.artistName }<p className="mt-1 text-left font-weight-normal m-0 song-text">{this.state.songName}</p></p> : '+ Spotify Song'}</span>
                             </button>   
                             
                         </div> 
@@ -449,7 +450,10 @@ render() {
                                                 <li  className="list-song align-content-center align-items-center d-flex my-2 pb-2"
                                                     onClick = {this.saveSong.bind(this,item.album.external_urls.spotify,item.album['artists'][0].name,item.album.name)}>
                                                     <img src={item.album['images'][0].url}></img>
-                                                    <p className="ml-4 pb-0 mb-0">{item.album.name}</p>
+                                                    <div>
+                                                       <p className="ml-4 pb-0 mb-0">{item.album.name}</p>
+                                                       <p className="ml-4 pb-0 mb-0" style={{fontWeight:"normal",fontSize:"14px"}}>{item.album['artists'][0].name}</p>
+                                                    </div>
                                                 </li>
                                             )
                                         })}
