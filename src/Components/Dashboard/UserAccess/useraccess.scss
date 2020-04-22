@@ -7,7 +7,7 @@
         right: -35px;
         top: 13px;
         font-size: 25px;
-        color: #733EB4;
+        color: $Studio;
         cursor: pointer;
     }
     .success-tick-icon{
@@ -16,6 +16,11 @@
         left: auto;
         right: 10px;
         top: 30%;
+    }
+    .collapse-plus{
+        font-size: 23px;
+        color: $Studio;
+        cursor: pointer;
     }
 }
 @media screen and (max-width:767px){

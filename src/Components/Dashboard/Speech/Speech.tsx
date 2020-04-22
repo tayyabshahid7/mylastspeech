@@ -41,7 +41,7 @@ class Speech extends React.Component<SpeechProps, SpeechState> {
             this.props.getSpeechData(response.data);
         })
         .catch((error) => {
-            if(error.response.data.detail === "Invalid token."){
+            if(error.response && error.response?.data.detail === "Invalid token."){
                 localStorage.removeItem('userToken');
                 localStorage.removeItem('user');
                 history.push({
@@ -71,7 +71,7 @@ class Speech extends React.Component<SpeechProps, SpeechState> {
                
             })
             .catch((error) => {
-                if(error.response.data.detail === "Invalid token."){
+                if(error.response && error.response?.data.detail === "Invalid token."){
                     localStorage.removeItem('userToken');
                     localStorage.removeItem('user');
                     history.push({

@@ -34,7 +34,7 @@ class SpeechAccess extends React.Component<SpeechAccessProps, SpeechAccessState>
         let name: string =params.get('name')?.toString();
         let data = {
             name:name,
-            image:params.get('image')?.toString(),
+            image:localStorage.getItem('searched_user_img'),
             id:params.get('id')?.toString()
         }
         this.user_id = params.get('id')?.toString();
@@ -85,12 +85,8 @@ class SpeechAccess extends React.Component<SpeechAccessProps, SpeechAccessState>
     render() {
         return ( 
         <div id="speechaccess" >
-            <TermAndPrivacy 
-                    showPrivacyModal = {this.state.showPrivacyModal}
-                    closeModal = {()=>{
-                    this.setState({showPrivacyModal:false});
-            }}/>        
-            <div className="container card-container mt-5">
+           
+            <div className="card-container container mb-md-0 mb-5 pt-5 mt-5 pt-md-0">
                 <div className="align-items-center d-flex justify-content-center row custom-profile">
                     <div className=" col-lg-6 card-profile">
                         <form onSubmit = {this.checkUserSpeechAccess.bind(this)}>
@@ -112,7 +108,7 @@ class SpeechAccess extends React.Component<SpeechAccessProps, SpeechAccessState>
                                     <span className="checkmark"></span>
                                 </span>
                                 <div  className="pl-2 privacy-text"> I agree to
-                                    <a style = {{textDecoration:"underline", color:"black"}} href="#" onClick = {()=>{this.setState({showPrivacyModal:true,activeTab:"Privacy"})}}> privacy policy</a> and <a style = {{textDecoration:"underline",color:"black"}} href="#" onClick = {()=>{this.setState({showPrivacyModal:true,activeTab:"Terms"})}}>terms of service</a><br/>
+                                    <a style = {{cursor:"pointer",textDecoration:"underline", color:"black"}} href="#" onClick = {()=>{this.setState({showPrivacyModal:true,activeTab:"Privacy"})}}> privacy policy</a> and <a style = {{cursor:"pointer",textDecoration:"underline",color:"black"}} href="#" onClick = {()=>{this.setState({showPrivacyModal:true,activeTab:"Terms"})}}>terms of service</a><br/>
                                 </div>
                             </div>
                             
@@ -121,6 +117,11 @@ class SpeechAccess extends React.Component<SpeechAccessProps, SpeechAccessState>
                                 </button>
                             </div>
                         </form>
+                        <TermAndPrivacy 
+                                showPrivacyModal = {this.state.showPrivacyModal}
+                                closeModal = {()=>{
+                                this.setState({showPrivacyModal:false});
+                        }}/>    
                     </div>
                 </div>
             </div>

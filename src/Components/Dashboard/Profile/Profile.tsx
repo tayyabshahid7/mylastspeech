@@ -95,7 +95,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                 });
             })
             .catch((error) => {
-                if(error.response.data.detail === "Invalid token."){
+                if(error.response && error.response?.data.detail === "Invalid token."){
                     localStorage.removeItem('userToken');
                     localStorage.removeItem('user');
                     history.push({
@@ -162,7 +162,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
             }           
         })
         .catch((error) => {
-            if(error.response.data.detail === "Invalid token."){
+            if(error.response && error.response?.data?.detail === "Invalid token."){
                 localStorage.removeItem('userToken');
                 localStorage.removeItem('user');
                 history.push({

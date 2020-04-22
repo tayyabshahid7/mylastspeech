@@ -28,12 +28,18 @@ componentWillReceiveProps(){
     });
 }
 
+toggleModal = () => {
+    this.setState({
+        showPrivacyModal:false,
+    });
+    this.props.closeModal();
+}
 
 render() {
 
  return (
     <div id="termandprivacy" className="mb-5">
-        <Modal className = {"privacy-modal"} isOpen={this.state.showPrivacyModal} toggle={()=>{}}>
+        <Modal className = {"privacy-modal"} isOpen={this.state.showPrivacyModal} toggle={this.toggleModal.bind(this)}>
                 <ModalHeader  toggle={()=>{this.setState({showPrivacyModal:false,})}}>
                     
                 </ModalHeader>
@@ -415,11 +421,11 @@ render() {
                         explanation of what action will be taken, to the extent required 
                         under applicable data protection law.
                         </p>
-    </div>
+                </div>
                     
                 </ModalBody> 
                 <ModalFooter>
-                    <button onClick = {()=>{this.setState({showPrivacyModal:false,})}} className="btn update-btn">
+                    <button onClick = {this.toggleModal.bind(this)} className="btn update-btn">
                         Close
                     </button>    
                 </ModalFooter>                      

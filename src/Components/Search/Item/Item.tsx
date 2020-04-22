@@ -23,11 +23,11 @@ class Item extends React.Component<ItemProps, ItemState> {
 
     handleOpen = (id:number,name:string,image:string) => {
       let obj:any = {id:id, name:name, image:this.getProfilePic(image)};
-      
-        history.push({
-          pathname: '/speechaccess',
-          search: '?name=' + name +'&image=' + this.getProfilePic(image) + '&id=' + id,
-      }); 
+      localStorage.setItem('searched_user_img',this.getProfilePic(image))
+      history.push({
+        pathname: '/speechaccess',
+        search: '?name=' + name +  '&id=' + id,
+    }); 
     }
 
     getProfilePic(image:any){

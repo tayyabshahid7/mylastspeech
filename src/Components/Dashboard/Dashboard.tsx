@@ -246,6 +246,7 @@ deleteAccount = ()=> {
     )
     .then((response) => {
         localStorage.removeItem('userToken');
+        this.props.changeProfilePic('');
         history.push("/");
     })
     .catch((error) => {

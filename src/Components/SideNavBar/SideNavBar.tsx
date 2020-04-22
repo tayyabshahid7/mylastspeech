@@ -74,30 +74,10 @@ class SideNavBar extends React.Component<SideNavBarProps,SideNavBarState> {
                     &times;
                   </a>
                   <div>
-                      {user ?
-                      <div className="align-items-center d-flex profile-pic">
-                        <Link to="/dashboard">
-                          <img style={{height:"50px",objectFit:"cover",width:"50px",borderRadius:"50%"}} src = {this.props.img}/>
-                        </Link>
-                          <p
-                          style={{ color: "white", flexDirection: "column" }}
-                          className="d-flex m-0 p-0"
-                        >
-                          Tayyab
-                          <Link to = "/dashboard" style={{cursor:"pointer",fontSize: 12, whiteSpace: "pre", padding: 0, opacity: "0.8" }}>
-                            View Speech
-                          </Link>
-                        </p>
-                      </div>
-                       
-                      :
                       <div>
                           <Link className="link-design" to="/signup">Sign up </Link>
                           <Link className="link-design" style={{borderTop:0}} to="/signin">Login</Link>
                       </div>
-                
-                      }
-                    
                   </div>
                   <div className="position-absolute" style={{bottom:0}}>
                       <a onClick={this.mailTo.bind(this)}>Contact Us </a>

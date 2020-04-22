@@ -40,7 +40,7 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
         isSuccess: false,
         successMsg: '',
         errorMsg:'',
-        btnText:'Add one more'
+        btnText:'Add another'
     }
 
     componentDidMount(){
@@ -77,7 +77,7 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
                 }            
             })
             .catch((error) => {
-                if(error.response.data.detail === "Invalid token."){
+                if(error.response && error.response?.data.detail === "Invalid token."){
                     localStorage.removeItem('userToken');
                     localStorage.removeItem('user');
                     history.push({
@@ -151,7 +151,7 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
         
                         })
                         .catch((error) => {
-                            if(error.response.data.detail === "Invalid token."){
+                            if(error.response && error.response?.data.detail === "Invalid token."){
                                 localStorage.removeItem('userToken');
                                 localStorage.removeItem('user');
                                 history.push({
@@ -241,7 +241,7 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
             }, 2000);
         })
         .catch((error) => {
-            if(error.response.data.detail === "Invalid token."){
+            if(error.response && error.response?.data.detail === "Invalid token."){
                 localStorage.removeItem('userToken');
                 localStorage.removeItem('user');
                 history.push({
@@ -300,7 +300,7 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
 
             })
             .catch((error) => {
-                if(error.response.data.detail === "Invalid token."){
+                if(error.response && error.response?.data.detail === "Invalid token."){
                     localStorage.removeItem('userToken');
                     localStorage.removeItem('user');
                     history.push({
@@ -367,7 +367,10 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
                     <div className="add-btn d-flex flex-column mt-4">
                         <span className="response-msg">{this.state.successMsg}</span>
                         <span className="response-msg error">{this.state.errorMsg}</span>
-                        <span><a onClick={this.addField.bind(this)}>+ {this.state.btnText}</a></span>
+                        <span className = "align-items-center d-flex">
+                            <i className="fa fa-plus-circle collapse-plus" aria-hidden="true"></i>
+                            <a className = "pl-2" onClick={this.addField.bind(this)}> {this.state.btnText}</a>
+                        </span>
                     </div>
                 </div>
 

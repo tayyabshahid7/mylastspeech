@@ -24,12 +24,19 @@ componentWillReceiveProps(nextProps:any){
     });
 }
 
+toggleModal = () => {
+    this.setState({
+        showCookiesModal:false,
+    });
+    this.props.closeModal();
+}
+
 
 render() {
 
  return (
     <div id="cookies-policy" className="mb-5">
-        <Modal className = {"cookies-policy-modal"} isOpen={this.state.showCookiesModal} toggle={()=>{}}>
+        <Modal className = {"cookies-policy-modal"} isOpen={this.state.showCookiesModal} toggle={this.toggleModal.bind(this)}>
                 <ModalHeader  toggle={()=>{this.setState({showCookiesModal:false,})}}>
                 </ModalHeader>
                 <ModalBody className="col-12 pt-0 m-auto pl-0">
@@ -68,7 +75,7 @@ render() {
                     </div>
                 </ModalBody> 
                 <ModalFooter>
-                    <button onClick = {()=>{this.setState({showCookiesModal:false,})}} className="btn update-btn">
+                    <button onClick = {this.toggleModal.bind(this)} className="btn update-btn">
                         Close
                     </button>    
                 </ModalFooter>                      

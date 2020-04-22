@@ -23,7 +23,7 @@ h1, h2, h3, h4, h5 ,h6{
     .cookies-popup{
         top:87%;
         color: $black;
-        position: absolute;
+        position: fixed;
         background: transparent linear-gradient(180deg, $Wild-Sand 0%, $Mercury 100%) 0% 0% no-repeat padding-box;
         left: 1%;
         border-radius: 9px;
@@ -44,19 +44,19 @@ h1, h2, h3, h4, h5 ,h6{
             margin-left: 0;
             color: $white;
         }
-        &:after{
-            content: "";
-            height: 30px;
-            background: transparent linear-gradient(180deg,#f4f4f4e3 0%, #e3e3e3eb 100%) 0% 0% no-repeat padding-box;
-            width: 50px;
-            position: absolute;
-            -webkit-clip-path: polygon(75% 53%, 44% 0, 100% 0);
-            clip-path: polygon(75% 53%, 44% 0, 100% 0);
-            opacity: 1;
-            top: 99.5%;
-            right: 7%;
+        // &:after{
+        //     content: "";
+        //     height: 30px;
+        //     background: transparent linear-gradient(180deg,#f4f4f4e3 0%, #e3e3e3eb 100%) 0% 0% no-repeat padding-box;
+        //     width: 50px;
+        //     position: absolute;
+        //     -webkit-clip-path: polygon(75% 53%, 44% 0, 100% 0);
+        //     clip-path: polygon(75% 53%, 44% 0, 100% 0);
+        //     opacity: 1;
+        //     top: 99.5%;
+        //     right: 7%;
         
-        }
+        // }
     }
     .banner-section{
         height: 55vh;
