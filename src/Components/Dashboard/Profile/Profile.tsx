@@ -256,7 +256,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                 <input type="file" ref={this.inputOpenFileRef} className = "d-none"  onChange={this.handleImageChange.bind(this)}/>
                 &nbsp; &nbsp; &nbsp; &nbsp; <a className="change-profile-pic" onClick = {()=>{this.inputOpenFileRef.current.click()}} >{!this.isDefaultPic ? "Update": "Change"}</a>
             </div>
-            <form className="col-12 col-md-10 form-group mb-0">
+            <form className="col-12 col-md-10 pl-0 form-group mb-0">
 
                 <div className="profile-section pb-3 position-relative">
                 {!this.state.isNameChange ? 

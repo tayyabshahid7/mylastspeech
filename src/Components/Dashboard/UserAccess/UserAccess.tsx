@@ -344,7 +344,7 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
                 </div>
                 <div className="col-12 col-md-10 pl-0 pl-md-3 pr-4 pr-md-0 tabcontent pt-md-4">
                     <p className="d-md-block d-none">Add the email address’s of people you wish to allow access your speech</p>
-                    <div className="col-12 col-md-11 pl-md-0 form-group mb-0">
+                    <div className="col-12 col-md-11 pl-0 form-group mb-0">
                         {this.state.emailList.map((item:any,i:number)=>(
                             <div key ={i} className="position-relative">
                                 <input type="email"

@@ -170,7 +170,7 @@ class Security extends React.Component<SecurityProps, SecurityState> {
         <div id = "security" className="col-12 col-md-10 pl-0 pl-md-3 pr-0 tabcontent second-content pt-4">
             <p className="pt-0 d-none d-md-block">Add questions that we will ask your loved ones when <br/>they try to access your speech</p>
             <form>
-                <div className="pr-0 col-12 col-md-11 pl-md-0 form-group position-relative ">
+                <div className="pr-0 col-12 col-md-11 pl-0 form-group position-relative ">
                     <textarea style = {{resize:"none"}}
                         onChange={(event) => {this.setState({question: event.target.value})}}
                         className={"form-control ".concat(this.state.isValidated ? "" : "validate")}
@@ -201,9 +201,9 @@ class Security extends React.Component<SecurityProps, SecurityState> {
                 </div>
                 <br/>
                 {this.state.questionsList && this.state.questionsList.length>0 && this.state.questionsList.map((item:any,i:number)=>
-                        <div key={i} className = "mt-3 col-12 pl-md-0 pr-md-0 col-md-11 form-group position-relative mobile-screen ">
-                             <p className={"mb-0 question-answer form-control custom-input "}>
-                                        {item.question}
+                        <div key={i} className = "mt-3 col-12 pl-0 pr-md-0 col-md-11 form-group position-relative mobile-screen ">
+                             <p  className={"mb-0 question-answer form-control custom-input "}>
+                                    {item.question}
                              </p>
                          
                             {item.showAnswer &&
