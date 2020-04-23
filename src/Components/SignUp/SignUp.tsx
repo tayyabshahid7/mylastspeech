@@ -143,7 +143,7 @@ class SignUp extends React.Component<SignUpProps, SignUpState> {
                 </div>
                 <div className={"container-fluid login-container sign-up ".concat(this.state.formSubmitted?"screen-overlay":"")}>
                     <div className="row background-images">
-                            <div className="col-12 col-md-6 left-section position-relative">
+                            <div className="col-12 col-md-4 left-section position-relative">
                                 <div className="col-3 first-div"></div>
                                 <div className="col-3 second-div"></div>
                             </div>

@@ -7,7 +7,7 @@
     
       .btnSubmit{
         position: absolute;
-        top: 85%;
+        top: 80%;
         padding: 10px 15px;
         background: $Studio;
         left: auto;
@@ -144,7 +144,7 @@
               padding-left: 17px;
             }
            .input-inner-btn{
-              color: $Studio;
+              color: $Purple;
               position: absolute;
               right: 12px;
               text-decoration: none;
@@ -162,7 +162,7 @@
           .add-btn{
   
             & a{
-              color: $Studio;
+              color: $Purple;
               position: relative;
               font-weight: 600;
               padding-left: 4%;
@@ -381,7 +381,20 @@
 }
 
 
+@media screen and (max-width:424px) and (min-width:320px){
+  #dashboard{
+    .more-section{
+      .more-card{
+       a{
+         span{
+           font-size: 12px  !important;
+         }
+       }
+      }
+     }
+  }
 
+}
 .preferences-modal{
   margin: 0;
   max-width: unset !important;

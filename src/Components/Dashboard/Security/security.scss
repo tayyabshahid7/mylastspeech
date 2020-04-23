@@ -48,6 +48,14 @@
       }
 }
 
+@media screen and (max-width:766px) and (min-device-width:320px){
+    #security{
+        .button-save{
+            padding-left: 15px;
+        }
+    }
+}
+
 @media screen and (max-width:767px){
     #security{
         .input-inner-btn{
@@ -55,7 +63,7 @@
             margin-left: 7px !important;
         }
         .question-answer{
-            word-break: break-all;
+            word-break: keep-all;
             padding:1em !important;
             padding-right: unset;
         }

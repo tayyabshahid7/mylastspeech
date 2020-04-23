@@ -139,4 +139,10 @@
   }
     
   }
- 
+ @media screen and (max-width:767px){
+  .sign-up {
+    .signup-dialog{
+     z-index: 999;
+    }
+  }
+ }

@@ -367,10 +367,10 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
                     <div className="add-btn d-flex flex-column mt-4">
                         <span className="response-msg">{this.state.successMsg}</span>
                         <span className="response-msg error">{this.state.errorMsg}</span>
-                        <span className = "align-items-center d-flex">
+                        <div className = "align-content-center align-items-center d-flex button-save">
                             <i className="fa fa-plus-circle collapse-plus" aria-hidden="true"></i>
                             <a className = "pl-2" onClick={this.addField.bind(this)}> {this.state.btnText}</a>
-                        </span>
+                        </div>
                     </div>
                 </div>
 

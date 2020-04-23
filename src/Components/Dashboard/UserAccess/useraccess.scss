@@ -7,7 +7,7 @@
         right: -35px;
         top: 13px;
         font-size: 25px;
-        color: $Studio;
+        color: $Purple;
         cursor: pointer;
     }
     .success-tick-icon{
@@ -19,10 +19,20 @@
     }
     .collapse-plus{
         font-size: 23px;
-        color: $Studio;
+        color: $Purple;
         cursor: pointer;
     }
+  
 }
+
+@media screen and (max-width:766px) and (min-device-width:320px){
+    #user-access{
+        .button-save{
+            padding-left: 15px;
+        }
+    }
+}
+
 @media screen and (max-width:767px){
     #user-access {
       border-top: 1.5px solid $Alto;

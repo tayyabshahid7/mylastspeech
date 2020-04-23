@@ -360,8 +360,8 @@ render() {
             loading={this.state.isSuccess}
             />
         </div>
-        <div className="container login-container tab-page mt-5 px-4 pt-5 pt-md-0 px-md-0">
-            <div className="position-relative align-items-center d-flex justify-content-center row tabs-section custom-login">               
+        <div className="container login-container tab-page mt-5 px-4 pt-3 pt-md-0 px-md-0">
+            <div  className="position-relative align-items-center d-flex justify-content-center row tabs-section custom-login">               
                 <div className=" col-12 col-lg-10 login-form mb-5 pb-5 tabs-card">
                     {this.state.activeBottomTab == "Settings"&&
                         <div className = "d-flex flex-md-row flex-column">
@@ -370,7 +370,9 @@ render() {
                                     <button className={"pt-4 pb-4 tablinks ".concat(this.state.activeTab === "accesspage" ? 'active': '')} onClick={this.toggleActiveTab.bind(this,'accesspage')} id="defaultOpen">Who can access my page</button>
                                     <button className={"pb-4 tablinks ".concat(this.state.activeTab === "security" ? 'active': '')} onClick={this.toggleActiveTab.bind(this,'security')} >Security questions</button>
                                     <button className={"pb-4 tablinks ".concat(this.state.activeTab === "profile" ? 'active': '')} onClick={this.toggleActiveTab.bind(this,'profile')} >Profile</button>
-                                  
+                                    {this.state.activeBottomTab == "Settings" && 
+                                        <img onClick={this.toggleActiveTab.bind(this,'more')} className = "d-md-none ellipsis-icon" src = {ellipsisIcon} />
+                                    }
                                 </div>
                                
                             </div>
@@ -403,6 +405,7 @@ render() {
                                         <div className = "col-12 col-md-10 mt-4 more-card d-flex flex-column align-content-center justify-content-center">
                                             <a onClick = {()=>{this.setState({emailPreferencesModal:true})}} className="ml-2">Notification settings </a>
                                         </div>
+                                        
                                     </div>
                                 </div>
                                 :null    
@@ -463,9 +466,7 @@ render() {
                         </Modal>
                    </div> 
                 }    
-                {this.state.activeBottomTab == "Settings" && 
-                    <img onClick={this.toggleActiveTab.bind(this,'more')} className = "d-md-none ellipsis-icon" src = {ellipsisIcon} />
-                }
+              
                 {this.state.emailPreferencesModal && 
                 <Modal className = {"preferences-modal"} isOpen={this.state.emailPreferencesModal} toggle={()=>{}}>
                         <ModalHeader  toggle={()=>{this.setState({emailPreferencesModal:false,})}}>

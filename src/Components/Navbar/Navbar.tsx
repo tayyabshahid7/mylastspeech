@@ -19,6 +19,7 @@ interface NavbarState {
     isSignUp:boolean,
     isSignIn:boolean,
     img:string,
+    zIndex:number,
 }
 
 
@@ -29,6 +30,7 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
         isSignUp:false,
         isSignIn:false,
         img:'',
+        zIndex:0
     }
 
     componentDidMount(){
@@ -72,7 +74,7 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
         // let img = user && user['profile_picture'] ?this.setState({img:user['profile_picture']}):this.setState({img:avatarImg});
         return (
                 !this.state.isSignUp && !this.state.isSignIn?
-                    <nav className="navbar navbar-dark navbar-expand-md pl-0 pt-0 fixed-top">
+                    <nav style = {{zIndex:this.state.zIndex}} className="navbar navbar-dark navbar-expand-md pl-0 pt-0 fixed-top">
                         <div className="container-fluid p-0">
                             <div className="form-search d-flex align-items-center justify-content-center " >
                                 <Link to="/" >
@@ -123,7 +125,7 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
                     </nav>  
                     
                 :
-                    <nav className="navbar navbar-dark navbar-expand-md pl-0 pt-0">
+                    <nav style = {{zIndex:this.state.zIndex}} className="navbar navbar-dark navbar-expand-md pl-0 pt-0">
                         <div className="container-fluid p-0">
                             <div className="form-search-login d-flex align-items-center justify-content-center fixed-top" >
                                 <Link to="/">
@@ -148,10 +150,14 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
                                 </div>
                                 :
                                 this.state.isSignUp && this.state.isSignIn && this.props.isRightBar ?
-                                <div className="collapse navbar-collapse user-dash" id="navbarsExampleDefault">
-                                    <ul className="navbar-nav ml-auto mr-5 mt-3">
+                                <div className="collapse d-block user-dash" id="navbarsExampleDefault">
+                                    <ul className="navbar-nav ml-auto mr-md-5 mt-md-3 mt-2 mr-4">
                                         <li className="nav-item ">
-                                             <SideNavBar2/>
+                                             <SideNavBar2 onQuestionMarkClick = {()=>{
+                                                 this.setState({
+                                                     zIndex:1
+                                                 })
+                                             }}/>
                                         </li>
                                     </ul>
                                 </div>

@@ -191,7 +191,7 @@ class Security extends React.Component<SecurityProps, SecurityState> {
 
                 </div>
                 
-                <div className="mt-3 add-btn position-relative">
+                <div className="mt-3 add-btn position-relative button-save">
                         <button 
                         onClick = {this.addSecurityQuestion.bind(this)}
                         className="save-btn">

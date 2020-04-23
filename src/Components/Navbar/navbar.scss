@@ -82,6 +82,9 @@
         position: relative;
         .fixed-top{
             position: fixed;
+            background: none;
+            width: 5em;
+            height: 70px;
         }
         .navbar-collapse{
             .navbar-nav{

@@ -2,7 +2,16 @@ import React from "react";
 import "./sidenavbar2.scss";
 import Hambuger from '../../assets/images/hamburger.svg';
 
-class SideNavBar2 extends React.Component {
+interface SideNavBar2Props {
+  location?:any,
+  onQuestionMarkClick?:any,
+}
+interface SideNavBar2State {
+ 
+}
+
+
+class SideNavBar2 extends React.Component<SideNavBar2Props, SideNavBar2State> {
   state = {
     state: {
       showNav: false
@@ -10,8 +19,9 @@ class SideNavBar2 extends React.Component {
   }
 
   openNavClick = (e:any) => {
-    e.preventDefault()
-    this.openNav()
+    e.preventDefault();
+    this.openNav();
+    this.props.onQuestionMarkClick();
   }
 
   closeNavClick = (e:any)  => {

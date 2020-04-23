@@ -152,7 +152,7 @@ class SignIn extends React.Component<SignInProps, SignInState> {
                         </div>
                 
                     <div className="align-items-center d-flex justify-content-center row custom-login login-dailog">
-                        <div className="  col-lg-6 login-form">
+                        <div className="col-lg-4 login-form">
                             <form onSubmit={this.submitForm.bind(this)}>
                                 <div className={"form-group mt-3 ".concat(!this.state.isValidated && this.state.email ==="" ? 'validate':'' )}>
                                     <TextField  
