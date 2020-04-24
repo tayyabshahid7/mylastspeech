@@ -8,6 +8,7 @@ interface ItemProps {
     name: string,
     image: any,
     id:string,
+    isLastElement:boolean,
 }
 interface ItemState {
     isOpened:boolean,
@@ -39,8 +40,9 @@ class Item extends React.Component<ItemProps, ItemState> {
     }
 
     render(){     
+      let style  = !this.props.isLastElement ? {borderBottom: "1px solid #ddd"} : {borderBottom:'none'};
         return (
-            <li className="item" onClick={this.handleOpen.bind(this,this.props.id,this.props.name,this.props.image)}>
+            <li style = {style} className="item" onClick={this.handleOpen.bind(this,this.props.id,this.props.name,this.props.image)}>
                 <img className="item-image" src={this.getProfilePic(this.props.image) } width="60px" height="60px" />
                 <div className="item-info">
                 <div className="item-name ml-4"> {this.props.name} </div>

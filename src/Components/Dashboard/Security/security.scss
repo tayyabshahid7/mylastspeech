@@ -2,6 +2,9 @@
 @import "../../../assets/variables/variable";
 
 #security{
+     /* width */
+      
+ 
     .line{
         background: $Alto;
         height: 1px;
@@ -69,3 +72,23 @@
         }
     }
 }
+::-webkit-scrollbar {
+    width: 4px !important;
+   }
+
+   /* Track */
+   ::-webkit-scrollbar-track {
+     background: none    !important;
+     border-radius: 10px;
+     border-top-left-radius: 0;
+     border-bottom-left-radius: 0;
+   }
+   
+   /* Handle */
+   ::-webkit-scrollbar-thumb {
+     background: none !important;
+     border-radius: 10px;
+     border-radius: 10px;
+     border-top-left-radius: 0;
+     border-bottom-left-radius: 0;
+   }

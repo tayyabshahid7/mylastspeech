@@ -99,6 +99,7 @@ class ItemList extends React.Component<ItemListProps, ItemListState> {
 
 
     render() {
+      let that = this;
         return (
             <div  id="search">
               <div className="items" >               
@@ -116,12 +117,13 @@ class ItemList extends React.Component<ItemListProps, ItemListState> {
                 <ul ref={this.scrollMenuRef} className={"items-list".concat(!this.state.showSearchDropDown ? " d-none":"")}>
                   
                     {
-                      this.state.usersList.length>0 ? this.state.usersList.map(function(el:any) {
+                      this.state.usersList.length>0 ? this.state.usersList.map(function(el:any,i:number) {
                            return <Item
                                key={el.id}
                                name={el.first_name +' '+ el.last_name}
                                image={el.profile_picture}
                                id = {el.id}
+                               isLastElement = {i === that.state.usersList.length - 1}
                            />;
                        })
                        :

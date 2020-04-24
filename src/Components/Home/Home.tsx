@@ -4,7 +4,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import ShortTextLogo from '../../assets/images/short_text.svg';
 import SearchLogo from '../../assets/images/search-large.svg';
-import EyeLogo from '../../assets/images/remove_red_eye.svg';
+import LockLogo from '../../assets/images/lock.svg';
 import OfflineLogo from '../../assets/images/offline_pin.svg';
 import ArrowBackLogo from '../../assets/images/arrow_back.svg';
 import HeartLogo from '../../assets/images/Ei-heart.svg';
@@ -53,16 +53,24 @@ class Home extends React.Component<HomeProps, HomeState> {
         let token = localStorage.getItem('userToken');
         return (
             <div id="home" style={{minWidth:"100% !important",overflow:"hidden",width: "100% !important"}}>
-                <div className="banner-section container d-flex justify-content-center mb-0">
-                    <div className="text-center custom-banner funeral-text">
-                        <h1 className="mt-5 main-text text-left pt-md-2" data-aos="fade-up" >What would you <br/> say at your <br/> funeral?</h1>
-                        <p className="para-text d-flex pb-4  text-left text-light">Turn a sad occasion into a celebration of life. <br/> Take a few moments to Write your last speech now.</p>
-                        {token!="" && user ? '':  
-                        <button className="btn-funeral btn btn-custom d-flex justify-content-center align-items-center">
-                              <Link  to="/signup">Create a Free Account</Link>
-                            <i className="pl-2 fa fa-long-arrow-right" aria-hidden="true"></i>
-                        </button>
-                        }
+                <div className="banner-section container d-flex  justify-content-center mb-0">
+                    <div className="text-center custom-banner funeral-text pt-md-5 mt-md-5">
+                        <div data-aos="fade-up" className = "d-flex flex-column flex-md-row align-content-center align-items-center col-12  justify-content-between">
+                            <div className = "col-md-6 col-12">
+                                <h1 className="main-text text-md-right"  >What would you <br/> say at your <br/> funeral?</h1>
+                                </div>
+                            <div  className = "col-md-6 col-12">
+                                <p className="d-flex mb-0 para-text pb-3 text-left text-light">Turn a sad occasion into a celebration of life. Take a few moments to start your last speech now.</p>
+                                {token!="" && user ? '':  
+                                <button  className="btn-funeral btn btn-custom d-flex justify-content-center align-items-center">
+                                    <Link  to="/signup">Create a Free Account</Link>
+                                    <i className="pl-2 fa fa-long-arrow-right" aria-hidden="true"></i>
+                                </button>
+                                }
+                            </div >
+                            
+                        </div>
+                     
                     </div>
                 </div>
 
@@ -88,66 +96,64 @@ class Home extends React.Component<HomeProps, HomeState> {
                     <div className="container work-section">
                         <div className="row">
                             <div className="col-12 d-flex justify-content-center ml-md-4">
-                                <div className="col-2 hidden-mobile"></div>
-                                <div className="col-12 col-md-4 card-custom" data-aos="zoom-in">
-                                    <div className="card-section">
-                                        <h2>How it works…</h2>
-                                        <p>My last speech allows you to write your own speech at your funeral that can be unlocked by your loved ones when you pass.</p>
+                                <div className="col-12 card-custom" >
+                                    <div className="card-section pt-5">
+                                        <h2 data-aos="zoom-in">How it works</h2>
+                                        {/* <p>My last speech allows you to write your own speech at your funeral that can be unlocked by your loved ones when you pass.</p> */}
                                     </div>
-
-                                </div>
-                                <div className="col-3 hidden-mobile"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div className="container-fluid sidebar-image position-relative" data-aos="fade-right"
-                    data-aos-offset="300"
-                    data-aos-easing="ease-in-sine">
-                    <div className="col-8 sidebar-image-background"></div>
-                    <div className="container side-by-side pt-5">
-                        <div className="row d-flex align-items-center ">
-                            <div className="col-12 col-md-6 col-lg-6">
-                                <div className="d-flex list-section" data-aos="fade-left">
-                                    <img src={ShortTextLogo} />
-                                    <p className="pl-5" >You log in and write your last speech, you can even link your favourite song</p>
-                                </div>
-                                <div className="d-flex list-section" data-aos="fade-right" >
-                                    <img src={EyeLogo} />
-                                    <p className="pl-5">We save them and encrypt them.You can come back anytime to update or make amendments as life goes on.</p>
-                                </div>
-                                <div className="image-section-mobile " data-aos="fade-right"
-                                    data-aos-offset="300"
-                                    data-aos-easing="ease-in-sine">
-                                </div>
-                                <div className="d-flex list-section" data-aos="fade-left">
-                                    <img src={SearchLogo} />
-                                    <p className="pl-5">When you’re gone, we notify your loved ones about your saved speech and grant them access</p>
-                                </div>
-                                <div className="d-flex list-section" data-aos="fade-right">
-                                    <img src={OfflineLogo} />
-                                    <p className="pl-5">It’s your last chance to tell your friends and family everything you wanted to but didn’t, Crack a joke or just say thanks for being there…</p>
-                                </div>
-                            </div>
-                            <div className="col-12 col-md-6 col-lg-6">
-                                <div className="image-section" data-aos="fade-right"
-                                    data-aos-offset="300"
-                                    data-aos-easing="ease-in-sine">
+                                    <div className="container-fluid sidebar-image position-relative" data-aos="fade-right"
+                                        data-aos-offset="300"
+                                        data-aos-easing="ease-in-sine">
+                                        {/* <div className="col-8 sidebar-image-background"></div> */}
+                                        <div className="container side-by-side pt-5">
+                                            <div className="row d-flex align-items-center ">
+                                                <div className="col-12 col-lg-6 col-md-6 ml-auto mr-auto">
+                                                    <div className="px-md-4 d-flex list-section" data-aos="fade-left">
+                                                        <img src={ShortTextLogo} />
+                                                        <p className="pl-md-5 pl-3" >You log in and write a few words about your life, you can even link your favourite song</p>
+                                                    </div>
+                                                    <div className="px-md-4 d-flex list-section" data-aos="fade-right" >
+                                                        <img src={LockLogo} />
+                                                        <p className="pl-md-5 pl-3">We lock it up and keep it safe for you. You can come back anytime to update or make changes as life goes on.</p>
+                                                    </div>
+                                                    {/* <div className="px-4 image-section-mobile " data-aos="fade-right"
+                                                        data-aos-offset="300"
+                                                        data-aos-easing="ease-in-sine">
+                                                    </div> */}
+                                                    <div className="px-md-4 d-flex list-section" data-aos="fade-left">
+                                                        <img src={SearchLogo} />
+                                                        <p className="pl-md-5 pl-3">When you’re gone, we notify your loved ones about your saved speech and grant them access so it can be read at your funeral service.</p>
+                                                    </div>
+                                                    <div className="px-md-4 d-flex list-section" data-aos="fade-right">
+                                                        <img src={OfflineLogo} />
+                                                        <p className="pl-md-5 pl-3">It’s your last chance to tell your friends and family everything you wanted to but didn’t, crack a joke, tell a story, or just say thanks to everyone for being there…</p>
+                                                    </div>
+                                                </div>
+                                                {/* <div className="col-12 col-md-6 col-lg-6">
+                                                    <div className="image-section" data-aos="fade-right"
+                                                        data-aos-offset="300"
+                                                        data-aos-easing="ease-in-sine">
+                                                    </div>
+                                                </div> */}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
+              
 
 
                 <div className="align-items-center container-fluid custom-upper d-flex" data-aos="zoom-in-up">
                     <div className="container upper-footer">
                         <div className="d-flex justify-content-around pl-5 row custom-upper-footer">
-                            <div className="col-12 col-md-9">
+                            <div className="col-12 col-md-11">
                                 <div className="col-12 ml-3 newsletter p-5 position-relative" data-aos="zoom-out-up">
-                                    <h2 >Create your last speech now</h2>
+                                    <h2 >Get Started</h2>
                                     <p >Nobody knows when our time is up, and all the things you wanted to <br />
                                         do or say could be lost forever, don’t let that happen, write a few words<br />
                                         now, and spread some love on your final day</p>
@@ -183,12 +189,12 @@ class Home extends React.Component<HomeProps, HomeState> {
                                 </ul>
                             </div>
                         </div>
-                        <div className="col-12 col-md-6">
+                        {/* <div className="col-12 col-md-6">
                             <div className="align-items-baseline copyright-section d-flex justify-content-end">
                                 <h5>My Last Speech…</h5>
                                 <p>Company info TBC TM tbc</p>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <CookiesPolicy 

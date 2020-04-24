@@ -132,9 +132,8 @@ class PasswordResetConfirm extends React.Component<PasswordResetConfirmProps, Pa
                         </div>
                 
                     <div className="align-items-center d-flex justify-content-center row custom-login login-dailog">
-                        <div className="pt-3 col-lg-6 login-form">
+                        <div className="pt-3 col-lg-5 login-form">
                             <form onSubmit={this.submitForm.bind(this)}>
-                                
                                 <div className={"form-group ".concat(!this.state.isValidated && this.state.password1 ==="" ? 'validate':'' )}>
                                     <TextField 
                                         onChange={(event) => {this.setState({password1: event.target.value})}} 

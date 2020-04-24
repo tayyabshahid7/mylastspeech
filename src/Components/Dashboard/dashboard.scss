@@ -7,7 +7,7 @@
     
       .btnSubmit{
         position: absolute;
-        top: 80%;
+        top: 83%;
         padding: 10px 15px;
         background: $Studio;
         left: auto;
@@ -344,6 +344,7 @@
     .custom-submit{
       .btnSubmit{
         right: 5% !important;
+        top:80%;
         p{
           line-height: 1;
           text-overflow: ellipsis;
