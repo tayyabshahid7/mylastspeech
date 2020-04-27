@@ -81,7 +81,7 @@ class Security extends React.Component<SecurityProps, SecurityState> {
     }
 
     deleteSecurityQuestion =(item:any,e:any)=>{
-        axios.delete(url.secuirtyQuestionUrl+ item.id,{
+        axios.delete(url.secuirtyQuestionUrl+ item.id +'/',{
             headers: { Authorization: `Token ${localStorage.getItem('userToken')}`},
             }         
         )

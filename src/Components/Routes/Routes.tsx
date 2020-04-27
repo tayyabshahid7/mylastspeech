@@ -28,6 +28,7 @@ const Routes: React.FC = () => {
   const [isSignUp,setIsSignUp] = useState(false);
   const [isSignIn,setIsSignIn] = useState(false);
   const [isRightBar,setIsRightBar] = useState(true);
+  const [zIndex,setzIndex] = useState(0);
   const [profilePic,setProfilePic] = useState('');
  
 
@@ -35,13 +36,14 @@ const Routes: React.FC = () => {
     
     <Router history={history}>
       <div id="main-div" style={{width:"100%"}}>
-        <Navbar profilePic = {profilePic}  isRightBar = {isRightBar} signUpNavBar = {isSignUp} signInNavBar = {isSignIn}/>   
+        <Navbar zIndexProp = {zIndex} profilePic = {profilePic}  isRightBar = {isRightBar} signUpNavBar = {isSignUp} signInNavBar = {isSignIn}/>   
 
         <Route exact path='/' render={(props) =>
             {
               const loggedIn = localStorage.getItem("userToken");            
                 setIsSignUp(false);
                 setIsSignIn(false);
+                setzIndex(1);
                 return(
                   <Home  {...props}/>
                 )
@@ -52,6 +54,7 @@ const Routes: React.FC = () => {
         <Route exact path='/signup' render={(props) =>
             {
               const loggedIn = localStorage.getItem("userToken");
+              setzIndex(0);                
               if(loggedIn && loggedIn.length>0){
                 setIsSignUp(true);
                 setIsSignIn(true);
@@ -73,6 +76,7 @@ const Routes: React.FC = () => {
 
         <Route exact path='/success' render={(props) =>
             {
+              setzIndex(0); 
               setIsSignUp(true);
               setIsSignIn(true);
               setIsRightBar(false);
@@ -85,6 +89,7 @@ const Routes: React.FC = () => {
 
         <Route exact path='/speechaccess' render={(props) =>
             {
+              setzIndex(0); 
               setIsSignUp(true);
               setIsSignIn(true);
               setIsRightBar(false);
@@ -98,6 +103,7 @@ const Routes: React.FC = () => {
       
       <Route exact path='/access-next' render={(props) =>
             {
+              setzIndex(0); 
               setIsSignUp(true);
               setIsSignIn(true);
               setIsRightBar(false);
@@ -110,6 +116,7 @@ const Routes: React.FC = () => {
 
       <Route exact path='/userspeech' render={(props) =>
             {
+              setzIndex(0); 
               setIsSignUp(true);
               setIsSignIn(true);
               setIsRightBar(false);
@@ -123,6 +130,7 @@ const Routes: React.FC = () => {
 
       <Route exact path='/payment' render={(props) =>
             {
+              setzIndex(0); 
               setIsSignUp(true);
               setIsSignIn(true);
               setIsRightBar(false);
@@ -135,6 +143,7 @@ const Routes: React.FC = () => {
 
         <Route exact path='/dashboard' render={(props) =>
             {
+              setzIndex(0); 
               const loggedIn = localStorage.getItem("userToken");
               if(loggedIn && loggedIn.length>0){
                 setIsSignUp(true);
@@ -158,6 +167,7 @@ const Routes: React.FC = () => {
 
         <Route exact path='/resend' render={(props) =>
             {
+              setzIndex(0); 
               const loggedIn = localStorage.getItem("userToken");
               if(loggedIn && loggedIn.length>0){
                 setIsSignUp(true);
@@ -180,6 +190,7 @@ const Routes: React.FC = () => {
 
         <Route exact path='/signin' render={(props) =>
             {
+              setzIndex(0); 
               const loggedIn = localStorage.getItem("userToken");
               if(loggedIn && loggedIn.length>0){
                 setIsSignUp(true);
@@ -203,6 +214,7 @@ const Routes: React.FC = () => {
         />  
         <Route exact path='/passwordreset' render={(props) =>
             {
+              setzIndex(0); 
               const loggedIn = localStorage.getItem("userToken");
               if(loggedIn && loggedIn.length>0){
                 setIsSignUp(true);
@@ -224,6 +236,7 @@ const Routes: React.FC = () => {
         />  
          <Route exact path='/password_reset_confirm' render={(props) =>
             {
+              setzIndex(0); 
               const loggedIn = localStorage.getItem("userToken");
               if(loggedIn && loggedIn.length>0){
                 setIsSignUp(true);

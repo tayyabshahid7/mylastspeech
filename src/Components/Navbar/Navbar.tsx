@@ -14,6 +14,7 @@ interface NavbarProps {
     signInNavBar:boolean,
     isRightBar:boolean,
     profilePic:string,
+    zIndexProp?:number,
 }
 interface NavbarState {
     isSignUp:boolean,
@@ -55,6 +56,10 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
             }   
         }
         
+        this.setState({
+            zIndex:nextProps?.zIndexProp
+        });
+
         this.setState({
             isSignUp:nextProps.signUpNavBar,
             isSignIn:nextProps.signInNavBar,
