@@ -230,6 +230,7 @@ h1, h2, h3, h4, h5 ,h6{
         .side-by-side {
             .list-section {
                 margin-bottom: 12%;
+                margin-top:25% ;
     
                 & img {
                     width: 40px;
@@ -237,6 +238,7 @@ h1, h2, h3, h4, h5 ,h6{
                 }
     
                 & p {
+                    
                     color: $white;
                     font-size: 1.2rem;
                     letter-spacing: 0;
@@ -517,7 +519,7 @@ h1, h2, h3, h4, h5 ,h6{
         }
     }
     .work-section{
-        margin-top: 115% !important;
+        margin-top: 60% !important;
         .card-custom{
             position: relative;
             .card-section{

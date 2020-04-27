@@ -31,7 +31,7 @@ class Home extends React.Component<HomeProps, HomeState> {
     componentDidMount() {
         AOS.init({
             // initialise with other settings
-            duration: 500
+            duration: 1000
         });
       
     }
@@ -108,7 +108,7 @@ class Home extends React.Component<HomeProps, HomeState> {
                                         <div className="container side-by-side pt-5">
                                             <div className="row d-flex align-items-center ">
                                                 <div className="col-12 col-lg-6 col-md-6 ml-auto mr-auto">
-                                                    <div className="px-md-4 d-flex list-section" data-aos="fade-left">
+                                                    <div className="px-md-4 d-flex list-section mt-0" data-aos="fade-right">
                                                         <img src={ShortTextLogo} />
                                                         <p className="pl-md-5 pl-3" >You log in and write a few words about your life, you can even link your favourite song</p>
                                                     </div>
@@ -116,11 +116,7 @@ class Home extends React.Component<HomeProps, HomeState> {
                                                         <img src={LockLogo} />
                                                         <p className="pl-md-5 pl-3">We lock it up and keep it safe for you. You can come back anytime to update or make changes as life goes on.</p>
                                                     </div>
-                                                    {/* <div className="px-4 image-section-mobile " data-aos="fade-right"
-                                                        data-aos-offset="300"
-                                                        data-aos-easing="ease-in-sine">
-                                                    </div> */}
-                                                    <div className="px-md-4 d-flex list-section" data-aos="fade-left">
+                                                    <div className="px-md-4 d-flex list-section" data-aos="fade-right">
                                                         <img src={SearchLogo} />
                                                         <p className="pl-md-5 pl-3">When you’re gone, we notify your loved ones about your saved speech and grant them access so it can be read at your funeral service.</p>
                                                     </div>

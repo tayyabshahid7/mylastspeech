@@ -19,6 +19,7 @@
       padding: 7px 20px;
       margin-top: 3%;
       border: none;
+      outline: none;
       color: $white;
     }
     .cancel-btn{
@@ -50,6 +51,8 @@
 @media screen and (max-width:767px){
   #profile {
     border-top: 1.5px solid $Alto;
-
+    .form-group{
+      padding-right: 0;
+    }
   }
 }
