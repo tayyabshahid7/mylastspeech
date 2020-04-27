@@ -277,9 +277,10 @@
       }
     }
     .upper-list{
-      cursor: pointer;
+      cursor: pointer !important;
       & a{
           color: $light-gray;
+          cursor: pointer !important;
           padding: 0 3%;
       }
       .active{

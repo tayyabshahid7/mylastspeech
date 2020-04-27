@@ -81,7 +81,9 @@ const Routes: React.FC = () => {
               setIsSignIn(true);
               setIsRightBar(false);
               return(
-                <Success  {...props}/>
+                <Success  {...props} changeProfilePic = {(profile_url:string)=>{
+                  profile_url && setProfilePic(profile_url)
+                  }}/>
               )
           }
           }
