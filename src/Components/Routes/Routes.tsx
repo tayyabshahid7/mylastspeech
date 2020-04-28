@@ -192,7 +192,7 @@ const Routes: React.FC = () => {
 
         <Route exact path='/signin' render={(props) =>
             {
-              setzIndex(0); 
+              setzIndex(1); 
               const loggedIn = localStorage.getItem("userToken");
               if(loggedIn && loggedIn.length>0){
                 setIsSignUp(true);

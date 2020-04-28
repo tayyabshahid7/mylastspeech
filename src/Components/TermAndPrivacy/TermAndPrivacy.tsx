@@ -22,12 +22,11 @@ state = {
     showPrivacyModal:false,
 }
 
-componentWillReceiveProps(){
+componentWillReceiveProps(nextProps:any){
     this.setState({
-        showPrivacyModal:this.props.showPrivacyModal
+        showPrivacyModal:nextProps.showPrivacyModal
     });
 }
-
 toggleModal = () => {
     this.setState({
         showPrivacyModal:false,

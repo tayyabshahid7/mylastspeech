@@ -163,7 +163,7 @@ class Success extends React.Component<SuccessProps, SuccessState> {
                                     <TextField  
                                     onChange={(event) => {this.setState({email: event.target.value})}} 
                                     value = {this.state.email} 
-                                    className = 'outlined-input-custom' 
+                                    className = {this.state.email ? 'outlined-input-custom active' : 'outlined-input-custom'} 
                                     label="Email" 
                                     type="email"
                                     variant="outlined" 

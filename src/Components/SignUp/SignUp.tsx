@@ -160,7 +160,7 @@ class SignUp extends React.Component<SignUpProps, SignUpState> {
                                     <TextField 
                                         onChange={(event) => {this.setState({firstName: event.target.value});}}
                                         value = {this.state.firstName} 
-                                        className = 'outlined-input-custom' 
+                                        className = {(this.state.firstName && this.state.firstName.length > 0 )? 'outlined-input-custom active' : 'outlined-input-custom' }
                                         label="Enter Your First Name" 
                                         variant="outlined" 
                                     />
@@ -169,7 +169,7 @@ class SignUp extends React.Component<SignUpProps, SignUpState> {
                                     <TextField 
                                         onChange={(event) => {this.setState({lastName: event.target.value});}}
                                         value = {this.state.lastName} 
-                                        className = 'outlined-input-custom' 
+                                        className = {(this.state.lastName && this.state.lastName.length > 0) ? 'outlined-input-custom active' : 'outlined-input-custom' }
                                         label="Enter Your Last Name" 
                                         variant="outlined" 
                                     />
@@ -178,7 +178,7 @@ class SignUp extends React.Component<SignUpProps, SignUpState> {
                                      <TextField 
                                         onChange={(event) => {this.setState({email: event.target.value});}}
                                         value = {this.state.email} 
-                                        className = 'outlined-input-custom' 
+                                        className = {(this.state.email && this.state.email.length > 0) ? 'outlined-input-custom active' : 'outlined-input-custom' }
                                         label="Email" 
                                         type="email"
                                         variant="outlined" 
@@ -189,7 +189,7 @@ class SignUp extends React.Component<SignUpProps, SignUpState> {
                                     <TextField 
                                         onChange={(event) => {this.setState({password1: event.target.value});}}
                                         value = {this.state.password1} 
-                                        className = 'outlined-input-custom' 
+                                        className =  {(this.state.password1 && this.state.password1.length > 0 ) ? 'outlined-input-custom active' : 'outlined-input-custom' }
                                         label="Password" 
                                         type="password"
                                         variant="outlined" 
@@ -199,7 +199,7 @@ class SignUp extends React.Component<SignUpProps, SignUpState> {
                                     <TextField 
                                         onChange={(event) => {this.setState({password2: event.target.value});}}
                                         value = {this.state.password2} 
-                                        className = 'outlined-input-custom' 
+                                        className = {(this.state.password2 && this.state.password2.length > 0 )   ? 'outlined-input-custom active' : 'outlined-input-custom' }
                                         label="Repeat Password" 
                                         type="password"
                                         variant="outlined" 

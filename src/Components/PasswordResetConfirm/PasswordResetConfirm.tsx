@@ -138,7 +138,7 @@ class PasswordResetConfirm extends React.Component<PasswordResetConfirmProps, Pa
                                     <TextField 
                                         onChange={(event) => {this.setState({password1: event.target.value})}} 
                                         value = {this.state.password1} 
-                                        className = 'outlined-input-custom' 
+                                        className = {this.state.password1 ? 'outlined-input-custom active' : 'outlined-input-custom'} 
                                         label="New Password" 
                                         type="password"   
                                         variant="outlined" 
@@ -149,7 +149,7 @@ class PasswordResetConfirm extends React.Component<PasswordResetConfirmProps, Pa
                                      <TextField 
                                         onChange={(event) => {this.setState({password2: event.target.value})}} 
                                         value = {this.state.password2} 
-                                        className = 'outlined-input-custom' 
+                                        className = {this.state.password2 ? 'outlined-input-custom active' : 'outlined-input-custom'} 
                                         label="Confirm New Password" 
                                         type="password"   
                                         variant="outlined" 

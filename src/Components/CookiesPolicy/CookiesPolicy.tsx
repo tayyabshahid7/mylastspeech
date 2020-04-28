@@ -39,17 +39,17 @@ render() {
         <Modal className = {"cookies-policy-modal"} isOpen={this.state.showCookiesModal} toggle={this.toggleModal.bind(this)}>
                 <ModalHeader  toggle={()=>{this.setState({showCookiesModal:false,})}}>
                 </ModalHeader>
-                <ModalBody className="col-12 pt-0 m-auto pl-0">
-                    <div className="col-md-8 col-12 ml-auto pl-0">
+                <ModalBody className="col-12 pt-0">
+                    <div className="col-12">
                         <span className="font-weight-bold px-4">Cookies Policy</span>
-                        <p className="mb-0 para-text  col-md-9 col-12  pt-3 px-4">
+                        <p className="mb-0 para-text col-12  pt-3 px-4">
                             We use cookies for cookie consent - namely to store your preferences
                             in relation to the use of cookies more generally (the cookie used for this purpose is: TMW_Accept_Cookies).
                         </p>
-                        <p className="mb-0 para-text  col-md-9 col-12 px-4">
+                        <p className="mb-0 para-text col-12 px-4">
                             Our service providers use cookies and those cookies may be stored on your computer when you visit our website.
                         </p>
-                        <p className="mb-0 para-text  col-md-9 col-12 px-4">
+                        <p className="mb-0 para-text col-12 px-4">
                             We use Google Analytics to analyse the use of our website. 
                             Google Analytics gathers information about website use by 
                             means of cookies. The information gathered relating to our 
@@ -59,16 +59,16 @@ render() {
                             are: __utmz, __utma, __utmc, __cfduid, uvc, _ga, _gid, _gat, 
                             AMP_TOKEN, _gac_).
                         </p>
-                        <p className="mb-0 para-text  col-md-9 col-12  px-4">
+                        <p className="mb-0 para-text col-12  px-4">
                             Most browsers allow you to refuse to accept cookies and to delete 
                             cookies. The methods for doing so vary from browser to browser, 
                             and from version to version.
                         </p>
-                        <p className="mb-0 para-text  col-md-9 col-12  px-4">
+                        <p className="mb-0 para-text col-12  px-4">
                             Blocking all cookies will have a negative impact upon the 
                             usability of many websites.
                         </p>
-                        <p className="mb-0 para-text  col-md-9 col-12 px-4">
+                        <p className="mb-0 para-text col-12 px-4">
                             If you block cookies, you will not be able to use all the 
                             features on our website.
                         </p>

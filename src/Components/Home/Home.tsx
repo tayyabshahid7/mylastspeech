@@ -8,6 +8,7 @@ import LockLogo from '../../assets/images/lock.svg';
 import OfflineLogo from '../../assets/images/offline_pin.svg';
 import ArrowBackLogo from '../../assets/images/arrow_back.svg';
 import HeartLogo from '../../assets/images/Ei-heart.svg';
+import TermAndPrivacy from '../TermAndPrivacy/TermAndPrivacy';
 import { Link } from 'react-router-dom';
 import history from '../../utils/history';
 import CookiesPolicy from '../CookiesPolicy/CookiesPolicy';
@@ -20,13 +21,15 @@ interface HomeState {
     email:string,
     cookiesAgreed:boolean,
     showCookiesModal:boolean,
+    showPrivacyModal:boolean,
 }
 
 class Home extends React.Component<HomeProps, HomeState> {
     state = {
         email:'',
         cookiesAgreed:false,
-        showCookiesModal:false
+        showCookiesModal:false,
+        showPrivacyModal:false,
     }
     componentDidMount() {
         AOS.init({
@@ -47,6 +50,10 @@ class Home extends React.Component<HomeProps, HomeState> {
         this.setState({showCookiesModal:true})
     }
 
+    mailTo=(e:any)=>{
+        window.location.href = `mailto:brad@acidtestdesign.com`;
+    }
+
     render() {
         let user = localStorage.getItem('user');
         user = user && JSON.parse(user);
@@ -62,9 +69,9 @@ class Home extends React.Component<HomeProps, HomeState> {
                             <div  className = "col-md-6 col-12">
                                 <p className="d-flex mb-0 para-text pb-3 text-left text-light">Turn a sad occasion into a celebration of life. Take a few moments to start your last speech now.</p>
                                 {token!="" && user ? '':  
-                                <button  className="btn-funeral btn btn-custom d-flex justify-content-center align-items-center">
+                                <button  className="position-relative btn-funeral btn btn-custom d-flex justify-content-center align-items-center">
                                     <Link  to="/signup">Create a Free Account</Link>
-                                    <i className="pl-2 fa fa-long-arrow-right" aria-hidden="true"></i>
+                                    <i className="pl-2 fa fa-long-arrow-right custom-animate" aria-hidden="true"></i>
                                 </button>
                                 }
                             </div >
@@ -179,9 +186,9 @@ class Home extends React.Component<HomeProps, HomeState> {
                         <div className="col-12 col-md-6">
                             <div className="footer-list">
                                 <ul className="d-flex mb-0">
-                                    <li><a href="#"> Legal</a></li>
-                                    <li><a href="#">Contact us</a></li>
-                                    <li><a href="#">About</a></li>
+                                    <li><a onClick = {(e)=>{e.preventDefault();this.setState({showPrivacyModal:true})}} href="#"> Legal</a></li>
+                                    <li><a onClick={this.mailTo.bind(this)}>Contact us</a></li>
+                                    {/* <li><a href="#">About</a></li> */}
                                 </ul>
                             </div>
                         </div>
@@ -197,7 +204,12 @@ class Home extends React.Component<HomeProps, HomeState> {
                     showCookiesModal =  {this.state.showCookiesModal}
                     closeModal = {()=>{
                     this.setState({showCookiesModal:false});
-                }}/> 
+                }}/>
+                <TermAndPrivacy 
+                    showPrivacyModal =  {this.state.showPrivacyModal}
+                    closeModal = {()=>{
+                    this.setState({showPrivacyModal:false});
+                }}/>  
             </div>
         );
     }

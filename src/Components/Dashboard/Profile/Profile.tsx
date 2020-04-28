@@ -273,7 +273,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                                 <TextField
                                 onChange={(event) => {this.setState({firstName: event.target.value})}} 
                                 value = {this.state.firstName} 
-                                className = 'outlined-input-custom' 
+                                className = {this.state.firstName ? 'outlined-input-custom active' : 'outlined-input-custom'} 
                                 label="First Name" 
                                 variant="outlined" 
                                 />
@@ -283,7 +283,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                                 <TextField 
                                 onChange={(event) => {this.setState({lastName: event.target.value})}} 
                                 value = {this.state.lastName} 
-                                className = 'outlined-input-custom' 
+                                className = {this.state.lastName ? 'outlined-input-custom active' : 'outlined-input-custom'} 
                                 label="Last Name" 
                                 variant="outlined" 
                                 />
@@ -326,7 +326,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                                 <TextField  
                                 onChange={(event) => {this.setState({email: event.target.value})}} 
                                 value = {this.state.email} 
-                                className = 'outlined-input-custom' 
+                                className = {this.state.email ? 'outlined-input-custom active' : 'outlined-input-custom'} 
                                 label="Email" 
                                 type="email"
                                 variant="outlined" 
@@ -369,7 +369,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                                 <TextField 
                                     onChange={(event) => {this.setState({old_password: event.target.value})}} 
                                     value={this.state.old_password}
-                                    className = 'outlined-input-custom' 
+                                    className = {this.state.old_password ? 'outlined-input-custom active' : 'outlined-input-custom'} 
                                     label="Old Password" 
                                     type={this.state.showOldPassword ? "text" : "password"}  
                                     variant="outlined" 
@@ -383,7 +383,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                                 <TextField 
                                     onChange={(event) => {this.setState({new_password1: event.target.value})}} 
                                     value={this.state.new_password1} 
-                                    className = 'outlined-input-custom' 
+                                    className = {this.state.new_password1 ? 'outlined-input-custom active' : 'outlined-input-custom'} 
                                     label="New Password" 
                                     type={this.state.showNewPass1 ? "text" : "password"} 
                                     variant="outlined" 
@@ -397,7 +397,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                                 <TextField 
                                     onChange={(event) => {this.setState({new_password2: event.target.value})}} 
                                     value={this.state.new_password2}
-                                    className = 'outlined-input-custom' 
+                                    className =  {this.state.new_password2 ? 'outlined-input-custom active' : 'outlined-input-custom'} 
                                     label="Re-enter Password" 
                                     type={this.state.showNewPass2 ? "text" : "password"} 
                                     variant="outlined" 

@@ -101,7 +101,7 @@ body {
 {
   &.Mui-focused{
     .MuiOutlinedInput-notchedOutline{
-      border-color: #3f51b5 !important;
+      border-color: #733EB4 !important;
       border-width: 2px;
     }
   }
@@ -110,9 +110,14 @@ body {
 .outlined-input-custom{
   background-color: #fff;
   background-clip: padding-box;
-  opacity: 0.4;
+  opacity: 0.5;
   width: 100%;
+  &.active{
+    opacity: 1;
+  }
 }
+
+
 .MuiInputLabel-outlined.MuiInputLabel-shrink{
   color:$Studio !important;
   font-weight: 600;
