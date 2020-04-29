@@ -70,8 +70,10 @@ class Home extends React.Component<HomeProps, HomeState> {
                                 <p className="d-flex mb-0 para-text pb-3 text-left text-light">Turn a sad occasion into a celebration of life. Take a few moments to start your last speech now.</p>
                                 {token!="" && user ? '':  
                                 <button  className="position-relative btn-funeral btn btn-custom d-flex justify-content-center align-items-center">
-                                    <Link  to="/signup">Create a Free Account</Link>
-                                    <i className="pl-2 fa fa-long-arrow-right custom-animate" aria-hidden="true"></i>
+                                    <Link  to="/signup">Create a Free Account  
+                                     <i className="pl-2 fa fa-long-arrow-right custom-animate" aria-hidden="true"></i>
+                                    </Link>
+                                  
                                 </button>
                                 }
                             </div >

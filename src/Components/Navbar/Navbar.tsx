@@ -108,7 +108,7 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
                                     <SideNavBar img = {this.state.img} />
                                 }
                             </li>
-                            <div className="collapse navbar-collapse item-navbar justify-content-end" id="navbarsExampleDefault">
+                            <div className="collapse navbar-collapse mr-0 ml-auto item-navbar justify-content-end" id="navbarsExampleDefault">
                                {token!="" && user ? 
                                <Link to="/dashboard">
                                     <img  style={{height:"50px",objectFit:"cover",width:"50px",borderRadius:"50%"}} src = {this.state.img}/>

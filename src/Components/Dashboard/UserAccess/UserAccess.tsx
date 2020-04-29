@@ -349,7 +349,7 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
                             <div key ={i} className="position-relative">
                                 <input type="email"
                                 onChange={this.setEmail.bind(this,i)}
-                                className={"form-control ".concat(this.state.isValidated ? "" : "validate")}
+                                className={"form-control ".concat((this.state.isValidated ? "" : "validate")||(item.isChanged  && "input-text-color"))}
                                 placeholder={"Email ".concat((i+1).toLocaleString())}
                                 value={item.email}
                                 onKeyDown={this._handleKeyDown.bind(this,item)}

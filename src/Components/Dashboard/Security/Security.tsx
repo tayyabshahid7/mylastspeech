@@ -173,7 +173,7 @@ class Security extends React.Component<SecurityProps, SecurityState> {
                 <div className="pr-0 col-12 col-md-11 pl-0 form-group position-relative ">
                     <textarea style = {{resize:"none"}}
                         onChange={(event) => {this.setState({question: event.target.value})}}
-                        className={"form-control ".concat(this.state.isValidated ? "" : "validate")}
+                        className={"form-control ".concat((this.state.isValidated ? "" : "validate")||(this.state.question && "input-text-color"))}
                         placeholder="Type your question"
                         value={this.state.question} 
                     />
@@ -181,7 +181,7 @@ class Security extends React.Component<SecurityProps, SecurityState> {
 
                     <textarea style = {{resize:"none"}}
                         onChange={(event) => {this.setState({answer: event.target.value})}}
-                        className={"form-control custom-input ".concat(this.state.isValidated ? "" : "validate")}
+                        className={"form-control custom-input ".concat((this.state.isValidated ? "" : "validate")||(this.state.answer && "input-text-color"))}
                         placeholder="Type your answer"
                         value={this.state.answer}
                     />
@@ -208,8 +208,8 @@ class Security extends React.Component<SecurityProps, SecurityState> {
                          
                             {item.showAnswer &&
                                 <div >
-                                    <div className="line"></div> 
-                                    <p className={"mb-0 question-answer form-control custom-input "}>
+                                    <div style = {{marginTop:"0.5px"}} className="line"></div> 
+                                    <p  className={"mb-0 question-answer form-control custom-input"}>
                                         {item.answer}
                                     </p>
                                 </div>

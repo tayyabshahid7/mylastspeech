@@ -33,10 +33,14 @@
         z-index: 999999;
     }
     .question-answer{
+        opacity: 1 !important;
         word-break: break-all;
         padding:1em !important;
         height: auto !important;
         padding-right: 3em !important;
+    }
+    .input-text-color{
+        opacity: 1 !important;
     }
     textarea{
         padding: 13px !important;

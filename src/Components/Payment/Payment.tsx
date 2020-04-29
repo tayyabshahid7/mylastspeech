@@ -72,7 +72,7 @@ class Payment extends React.Component<PaymentProps, PaymentState> {
                                 <TextField
                                     onChange={(event) => { this.setState({ accessCode: event.target.value }) }}
                                     value={this.state.accessCode}
-                                    className='outlined-input-custom'
+                                    className= {this.state.accessCode ? 'outlined-input-custom active' : 'outlined-input-custom'} 
                                     label="Access code"
                                     type="txt"
                                     variant="outlined"

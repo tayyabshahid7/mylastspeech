@@ -44,6 +44,9 @@
           }
           img{
             width: 50px;
+            border-radius: 50%;
+            height: 50px;
+            object-fit: cover;
           }
   
           &:focus{
@@ -63,6 +66,8 @@
         img{
           width: 45px;
           border-radius: 50%;
+          height: 45px;
+          object-fit: cover;
         }
         & a{
             color: $light-gray;
@@ -110,6 +115,8 @@
             & img{
               width: 60px;
               border-radius: 50%;
+              height: 60px;
+              object-fit: cover;
             }
           & span {
             b {
@@ -202,6 +209,9 @@
         }
         img{
           width: 40px;
+          border-radius: 50%;
+          height: 40px;
+          object-fit: cover;
         }
         &.spotify{
           margin-right: 0;
