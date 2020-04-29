@@ -66,9 +66,9 @@ h1, h2, h3, h4, h5 ,h6{
         margin-top: 14%;
 
         h1{
+            font-family: 'Sofia Pro Bold';
             font-size: 3rem;
             letter-spacing: 2px;
-            font-weight: bold;
             color: $white;
         }
         p{
@@ -306,7 +306,7 @@ h1, h2, h3, h4, h5 ,h6{
                 background:$Mine-Shaft 0% 0% no-repeat padding-box;
                 position: absolute;
                 // top: -59.8%;
-                bottom: 100%;
+                bottom: 120%;
                 left: 13%;
             }
         .newsletter{

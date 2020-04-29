@@ -119,7 +119,7 @@ class Home extends React.Component<HomeProps, HomeState> {
                                                 <div className="col-12 col-lg-6 col-md-6 ml-auto mr-auto">
                                                     <div className="px-md-4 d-flex list-section mt-0" data-aos="fade-right">
                                                         <img src={ShortTextLogo} />
-                                                        <p className="pl-md-5 pl-3" >You log in and write a few words about your life, you can even link your favourite song</p>
+                                                        <p className="pl-md-5 pl-3" >You log in and write a few words about about your life, you can even link a song for the occasion.</p>
                                                     </div>
                                                     <div className="px-md-4 d-flex list-section" data-aos="fade-right" >
                                                         <img src={LockLogo} />
