@@ -168,7 +168,7 @@ class Security extends React.Component<SecurityProps, SecurityState> {
     render() {
         return (
         <div id = "security" className="col-12 col-md-10 pl-0 pl-md-3 pr-0 tabcontent second-content pt-4">
-            <p className="pt-0 d-none d-md-block">Add questions that we will ask your loved ones when <br/>they try to access your speech</p>
+            <p className="pt-0 d-none d-md-block">Add some personal questions and answers, we will ask these as a backup in case your the person accessing your speech doesn't have a matching email to the ones you have registered.</p>
             <form>
                 <div className="pr-0 col-12 col-md-11 pl-0 form-group position-relative ">
                     <textarea style = {{resize:"none"}}

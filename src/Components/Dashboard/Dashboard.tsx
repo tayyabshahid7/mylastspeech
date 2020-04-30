@@ -187,7 +187,8 @@ retrieveSpotifySongs = (event:any)=>{
         axios.get(url.spotifySongSearchUrl+'?type=track&q=' + this.state.searchText,        
             config
             )
-            .then((response) => {               
+            .then((response) => {       
+                debugger;        
                this.setState({
                    songsList:response.data.tracks.items,
                    searchText:''
@@ -452,11 +453,11 @@ render() {
                                         {this.state.songsList && this.state.songsList.map((item:any)=>{
                                             return(
                                                 <li  className="list-song align-content-center align-items-center d-flex my-2 pb-2"
-                                                    onClick = {this.saveSong.bind(this,item.album.external_urls.spotify,item.album['artists'][0].name,item.album.name)}>
-                                                    <img src={item.album['images'][0].url}></img>
+                                                    onClick = {this.saveSong.bind(this,item.album.external_urls.spotify,(item.album['artists'].length > 0 ? item.album['artists'][0].name : ''),item.album.name)}>
+                                                    <img src={item.album['images'].length > 0 ? item.album['images'][0].url:''}></img>
                                                     <div>
                                                        <p className="ml-4 pb-0 mb-0">{item.album.name}</p>
-                                                       <p className="ml-4 pb-0 mb-0" style={{fontWeight:"normal",fontSize:"14px"}}>{item.album['artists'][0].name}</p>
+                                                       <p className="ml-4 pb-0 mb-0" style={{fontWeight:"normal",fontSize:"14px"}}>{item.album['artists'].length > 0 ? item.album['artists'][0].name : ''}</p>
                                                     </div>
                                                 </li>
                                             )

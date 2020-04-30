@@ -24,6 +24,10 @@ const trackingId = "UA-158954661-1";
 ReactGA.initialize(trackingId);
 ReactGA.pageview(window.location.pathname + window.location.search);
 
+const trackingId2 = "UA-76406072-2";
+ReactGA.initialize(trackingId2);
+ReactGA.pageview(window.location.pathname + window.location.search);
+
 const Routes: React.FC = () => {
   const [isSignUp,setIsSignUp] = useState(false);
   const [isSignIn,setIsSignIn] = useState(false);
