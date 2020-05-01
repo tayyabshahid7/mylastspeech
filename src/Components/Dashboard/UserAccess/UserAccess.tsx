@@ -342,7 +342,7 @@ class UserAccess extends React.Component<UserAccessProps, UserAccessState> {
                         loading={this.state.isSuccess}
                     />
                 </div>
-                <div className="col-12 col-md-10 pl-0 pl-md-3 pr-4 pr-md-0 tabcontent pt-md-4">
+                <div className={"col-12 col-md-10 pl-0 pl-md-3 pr-4 pr-md-0 tabcontent pt-md-4 ".concat(this.state.isSuccess?"screen-overlay":"")}>
                     <p className="d-md-block d-none">Add the email address’s of people you wish to allow access your speech</p>
                     <div className="col-12 col-md-11 pl-0 form-group mb-0">
                         {this.state.emailList.map((item:any,i:number)=>(

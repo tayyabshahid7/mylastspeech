@@ -5,6 +5,8 @@ import TextField from '@material-ui/core/TextField';
 import BrainTree from './BrainTree';
 import StripeCheckout from 'react-stripe-checkout';
 import { STRIPE_PUBLIC_KEY, STRIPE_CURRENCY } from './constants'
+import { css } from "@emotion/core";
+import { ClipLoader } from "react-spinners";
 import history from '../../utils/history';
 import './payment.scss';
 
@@ -14,8 +16,19 @@ interface PaymentProps {
 interface PaymentState {
     accessCode: string,
     email:string,
-    userObj:object
+    userObj:object,
+    formSubmitted:boolean,
 }
+
+const override = css`
+  display: block;
+  position:absolute;
+  z-index:9999;
+  margin:0 auto;
+  border:5px solid;
+  border-color: #8600B5;
+  top:40%;
+`;
 
 class Payment extends React.Component<PaymentProps, PaymentState> {
 
@@ -23,7 +36,8 @@ class Payment extends React.Component<PaymentProps, PaymentState> {
     state = {
         accessCode: '',
         email:'',
-        userObj:{}
+        userObj:{},
+        formSubmitted:true,
     }
     componentDidMount() {
         let name: string =this.props.location.state['name'];
@@ -56,12 +70,18 @@ class Payment extends React.Component<PaymentProps, PaymentState> {
     
 
     onToken = (token) => {
+        this.setState({
+            formSubmitted:true,
+        })
         axios.post(url.saveTokenUrl, {
             close_contact_email:this.state.userObj['close_contact_email'],
             user_id:this.state.userObj['id'],
             token: token.id,
           })
           .then((response) => {
+                this.setState({
+                    formSubmitted:false,
+                })
                 if(response.data.success_status){
                 history.push({
                     pathname: '/userspeech',
@@ -81,8 +101,16 @@ class Payment extends React.Component<PaymentProps, PaymentState> {
         let that = this;
         return (
             <div id="payment" >
-                 
-                <div className="container card-container payment-container mt-5">
+                <div className="align-items-center d-flex justify-content-center sweet-loading">
+                    <ClipLoader
+                    css={override}
+                    size={150}
+                    //size={"150px"} this also works
+                    color={"#123abc"}
+                    loading={this.state.formSubmitted}
+                />
+                </div>
+                <div className={"container card-container payment-container mt-5 ".concat(this.state.formSubmitted?"screen-overlay":"")}>
                     <div className="align-items-center d-flex justify-content-center row custom-profile">
                         <div className=" col-lg-6 card-profile payment-card p-4 ">
                             <h5 className="pt-4 mb-0" ><b>Success! just one more thing…</b></h5>
