@@ -3,7 +3,9 @@ import axios from 'axios';
 import * as url from '../../utils/constant';
 import TextField from '@material-ui/core/TextField';
 import BrainTree from './BrainTree';
-
+import StripeCheckout from 'react-stripe-checkout';
+import { STRIPE_PUBLIC_KEY, STRIPE_CURRENCY } from './constants'
+import history from '../../utils/history';
 import './payment.scss';
 
 interface PaymentProps {
@@ -51,7 +53,29 @@ class Payment extends React.Component<PaymentProps, PaymentState> {
 
         });
     }
+    
 
+    onToken = (token) => {
+        axios.post(url.saveTokenUrl, {
+            close_contact_email:this.state.userObj['close_contact_email'],
+            user_id:this.state.userObj['id'],
+            token: token.id,
+          })
+          .then((response) => {
+                if(response.data.success_status){
+                history.push({
+                    pathname: '/userspeech',
+                    state: this.state.userObj
+                });
+            }
+          })
+          .catch((error) => {
+            
+          })
+          .finally( () => {
+          });   
+       
+      }
  
     render() {
         let that = this;
@@ -82,8 +106,16 @@ class Payment extends React.Component<PaymentProps, PaymentState> {
                                 <a onClick={()=>{this.setState({activeTab:"card"})}} className={this.state.activeTab === "card" && "activeTab"} href="#">Card</a>
                                 <a onClick={()=>{this.setState({activeTab:"paypal"})}} className={"ml-3 ".concat(this.state.activeTab === "paypal" && "activeTab")} href="#">Paypal</a>
                             </div> */}
-                            <div className="container mt-3 pl-1">
-                                <BrainTree userData = {this.state.userObj}/>
+                                <div className="container mt-3 pl-1">
+                                <StripeCheckout
+                                    stripeKey={STRIPE_PUBLIC_KEY}
+                                    billingAddress
+                                    shippingAddress
+                                    currency={STRIPE_CURRENCY}
+                                    amount={10*100} 
+                                    token={this.onToken}
+                                />    
+                                {/* <BrainTree userData = {this.state.userObj}/> */}
                             </div>
                            
                         </div>

@@ -36,7 +36,16 @@ class Home extends React.Component<HomeProps, HomeState> {
             // initialise with other settings
             duration: 1000
         });
-      
+        try {
+            let temp = localStorage.getItem("cookiesAgreed");
+            if(temp === "1"){
+                this.setState({
+                    cookiesAgreed:true
+                })
+            }
+        }catch{
+
+        }
     }
 
     goToSignUp = () =>{
@@ -52,6 +61,13 @@ class Home extends React.Component<HomeProps, HomeState> {
 
     mailTo=(e:any)=>{
         window.location.href = `mailto:brad@acidtestdesign.com`;
+    }
+
+    acceptCookies = (e) => {
+        this.setState({
+          cookiesAgreed:true
+        });
+        localStorage.setItem('cookiesAgreed',"1")
     }
 
     render() {
@@ -94,7 +110,7 @@ class Home extends React.Component<HomeProps, HomeState> {
                                  Our site uses Cookies.  <a style={{zIndex:9999}} onClick = {this.showCookiesModal.bind(this)}>Learn more </a>
                             </p>
                            
-                             <button onClick = {()=>{this.setState({cookiesAgreed:true})}} className="mr-2 btn btn-custom d-flex justify-content-center align-items-center">
+                             <button onClick = {this.acceptCookies.bind(this)} className="mr-2 btn btn-custom d-flex justify-content-center align-items-center">
                                 Got it                          
                             </button>
                         </div>
