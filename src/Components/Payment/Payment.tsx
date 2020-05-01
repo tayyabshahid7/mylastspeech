@@ -37,7 +37,7 @@ class Payment extends React.Component<PaymentProps, PaymentState> {
         accessCode: '',
         email:'',
         userObj:{},
-        formSubmitted:true,
+        formSubmitted:false,
     }
     componentDidMount() {
         let name: string =this.props.location.state['name'];
