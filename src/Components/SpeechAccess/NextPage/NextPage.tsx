@@ -149,10 +149,10 @@ class NextPage extends React.Component<NextPageProps, NextPageState> {
                                 <div className="mb-3 position-relative">
                                     <p className = "label-input"> {item.question} </p>
                                     <input 
-                                     className="custom-input"
+                                     className = {"custom-input ".concat(item.answer && "input-text-color")}
                                      placeholder = "Answer"
-                                     onChange={this.setAnswer.bind(this,i)} 
-                                     onKeyDown={this._handleKeyDown.bind(this,item,i)}
+                                     onChange = {this.setAnswer.bind(this,i)} 
+                                     onKeyDown = {this._handleKeyDown.bind(this,item,i)}
                                      onBlur = {this.checkSecurityQuestion.bind(this,item,i)}
                                     />
                                    {/* <TextField

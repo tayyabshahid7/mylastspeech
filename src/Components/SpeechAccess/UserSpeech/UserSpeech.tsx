@@ -74,7 +74,7 @@ class UserSpeech extends React.Component<UserSpeechProps, UserSpeechState> {
         // let tmp:any = s.split(' ');
         // let s1 = tmp[0].charAt(0).toUpperCase() + tmp[0].slice(1);
         // let s2 = tmp[1].charAt(0).toUpperCase() + tmp[1].slice(1);      
-        this.userName = this.props.location.state['name'];
+        this.userName = String(this.props.location.state['name']).toLowerCase();
         this.retrieveSpeech();
     }
 
