@@ -169,7 +169,7 @@ class Home extends React.Component<HomeProps, HomeState> {
               
 
 
-                <div className="align-items-center container-fluid custom-upper d-flex" data-aos="zoom-in-up">
+                <div className="align-items-center container-fluid custom-upper d-flex" >
                     <div className="container upper-footer">
                         <div className="d-flex justify-content-around pl-5 row custom-upper-footer">
                             <div className="col-12 col-md-11">
