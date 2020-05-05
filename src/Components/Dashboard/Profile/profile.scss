@@ -51,6 +51,10 @@
 @media screen and (max-width:767px){
   #profile {
     border-top: 1.5px solid $Alto;
+    .profile-img{
+      border-bottom: 2.5px solid $Geyser !important;
+      padding-bottom: 25px;
+    }
     .form-group{
       padding-right: 0;
     }
