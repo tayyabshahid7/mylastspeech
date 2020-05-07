@@ -154,14 +154,14 @@ class SignUp extends React.Component<SignUpProps, SignUpState> {
                         </div>
                 
                     <div className="align-items-center d-flex justify-content-center row custom-login signup-dialog">
-                        <div className=" col-lg-6 col-12  login-form">
+                        <div className="col-lg-4 col-12  login-form">
                             <form   onSubmit={this.submitForm.bind(this)}>
                                 <div className={"form-group mt-4 ".concat(!this.state.isValidated && this.state.firstName ==="" ? 'validate':'' )}>
                                     <TextField 
                                         onChange={(event) => {this.setState({firstName: event.target.value});}}
                                         value = {this.state.firstName} 
                                         className = {(this.state.firstName && this.state.firstName.length > 0 )? 'outlined-input-custom active' : 'outlined-input-custom' }
-                                        label="Enter Your First Name" 
+                                        label="First Name" 
                                         variant="outlined" 
                                     />
                                 </div>
@@ -170,7 +170,7 @@ class SignUp extends React.Component<SignUpProps, SignUpState> {
                                         onChange={(event) => {this.setState({lastName: event.target.value});}}
                                         value = {this.state.lastName} 
                                         className = {(this.state.lastName && this.state.lastName.length > 0) ? 'outlined-input-custom active' : 'outlined-input-custom' }
-                                        label="Enter Your Last Name" 
+                                        label="Last Name" 
                                         variant="outlined" 
                                     />
                                 </div>
