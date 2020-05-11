@@ -316,22 +316,42 @@
       text-overflow: ellipsis;
     }
   }
+  .delete-dialog >div >div{
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
   .sweet-alert{
+    background-color: #1f1f1f !important;
+    height: auto !important;
     width: 30em !important;
     min-height: 35vh !important;
+    .dialog-btn{
+      &.cancel-btn{
+        right: auto;
+        left: 0;
+        border-right: 1px solid #ddd;
+      }
+      &.confirm-btn{
+        right: 0;
+        left: auto;
+      }
+    }
+    p .delete-btns {
+      border-top: 1px solid #ddd;
+    }
+   
     h2{
-      margin-left: 9%;
-      margin-top: -30px;
-      text-align: left;
+      font-size: 18px !important;
+      margin-top: 4% !important;
+      text-align: left !important;
     }
     .body-text{
-      color: $white;
-      font-weight: 700;
-      opacity: 0.8;
-      line-height: 1.5;
-      padding: 0 9%;
-      font-size: 16px;
+      color: $white !important;
+      font-weight: 500;
       text-align: left;
+      padding: 10px 4px;
+      font-size: 15px !important;
+      opacity: 0.8;
     }
   }
 }

@@ -7,6 +7,8 @@ import avatarPic from '../../../assets/images/img_avatar.png';
 import history from '../../../utils/history';
 import './profile.scss';
 import Item from '../../Search/Item/Item';
+import SweetAlert from 'react-bootstrap-sweetalert';
+import warningIcon from '../../../assets/images/warning.svg';
 
 interface ProfileProps {
     changeProfilePic(profile_url:string):any,
@@ -30,6 +32,7 @@ interface ProfileState {
     showNewPass2:boolean,
     errorMsg:string,
     passwordError:string,
+    showDeleteDialog:boolean,
     nameErrorMsg:string,
 }
 
@@ -58,6 +61,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
         showNewPass2:false,
         errorMsg:'',
         passwordError:'',
+        showDeleteDialog:false,
         nameErrorMsg:'',
     }
 
@@ -248,6 +252,72 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
         )
     }
 
+    logout = ()=> {
+        const config = {
+            headers: { Authorization: `Token ${localStorage.getItem('userToken')}`}
+        };
+        const params = {};
+    
+        axios.post(url.logoutUrl,
+            params,
+            config
+        )
+        .then((response) => {
+            localStorage.removeItem('userToken');
+            localStorage.removeItem('user');
+            this.props.changeProfilePic('');
+            history.push("/");
+        })
+        .catch((error) => {
+            if(error.response.data.detail === "Invalid token."){
+                localStorage.removeItem('userToken');
+                localStorage.removeItem('user');
+                history.push({
+                    pathname:'/signin',
+                });
+            }
+        })
+        .finally(() => {
+                // always executed
+        });
+        
+    }
+    
+    deleteAccount = ()=> {
+        const config = {
+            headers: { Authorization: `Token ${localStorage.getItem('userToken')}`}
+        };
+        const bodyParameters = {
+         };
+        
+        axios.delete(url.deleteAccountUrl, 
+            config
+        )
+        .then((response) => {
+            localStorage.removeItem('userToken');
+            this.props.changeProfilePic('');
+            history.push("/");
+        })
+        .catch((error) => {
+            if(error.response.data.detail === "Invalid token."){
+                localStorage.removeItem('userToken');
+                localStorage.removeItem('user');
+                this.props.changeProfilePic('');
+                history.push({
+                    pathname:'/signin',
+                });
+            } 
+        })
+        .finally(() => {
+                // always executed
+        });
+        
+    }
+
+    mailTo=(e:any)=>{
+        window.location.href = `mailto:brad@acidtestdesign.com`;
+    }
+    
     render() {
         return (
         <div id="profile"  className="col-12 col-md-10 pl-md-3 pl-0  pr-0 tabcontent pt-4 profile-section">
@@ -423,11 +493,59 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                             </div> 
                         </div>
                         <span className="error ml-1">{(this.state.passwordError && this.state.passwordError.length>0 ) && this.state.passwordError }</span>
+                        
+                        
                     </div>
                     }
                 </div>
-            </form>
+            
+                <div className="profile-section mt-4 pb-3 position-relative">
+                    <div style={{cursor:"pointer"}} className ="align-content-center col-12 d-flex flex-column justify-content-center more-card pl-0 text-left">
+                        <a onClick={this.logout.bind(this)} >Logout<span> - You can sign back in at any time</span></a>
+                    </div>
+                </div>
 
+                <div className="profile-section mt-4 pb-3 position-relative">
+                    <div style={{cursor:"pointer"}} className ="align-content-center col-12 d-flex flex-column justify-content-center more-card pl-0 text-left">
+                        <a onClick={()=>{this.setState({showDeleteDialog:true})}} >Delete<span> - This will remove your account forever</span></a>
+                    </div>
+                </div>
+
+                <div className="profile-section mt-4 pb-3 position-relative">
+                    <div style={{cursor:"pointer"}} className ="align-content-center col-12 d-flex flex-column justify-content-center more-card pl-0 text-left">
+                        <a onClick={this.mailTo.bind(this)}>Contact us <span> - Get in touch if you need to speak to us about anything</span></a>
+                    </div>
+                </div>
+
+               
+            </form>
+            <div className="position-relative delete-dialog">        
+                <SweetAlert  
+                    title="Warning"
+                    onConfirm={this.deleteAccount.bind(this)}
+                    onCancel={()=>this.setState({showDeleteDialog:false})}
+                    showConfirm = {true}
+                    show = {this.state.showDeleteDialog}
+                    showCancel={true}
+                    customButtons={
+                    <React.Fragment>
+                        <div className="delete-btns">
+                            <button className = "col-6 dialog-btn cancel-btn" onClick={()=>this.setState({showDeleteDialog:false})}>Cancel</button>
+                            <button className = "col-6 dialog-btn confirm-btn" onClick={this.deleteAccount.bind(this)}>Erase</button>
+                        </div>
+                    </React.Fragment>
+                    }
+                    >
+                    <div>
+                        <img className="warning-img" src = {warningIcon} />
+                        <p className = "body-text pl-0 "> 
+                            This will erase your speech and data, this is not
+                            reversible.Are you sure you wish to completely remove your
+                            account from mylastspeech?
+                        </p>
+                    </div>
+                </SweetAlert>
+            </div> 
         </div>
  
         );
