@@ -5,6 +5,7 @@ import moment from 'moment';
 import TextField from '@material-ui/core/TextField';
 import avatarPic from '../../../assets/images/img_avatar.png';
 import history from '../../../utils/history';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import './profile.scss';
 import Item from '../../Search/Item/Item';
 import SweetAlert from 'react-bootstrap-sweetalert';
@@ -12,6 +13,7 @@ import warningIcon from '../../../assets/images/warning.svg';
 
 interface ProfileProps {
     changeProfilePic(profile_url:string):any,
+    emailPreferencesModal:boolean,
 }
 interface ProfileState {
     email: string,
@@ -33,7 +35,11 @@ interface ProfileState {
     errorMsg:string,
     passwordError:string,
     showDeleteDialog:boolean,
-    nameErrorMsg:string,
+    emailPreferencesModal:boolean,
+    nameErrorMsg:string,   
+    isAccountAndNotification:boolean,
+    isUpdatesAndFeatures:boolean,
+    unSubscribeAll:boolean,
 }
 
 
@@ -62,7 +68,11 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
         errorMsg:'',
         passwordError:'',
         showDeleteDialog:false,
-        nameErrorMsg:'',
+        nameErrorMsg:'',    
+        emailPreferencesModal:false,   
+        isAccountAndNotification:false,
+        isUpdatesAndFeatures:false,
+        unSubscribeAll:false,
     }
 
     constructor(props){
@@ -71,8 +81,70 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
     }
     componentDidMount(){
          this.retrieveProfileInfo();
+         let user:any = localStorage.getItem('user');
+         user = JSON.parse(user);
+         if(user && user.has_subscribed_to_notificatons && user.has_subscribed_to_updates_features){
+             this.setState({
+                 isAccountAndNotification:user.has_subscribed_to_notificatons,
+                 isUpdatesAndFeatures:user.has_subscribed_to_updates_features,
+                 unSubscribeAll:false,
+             })
+         }else if(user && (user.has_subscribed_to_notificatons || user.has_subscribed_to_updates_features)){
+             this.setState({
+                 isAccountAndNotification:user.has_subscribed_to_notificatons,
+                 isUpdatesAndFeatures:user.has_subscribed_to_updates_features,
+                 unSubscribeAll:false,
+             })
+         }else if(user && !(user.has_subscribed_to_notificatons && user.has_subscribed_to_updates_features)){
+             this.setState({
+                 isAccountAndNotification:user.has_subscribed_to_notificatons,
+                 isUpdatesAndFeatures:user.has_subscribed_to_updates_features,
+                 unSubscribeAll:true,
+             })
+         }
     }
 
+    changeNotificationSettings = (e:any) =>{
+        e.preventDefault();
+    
+        const config = {
+            headers: { Authorization: `Token ${localStorage.getItem('userToken')}`}
+        };
+        const bodyParameters = {
+            has_subscribed_to_notificatons :this.state.isAccountAndNotification,
+            has_subscribed_to_updates_features: this.state.isUpdatesAndFeatures,
+            allUnSubscribed: this.state.unSubscribeAll,
+        };
+    
+        axios.post(url.changeNotificationSettingsUrl,
+            bodyParameters,
+            config
+        )
+        .then((response) => {
+            localStorage.setItem('user',JSON.stringify(response.data));
+            this.setState({
+                emailPreferencesModal:false,
+            });
+        })
+        .catch((error) => {
+            if(error.response.data.detail === "Invalid token."){
+                localStorage.removeItem('userToken');
+                localStorage.removeItem('user');
+                history.push({
+                    pathname:'/signin',
+                });
+            }
+        })
+        .finally(() => {
+                // always executed
+        });
+    }
+
+    componentWillReceiveProps(nextProps:any){
+        this.setState({
+            emailPreferencesModal:nextProps.emailPreferencesModal,
+        })
+    }
 
     retrieveProfileInfo =()=>{
         const config = {
@@ -516,9 +588,86 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                         <a onClick={this.mailTo.bind(this)}>Contact us <span> - Get in touch if you need to speak to us about anything</span></a>
                     </div>
                 </div>
-
+                <div className="profile-section mt-4 pb-3 position-relative">
+                    <div className = "align-content-center col-12 d-flex flex-column justify-content-center more-card pl-0 text-left">
+                        <a onClick = {()=>{this.setState({emailPreferencesModal:true})}}>Notification settings </a>
+                    </div>
+                </div>
                
             </form>
+            {this.state.emailPreferencesModal && 
+                <Modal className = {"preferences-modal"} isOpen={this.state.emailPreferencesModal} toggle={()=>{}}>
+                        <ModalHeader  toggle={()=>{this.setState({emailPreferencesModal:false,})}}>
+                           
+                        </ModalHeader>
+                        <ModalBody className="pt-0 m-auto">
+                           <span className="px-4">Notification settings</span>
+                           <p className="header-text px-4 pt-3">
+                               Help us improve the experience of this site for everyone.Please update
+                               your email preferences below.
+                           </p>
+                        <div className="radio-btn pl-4 pt-3">
+                            <div className="d-flex">
+                                <label className="container-radio mb-0">
+                                    <input 
+                                        onClick = {()=>{
+                                                if(!this.state.isAccountAndNotification){
+                                                    this.setState({unSubscribeAll:false})
+                                                }else if(!this.state.isUpdatesAndFeatures && this.state.isAccountAndNotification){
+                                                    this.setState({unSubscribeAll:true})
+                                                }
+                                                this.setState({isAccountAndNotification:!this.state.isAccountAndNotification})
+                                            } 
+                                        }
+                                        className="checkbox"/>
+                                    <span className={"checkmark ".concat(this.state.isAccountAndNotification && "checked")} ></span>                            
+                                </label>
+                                <span className="checkbox-text">Account reminders and notifications</span>
+                            </div> 
+                            <div className="d-flex mt-5 pt-2">
+                                <label className="container-radio mb-0">
+                                    <input 
+                                        onClick = {()=>{
+                                                if(!this.state.isUpdatesAndFeatures){
+                                                    this.setState({unSubscribeAll:false})
+                                                }else if(this.state.isUpdatesAndFeatures && !this.state.isAccountAndNotification){
+                                                    this.setState({unSubscribeAll:true})
+                                                }
+                                                this.setState({isUpdatesAndFeatures:!this.state.isUpdatesAndFeatures})
+                                            } 
+                                        }
+                                        className="checkbox"
+                                    />
+                                    <span className={"checkmark ".concat(this.state.isUpdatesAndFeatures && "checked")} ></span>                            
+                                </label>
+                                <span className="checkbox-text">Updates and new features</span>
+                            </div>  
+                                 
+                        </div>
+                        <div className="unsubscribe-all radio-btn pl-4 pt-3">
+                            <div className="d-flex">
+                                <label className="container-radio mb-0">
+                                    <input 
+                                        onClick = {()=>{                                    
+                                                this.setState({unSubscribeAll:!this.state.unSubscribeAll,isAccountAndNotification:false,isUpdatesAndFeatures:false})
+                                            }
+                                        } 
+                                        className="checkbox"
+                                    />
+                                    <span className={"checkmark ".concat(this.state.unSubscribeAll && "checked")} ></span>                            
+                                </label>
+                                <span className="checkbox-text">Unsubscribre from all</span>
+                            </div>     
+                        </div>                        
+                    </ModalBody> 
+                    <ModalFooter>
+                        <button onClick = {this.changeNotificationSettings.bind(this)} className="btn update-btn">
+                            Update
+                        </button>    
+                    </ModalFooter>                      
+                </Modal>
+
+            }
             <div className="position-relative delete-dialog">        
                 <SweetAlert  
                     title="Warning"

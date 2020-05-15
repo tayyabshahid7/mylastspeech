@@ -4,7 +4,7 @@ import * as url from '../../utils/constant';
 import axios from 'axios';
 import history from '../../utils/history';
 import { css } from "@emotion/core";
-import ellipsisIcon from '../../assets/images/ellipsis.svg';
+// import ellipsisIcon from '../../assets/images/ellipsis.svg';
 import spotifyIcon from '../../assets/images/spotifylogo.png';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { ClipLoader } from "react-spinners";
@@ -37,10 +37,7 @@ interface DashboardState {
     openSpotifyModal:boolean,
     artistName:string,
     songName:string,
-    emailPreferencesModal:boolean,
-    isAccountAndNotification:boolean,
-    isUpdatesAndFeatures:boolean,
-    unSubscribeAll:boolean,
+    emailPreferencesModal:boolean
 }
 
 const override = css`
@@ -75,10 +72,7 @@ state = {
     openSpotifyModal:false,
     artistName:'',
     songName:'',
-    emailPreferencesModal:false,
-    isAccountAndNotification:false,
-    isUpdatesAndFeatures:false,
-    unSubscribeAll:false,
+    emailPreferencesModal:false
 }
 
 componentDidMount(){
@@ -89,27 +83,7 @@ componentDidMount(){
             activeBottomTab:'Settings',
         })
     }
-    let user:any = localStorage.getItem('user');
-    user = JSON.parse(user);
-    if(user && user.has_subscribed_to_notificatons && user.has_subscribed_to_updates_features){
-        this.setState({
-            isAccountAndNotification:user.has_subscribed_to_notificatons,
-            isUpdatesAndFeatures:user.has_subscribed_to_updates_features,
-            unSubscribeAll:false,
-        })
-    }else if(user && (user.has_subscribed_to_notificatons || user.has_subscribed_to_updates_features)){
-        this.setState({
-            isAccountAndNotification:user.has_subscribed_to_notificatons,
-            isUpdatesAndFeatures:user.has_subscribed_to_updates_features,
-            unSubscribeAll:false,
-        })
-    }else if(user && !(user.has_subscribed_to_notificatons && user.has_subscribed_to_updates_features)){
-        this.setState({
-            isAccountAndNotification:user.has_subscribed_to_notificatons,
-            isUpdatesAndFeatures:user.has_subscribed_to_updates_features,
-            unSubscribeAll:true,
-        })
-    }
+  
   
 }
 
@@ -243,41 +217,7 @@ saveSong = (songUrl:string,artist_name,song_name,e:any) =>{
 
 
 
-changeNotificationSettings = (e:any) =>{
-    e.preventDefault();
 
-    const config = {
-        headers: { Authorization: `Token ${localStorage.getItem('userToken')}`}
-    };
-    const bodyParameters = {
-        has_subscribed_to_notificatons :this.state.isAccountAndNotification,
-        has_subscribed_to_updates_features: this.state.isUpdatesAndFeatures,
-        allUnSubscribed: this.state.unSubscribeAll,
-    };
-
-    axios.post(url.changeNotificationSettingsUrl,
-        bodyParameters,
-        config
-    )
-    .then((response) => {
-        localStorage.setItem('user',JSON.stringify(response.data));
-        this.setState({
-            emailPreferencesModal:false,
-        });
-    })
-    .catch((error) => {
-        if(error.response.data.detail === "Invalid token."){
-            localStorage.removeItem('userToken');
-            localStorage.removeItem('user');
-            history.push({
-                pathname:'/signin',
-            });
-        }
-    })
-    .finally(() => {
-            // always executed
-    });
-}
 
 toggleModal = (e:any) =>{
     this.setState({
@@ -309,35 +249,27 @@ render() {
                                     <button className={"pt-4 pb-4 tablinks ".concat(this.state.activeTab === "accesspage" ? 'active': '')} onClick={this.toggleActiveTab.bind(this,'accesspage')} id="defaultOpen">Who can access my page</button>
                                     <button className={"pb-4 tablinks ".concat(this.state.activeTab === "security" ? 'active': '')} onClick={this.toggleActiveTab.bind(this,'security')} >Security questions</button>
                                     <button className={"pb-4 tablinks ".concat(this.state.activeTab === "profile" ? 'active': '')} onClick={this.toggleActiveTab.bind(this,'profile')} >Profile</button>
-                                    {this.state.activeBottomTab == "Settings" && 
+                                    {/* {this.state.activeBottomTab == "Settings" && 
                                         <img onClick={this.toggleActiveTab.bind(this,'more')} className = "d-md-none ellipsis-icon" src = {ellipsisIcon} />
-                                    }
+                                    } */}
                                 </div>
                                
                             </div>
-                            <div className="more-btn">
+                            {/* <div className="more-btn">
                                 <button className={"ml-4 d-none d-md-block pb-4 more-btn tablinks ".concat(this.state.activeTab === "more" ? 'active': '')} onClick={this.toggleActiveTab.bind(this,'more')} >
                                     More
                                 </button>
-                            </div>
+                            </div> */}
                             <div  className="col-12 col-md-9 float-left pb-5 content-sec ">
                                 {this.state.activeTab === "accesspage" ?
                                     <UserAccess/>                              
                                 : this.state.activeTab === "security"?
                                     <Security />
                                 : this.state.activeTab === "profile"?
-                                    <Profile changeProfilePic = {(profile_url:string)=>{
+                                    <Profile emailPreferencesModal = {this.state.emailPreferencesModal} changeProfilePic = {(profile_url:string)=>{
                                         profile_url && this.props.changeProfilePic(profile_url)
                                     }} />
-                                :  this.state.activeTab === "more"?
-                                    <div className = "col-12 col-md-9 float-left pb-5 more-section">
-                                    <div className="row pt-2">
-                                        <div className = "col-12 col-md-10 mt-4 more-card d-flex flex-column align-content-center justify-content-center">
-                                            <a onClick = {()=>{this.setState({emailPreferencesModal:true})}} className="ml-2">Notification settings </a>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
+                                    
                                 :null    
                             }   
                         </div>               
@@ -397,79 +329,7 @@ render() {
                    </div> 
                 }    
               
-                {this.state.emailPreferencesModal && 
-                <Modal className = {"preferences-modal"} isOpen={this.state.emailPreferencesModal} toggle={()=>{}}>
-                        <ModalHeader  toggle={()=>{this.setState({emailPreferencesModal:false,})}}>
-                           
-                        </ModalHeader>
-                        <ModalBody className="pt-0 m-auto">
-                           <span className="px-4">Notification settings</span>
-                           <p className="header-text px-4 pt-3">
-                               Help us improve the experience of this site for everyone.Please update
-                               your email preferences below.
-                           </p>
-                        <div className="radio-btn pl-4 pt-3">
-                            <div className="d-flex">
-                                <label className="container-radio mb-0">
-                                    <input 
-                                        onClick = {()=>{
-                                                if(!this.state.isAccountAndNotification){
-                                                    this.setState({unSubscribeAll:false})
-                                                }else if(!this.state.isUpdatesAndFeatures && this.state.isAccountAndNotification){
-                                                    this.setState({unSubscribeAll:true})
-                                                }
-                                                this.setState({isAccountAndNotification:!this.state.isAccountAndNotification})
-                                            } 
-                                        }
-                                        className="checkbox"/>
-                                    <span className={"checkmark ".concat(this.state.isAccountAndNotification && "checked")} ></span>                            
-                                </label>
-                                <span className="checkbox-text">Account reminders and notifications</span>
-                            </div> 
-                            <div className="d-flex mt-5 pt-2">
-                                <label className="container-radio mb-0">
-                                    <input 
-                                        onClick = {()=>{
-                                                if(!this.state.isUpdatesAndFeatures){
-                                                    this.setState({unSubscribeAll:false})
-                                                }else if(this.state.isUpdatesAndFeatures && !this.state.isAccountAndNotification){
-                                                    this.setState({unSubscribeAll:true})
-                                                }
-                                                this.setState({isUpdatesAndFeatures:!this.state.isUpdatesAndFeatures})
-                                            } 
-                                        }
-                                        className="checkbox"
-                                    />
-                                    <span className={"checkmark ".concat(this.state.isUpdatesAndFeatures && "checked")} ></span>                            
-                                </label>
-                                <span className="checkbox-text">Updates and new features</span>
-                            </div>  
-                                 
-                        </div>
-                        <div className="unsubscribe-all radio-btn pl-4 pt-3">
-                            <div className="d-flex">
-                                <label className="container-radio mb-0">
-                                    <input 
-                                        onClick = {()=>{                                    
-                                                this.setState({unSubscribeAll:!this.state.unSubscribeAll,isAccountAndNotification:false,isUpdatesAndFeatures:false})
-                                            }
-                                        } 
-                                        className="checkbox"
-                                    />
-                                    <span className={"checkmark ".concat(this.state.unSubscribeAll && "checked")} ></span>                            
-                                </label>
-                                <span className="checkbox-text">Unsubscribre from all</span>
-                            </div>     
-                        </div>                        
-                    </ModalBody> 
-                    <ModalFooter>
-                        <button onClick = {this.changeNotificationSettings.bind(this)} className="btn update-btn">
-                            Update
-                        </button>    
-                    </ModalFooter>                      
-                </Modal>
-
-                }
+             
                 <div className="col-8 d-flex upper-list">
                     <div className={"after-section ".concat(this.state.activeBottomTab === "Settings" ? "after-section-animate": "" )}>
                     </div>   
