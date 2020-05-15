@@ -589,7 +589,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
                     </div>
                 </div>
                 <div className="profile-section mt-4 pb-3 position-relative">
-                    <div className = "align-content-center col-12 d-flex flex-column justify-content-center more-card pl-0 text-left">
+                    <div style={{cursor:"pointer"}} className = "align-content-center col-12 d-flex flex-column justify-content-center more-card pl-0 text-left">
                         <a onClick = {()=>{this.setState({emailPreferencesModal:true})}}>Notification settings </a>
                     </div>
                 </div>
