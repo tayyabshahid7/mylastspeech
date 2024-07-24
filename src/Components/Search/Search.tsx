@@ -76,7 +76,7 @@ class ItemList extends React.Component<ItemListProps, ItemListState> {
       .finally(()=> {
 
       });           
-  } 
+    } 
 
 
     handleSearch =(event:any)=>{  

@@ -23,8 +23,8 @@ class Resend extends React.Component<ResendProps, ResendState> {
         isSuccess:false,
         successText:"",  
     }
+    
     componentDidMount(){
-        debugger;
         if(this.props.location.state && this.props.location.state.email){
             this.email = this.props.location.state.email;
         }else{
@@ -37,7 +37,7 @@ class Resend extends React.Component<ResendProps, ResendState> {
         let that = this;
         axios.post(url.confirmCodeUrl, {
             key:this.state.code,              
-        }).then( (response)=> {
+        }).then((response)=> {
             that.setState({
                 isSuccess:true,
                 successText:"Verified Successfully"
@@ -46,7 +46,7 @@ class Resend extends React.Component<ResendProps, ResendState> {
                 that.setState({
                     isSuccess:false,
                 });
-                history.push("/success");   
+                history.push("/");   
             }, 2500);
         })
         .catch((error:any)=> {           

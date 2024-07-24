@@ -68,7 +68,6 @@ class SignIn extends React.Component<SignInProps, SignInState> {
                 password:this.state.password,
               })
               .then((response) => {
-                   debugger;
                 that.setState({
                     isSuccess:true,
                     formSubmitted:false,
@@ -87,7 +86,6 @@ class SignIn extends React.Component<SignInProps, SignInState> {
                  });
               })
               .catch((error) => {
-                 debugger;
                   let form_errors = {};   
                   if(error.response?.data['email'] && error.response?.data['email'][0] === "E-mail is not verified."){
                     history.push({

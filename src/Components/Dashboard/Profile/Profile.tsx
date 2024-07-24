@@ -15,6 +15,7 @@ interface ProfileProps {
     changeProfilePic(profile_url:string):any,
     emailPreferencesModal:boolean,
 }
+
 interface ProfileState {
     email: string,
     firstName:string,
@@ -43,10 +44,8 @@ interface ProfileState {
 }
 
 
-
-
 class Profile extends React.Component<ProfileProps, ProfileState> {
-    private readonly inputOpenFileRef = createRef<HTMLInputElement>()
+    private readonly inputOpenFileRef = createRef<HTMLInputElement>();
     isDefaultPic = true;
     state = {
         email: '',
@@ -77,7 +76,7 @@ class Profile extends React.Component<ProfileProps, ProfileState> {
 
     constructor(props){
         super(props);
-        this.inputOpenFileRef = React.createRef()
+        this.inputOpenFileRef = React.createRef();
     }
     componentDidMount(){
          this.retrieveProfileInfo();
